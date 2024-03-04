@@ -2,52 +2,40 @@ import { Address, BigInt, Bytes, ethereum, log } from "@graphprotocol/graph-ts";
 
 import { ProtocolLog } from "../../generated/schema";
 import { PROTOCOL_ID } from "../constants";
-import { PV } from "../enums";
 import { toHexLowercase } from "./format";
 
 export function idForProjectTx(
   projectId: BigInt,
-  pv: PV,
   event: ethereum.Event,
   useLogIndex: boolean = false // Using log index will ensure ID is unique even if event is emitted multiple times within a single tx
 ): string {
-  return (
-    idForProject(projectId, pv) +
-    "-" +
-    toHexLowercase(event.transaction.hash) +
-    (useLogIndex ? "-" + event.logIndex.toString() : "")
-  );
+  return `${projectId.toString()}-${toHexLowercase(event.transaction.hash)}${
+    useLogIndex ? "-" + event.logIndex.toString() : ""
+  }`;
 }
 
 export function idForConfigureEvent(
   projectId: BigInt,
-  pv: PV,
   event: ethereum.Event
 ): string {
-  return idForProjectTx(projectId, pv, event); // do not use logIndex, because we load/save ConfigureEvent multiple times for a single transaction
+  return idForProjectTx(projectId, event); // do not use logIndex, because we load/save ConfigureEvent multiple times for a single transaction
 }
 
 export function idForProjectEvent(
   projectId: BigInt,
-  pv: PV,
   txHash: Bytes,
   logIndex: BigInt
 ): string {
-  return `${idForProject(projectId, pv)}-${toHexLowercase(
+  return `${projectId.toString()}-${toHexLowercase(
     txHash
   )}-${logIndex.toString()}`;
 }
 
 export function idForParticipant(
   projectId: BigInt,
-  pv: PV,
   walletAddress: Bytes
 ): string {
-  return `${idForProject(projectId, pv)}-${toHexLowercase(walletAddress)}`;
-}
-
-export function idForProject(projectId: BigInt, pv: PV): string {
-  return `${pv}-${projectId.toString()}`;
+  return `${projectId.toString()}-${toHexLowercase(walletAddress)}`;
 }
 
 /**
@@ -87,12 +75,11 @@ export function idForSplitsPayer(projectId: BigInt, address: Bytes): string {
 
 export function idForMigrateEvent(
   projectId: BigInt,
-  pv: PV,
   blockNumber: BigInt
 ): string {
-  return `${idForProject(projectId, pv)}-${blockNumber.toString()}`;
+  return `${projectId.toString()}-${blockNumber.toString()}`;
 }
 
 export function idForFundingCycle(projectId: BigInt, number: BigInt): string {
-  return `${idForProject(projectId, PV.PV2)}-${number.toString()}`;
+  return `${projectId.toString()}-${number.toString()}`;
 }

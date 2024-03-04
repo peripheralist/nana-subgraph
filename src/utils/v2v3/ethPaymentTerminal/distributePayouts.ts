@@ -3,7 +3,7 @@ import { Address, BigInt, Bytes, ethereum, log } from "@graphprotocol/graph-ts";
 import { DistributePayoutsEvent, Project } from "../../../../generated/schema";
 import { ProjectEventKey, PV } from "../../../enums";
 import { saveNewProjectTerminalEvent } from "../../entities/projectEvent";
-import { idForProject, idForProjectTx } from "../../ids";
+import { idForProjectTx } from "../../ids";
 import { v3USDPriceForEth } from "../../prices/v3Prices";
 import { extrapolateLatestFC } from "../../entities/fundingCycle";
 

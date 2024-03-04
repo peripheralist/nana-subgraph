@@ -8,7 +8,6 @@ import { JBETHERC20ProjectPayer } from "../../../../generated/templates";
 import { ProjectEventKey, PV } from "../../../enums";
 import { saveNewProjectEvent } from "../../entities/projectEvent";
 import { toHexLowercase } from "../../format";
-import { idForProject } from "../../ids";
 
 const pv = PV.PV2;
 

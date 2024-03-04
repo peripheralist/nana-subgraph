@@ -8,7 +8,6 @@ import {
 } from "../../contractAddresses";
 import { startBlock_shared_jbProjectHandles } from "../../startBlocks";
 import { PV } from "../../enums";
-import { idForProject } from "../ids";
 
 export function updateProjectHandle(
   projectId: BigInt,

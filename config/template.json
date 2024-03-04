@@ -1,50 +1,13 @@
 {
-  "v1": [
-    "projects",
-    "terminalV1",
-    "terminalV1_1",
-    "terminalDirectory",
-    "ticketBooth",
-    "fundingCycles",
-    "prices"
-  ],
-  "v2": [
+  "contracts": [
     "jbProjects",
+    "jbTerminalStore",
+    "jbMultiTerminal",
     "jbController",
-    "jbTokenStore",
-    "jbETHPaymentTerminal",
-    "jbETHERC20ProjectPayerDeployer",
-    "jbETHERC20SplitsPayerDeployer",
-    "jbFundingCycleStore",
-    "jbPrices"
-  ],
-  "v3": [
-    "jbController",
-    "jbController3_0_1",
-    "jbController3_1",
-    "jbTokenStore",
-    "jbETHPaymentTerminal",
-    "jbETHPaymentTerminal3_1",
-    "jbETHPaymentTerminal3_1_1",
-    "jbETHPaymentTerminal3_1_2",
-    "jbETHERC20ProjectPayerDeployer",
-    "jbETHERC20SplitsPayerDeployer",
-    "jbFundingCycleStore",
+    "jbTokens",
     "jbPrices",
-    "jbFundAccessConstraintsStore"
-  ],
-  "shared": [
-    "legacy_jbProjectHandles",
-    "jbProjectHandles",
-    "jbTiered721DelegateDeployer3",
-    "jbTiered721DelegateDeployer3_1",
-    "jbTiered721DelegateDeployer3_2",
-    "jbTiered721DelegateDeployer3_3",
-    "jbTiered721DelegateDeployer3_4",
-    "jbTiered721DelegateStore3",
-    "jbTiered721DelegateStore3_1",
-    "jbTiered721DelegateStore3_2",
-    "jbTiered721DelegateStore3_3",
-    "ensRegistry"
+    "jbDirectory",
+    "jb721TiersHookDeployer",
+    "jb721TiersHookStore"
   ]
 }

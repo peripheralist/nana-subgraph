@@ -20,188 +20,207 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/shared/erc20.ts
+      file: ./src/mappings/erc20.ts
       entities:
         - Participant
       abis:
         - name: ERC20
-          file: ./abis/shared/ERC20.json
+          file: ./abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleERC20Transfer
-  - name: JB721Delegate3
+  - name: JB721TiersHook
     kind: ethereum/contract
     network: {{network}}
     source:
-      abi: JB721Delegate3
+      abi: JB721TiersHook
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/shared/jb721DelegateToken3.ts
-      entities:
-        - Participant
-        - NFT
-        - NFTTier
-      abis:
-        - name: JB721Delegate3
-          file: ./abis/shared/JB721Delegate3.json
-        - name: JBTiered721DelegateStore3
-          file: ./abis/shared/JBTiered721DelegateStore3.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: AddTier(indexed uint256,(uint80,uint48,uint40,uint16,uint16,address,bytes32,bool,bool,bool),address)
-          handler: handleAddTier
-        - event: RemoveTier(indexed uint256,address)
-          handler: handleRemoveTier
-  - name: JB721Delegate3_1
-    kind: ethereum/contract
-    network: {{network}}
-    source:
-      abi: JB721Delegate3_1
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/shared/jb721DelegateToken3_1.ts
-      entities:
-        - Participant
-        - NFT
-        - NFTTier
-      abis:
-        - name: JB721Delegate3_1
-          file: ./abis/shared/JB721Delegate3_1.json
-        - name: JBTiered721DelegateStore3_1
-          file: ./abis/shared/JBTiered721DelegateStore3_1.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: AddTier(indexed uint256,(uint80,uint48,uint40,uint16,uint16,address,uint8,address,bytes32,uint8,bool,bool,bool,bool),address)
-          handler: handleAddTier
-        - event: RemoveTier(indexed uint256,address)
-          handler: handleRemoveTier
-  - name: JB721Delegate3_2
-    kind: ethereum/contract
-    network: {{network}}
-    source:
-      abi: JB721Delegate3_2
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/shared/jb721DelegateToken3_2.ts
-      entities:
-        - Participant
-        - NFT
-        - NFTTier
-      abis:
-        - name: JB721Delegate3_2
-          file: ./abis/shared/JB721Delegate3_2.json
-        - name: JBTiered721DelegateStore3_2
-          file: ./abis/shared/JBTiered721DelegateStore3_2.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: AddTier(indexed uint256,(uint104,uint32,uint32,uint16,address,bytes32,uint24,bool,bool,bool,bool),address)
-          handler: handleAddTier
-        - event: RemoveTier(indexed uint256,address)
-          handler: handleRemoveTier
-  - name: JB721Delegate3_3
-    kind: ethereum/contract
-    network: {{network}}
-    source:
-      abi: JB721Delegate3_3
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/shared/jb721DelegateToken3_3.ts
+      file: ./src/mappings/jb721TiersHook.ts
       entities:
         - Participant
         - NFT
       abis:
-        - name: JB721Delegate3_3
-          file: ./abis/shared/JB721Delegate3_3.json
-        - name: JBTiered721DelegateStore3_3
-          file: ./abis/shared/JBTiered721DelegateStore3_3.json
+        - name: JB721TiersHook
+          file: ./abis/JB721TiersHook.json
+        - name: JB721TiersHookStore
+          file: ./abis/JB721TiersHookStore.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-        - event: AddTier(indexed uint256,(uint104,uint32,uint32,uint16,address,bytes32,uint24,bool,bool,bool,bool),address)
+        - event: AddTier(indexed uint256,(uint104,uint32,uint32,uint16,address,bytes32,uint24,bool,bool,bool,bool,bool),address)
           handler: handleAddTier
         - event: RemoveTier(indexed uint256,address)
           handler: handleRemoveTier
-  - name: JB721Delegate3_4
-    kind: ethereum/contract
+dataSources:
+  {{ #jbProjects }}
+  - kind: ethereum/contract
+    name: JBProjects
     network: {{network}}
     source:
-      abi: JB721Delegate3_4
+      abi: JBProjects
+      address: '{{address}}'
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/shared/jb721DelegateToken3_4.ts
-      entities:
-        - Participant
-        - NFT
-      abis:
-        - name: JB721Delegate3_4
-          file: ./abis/shared/JB721Delegate3_4.json
-        - name: JBTiered721DelegateStore3_3
-          file: ./abis/shared/JBTiered721DelegateStore3_3.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: AddTier(indexed uint256,(uint104,uint32,uint32,uint16,address,bytes32,uint24,bool,bool,bool,bool),address)
-          handler: handleAddTier
-        - event: RemoveTier(indexed uint256,address)
-          handler: handleRemoveTier
-  - name: ENSTextResolver
-    kind: ethereum/contract
-    network: {{network}}
-    source:
-      abi: ENSTextResolver
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/shared/ensTextResolver.ts
       entities:
         - Project
-        - ENSNode
+        - ProjectCreateEvent
+        - ProtocolLog
       abis:
-        - name: ENSTextResolver
-          file: ./abis/shared/ENSTextResolver.json
-        - name: JBProjectHandles
-          file: ./abis/shared/JBProjectHandles.json
+        - name: JBProjects
+          file: ./abis/JBProjects.json
       eventHandlers:
-        - event: TextChanged(indexed bytes32,indexed string,string,string)
-          handler: handleTextChangedWithValue
-        - event: TextChanged(indexed bytes32,indexed string,string)
-          handler: handleTextChanged
-  - name: JBETHERC20ProjectPayer
-    kind: ethereum/contract
+        - event: Create(indexed uint256,indexed address,address)
+          handler: handleCreate
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransferOwnership
+      file: ./src/mappings/jbProjects.ts
+  {{ /jbProjects }}
+  {{ #jbController }}
+  - kind: ethereum/contract
+    name: JBController
     network: {{network}}
     source:
-      abi: JBETHERC20ProjectPayer
+      abi: JBController
+      address: '{{address}}'
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/shared/jbETHERC20ProjectPayer.ts
       entities:
-        - ETHERC20ProjectPayer
+        - DistributeReservedTokensEvent
+        - DistributeToReservedTokenSplitEvent
+        - MintTokensEvent
+        - Project
+        - ConfigureEvent
+        - SetFundAccessConstraintsEvent
       abis:
-        - name: JBETHERC20ProjectPayer
-          file: ./abis/shared/JBETHERC20ProjectPayer.json
+        - name: JBController
+          file: ./abis/JBController.json
       eventHandlers:
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: SetDefaultValues(indexed uint256,indexed address,bool,string,bytes,bool,address)
-          handler: handleSetDefaultValues
-dataSources:
-{{{ dataSources_v1 }}}
-{{{ dataSources_v2 }}}
-{{{ dataSources_v3 }}}
-{{{ dataSources_shared }}}
+        - event: LaunchProject(uint256,uint256,string,string,address)
+          handler: handleLaunchProject
+        - event: MintTokens(indexed address,indexed uint256,uint256,uint256,string,uint256,address)
+          handler: handleMintTokens
+        - event: SendReservedTokensToSplits(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,string,address)
+          handler: handleSendReservedTokensToSplits
+        - event: SendReservedTokensToSplit(indexed uint256,indexed uint256,indexed uint256,(bool,uint256,uint256,address,uint256,address),uint256,address)
+          handler: handleSendReservedTokensToSplit
+        # - event: LaunchRulesets(uint256,uint256,string,address)
+        #   handler: handleLaunchRulesets
+        - event: SetMetadata(indexed uint256,string,address)
+          handler: handleSetMetadata
+      file: ./src/mappings/jbController.ts
+  {{ /jbController }}
+  {{ #jbMultiTerminal }}
+  - kind: ethereum/contract
+    name: JBMultiTerminal
+    network: {{network}}
+    source:
+      abi: JBMultiTerminal
+      address: '{{address}}'
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - DistributePayoutsEvent
+        - DistributeToPayoutSplitEvent
+        - Participant
+        - PayEvent
+        - Project
+        - ProtocolV3Log
+        - RedeemEvent
+        - UseAllowanceEvent
+        - Wallet
+      abis:
+        - name: JBMultiTerminal
+          file: ./abis/JBMultiTerminal.json
+        - name: JBPrices
+          file: ./abis/JBPrices.json
+      eventHandlers:
+        - event: Pay(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,string,bytes,address)
+          handler: handlePay
+        # - event: RedeemTokens(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,bytes,address)
+        #   handler: handleRedeemTokens
+        - event: AddToBalance(indexed uint256,uint256,uint256,string,bytes,address)
+          handler: handleAddToBalance
+        - event: SendPayouts(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,uint256,address)
+          handler: handleSendPayouts
+        - event: SendPayoutToSplit(indexed uint256,indexed uint256,indexed uint256,(bool,uint256,uint256,address,uint256,address),uint256,uint256,address)
+          handler: handleSendPayoutToSplit
+        # - event: UseAllowance(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,string,address)
+        #   handler: handleUseAllowance
+        - event: ProcessFee(indexed uint256,indexed address,indexed uint256,bool,address,address)
+          handler: handleProcessFee
+      file: ./src/mappings/jbMultiTerminal.ts
+  {{ /jbMultiTerminal }}
+  {{ #jbTokens }}
+  - kind: ethereum/contract
+    name: JBTokens
+    network: {{network}}
+    source:
+      abi: JBTokens
+      address: '{{address}}'
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - DeployedERC20Event
+        - Participant
+        - Project
+        - ProjectEvent
+        - ProtocolLog
+      abis:
+        - name: JBTokens
+          file: ./abis/JBTokens.json
+      eventHandlers:
+        - event: Burn(indexed address,indexed uint256,uint256,uint256,uint256,address)
+          handler: handleBurn
+        - event: ClaimTokens(indexed address,indexed uint256,uint256,uint256,address,address)
+          handler: handleClaimTokens
+        - event: Mint(indexed address,indexed uint256,uint256,bool,address)
+          handler: handleMint
+        - event: TransferCredits(indexed address,indexed uint256,indexed address,uint256,address)
+          handler: handleTransferCredits
+        - event: DeployERC20(indexed uint256,indexed address,string,string,bytes32,address)
+          handler: handleDeployERC20
+      file: ./src/mappings/jbTokens.ts
+  {{ /jbTokens }}
+  {{ #jb721TiersHookDeployer }}
+  - kind: ethereum/contract
+    name: JB721TiersHookDeployer
+    network: {{network}}
+    source:
+      abi: JB721TiersHookDeployer
+      address: '{{address}}'
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - NFT
+        - NFTTier
+        - NFTCollection
+      abis:
+        - name: JB721TiersHookDeployer
+          file: ./abis/JB721TiersHookDeployer.json
+        - name: JB721TiersHookStore
+          file: ./abis/JB721TiersHookStore.json
+        - name: JB721TiersHook
+          file: ./abis/JB721TiersHook.json
+      eventHandlers:
+        - event: HookDeployed(indexed uint256,address)
+          handler: handleHookDeployed
+      file: ./src/mappings/jb721TiersHookDeployer.ts
+  {{ /jb721TiersHookDeployer }}

@@ -1,43 +1,27 @@
-import { Address, BigInt, ethereum, log } from "@graphprotocol/graph-ts";
+import { Address, BigInt, ethereum } from "@graphprotocol/graph-ts";
 import {
   Project,
   ProjectCreateEvent,
   ProtocolLog,
-  ProtocolV1Log,
-  ProtocolV2Log,
 } from "../../../generated/schema";
 import { BIGINT_0, PROTOCOL_ID } from "../../constants";
-import { ProjectEventKey, PV } from "../../enums";
+import { ProjectEventKey } from "../../enums";
 import { saveNewProjectEvent } from "../entities/projectEvent";
-import {
-  newProtocolLog,
-  newProtocolV1Log,
-  newProtocolV2Log,
-  updateProtocolEntity,
-} from "../entities/protocolLog";
-import { idForProject, idForProjectTx } from "../ids";
+import { newProtocolLog } from "../entities/protocolLog";
+import { idForProjectTx } from "../ids";
 
 export function handleProjectCreate(
   event: ethereum.Event,
   projectId: BigInt,
-  pv: PV,
   owner: Address,
   caller: Address,
-  metadataUri: string,
-  metadataDomain: BigInt | null = null,
   handle: string | null = null
 ): void {
-  const idOfProject = idForProject(projectId, pv);
-  const project = new Project(idOfProject);
-  if (!project) {
-    log.error("[handleCreate] Missing project. ID:{}", [
-      idForProject(projectId, pv),
-    ]);
-    return;
-  }
+  const project = new Project(projectId.toString());
+  if (!project) return;
+
   project.latestFundingCycle = BIGINT_0.toI32();
   project.projectId = projectId.toI32();
-  project.pv = pv.toString();
   project.trendingScore = BIGINT_0;
   project.trendingVolume = BIGINT_0;
   project.trendingPaymentsCount = BIGINT_0.toI32();
@@ -45,8 +29,6 @@ export function handleProjectCreate(
   project.creator = event.transaction.from;
   project.deployer = caller;
   project.createdAt = event.block.timestamp.toI32();
-  project.metadataUri = metadataUri;
-  project.metadataDomain = metadataDomain;
   project.volume = BIGINT_0;
   project.volumeUSD = BIGINT_0;
   project.redeemVolume = BIGINT_0;
@@ -61,9 +43,8 @@ export function handleProjectCreate(
   project.save();
 
   const projectCreateEvent = new ProjectCreateEvent(
-    idForProjectTx(projectId, pv, event)
+    idForProjectTx(projectId, event)
   );
-  projectCreateEvent.pv = pv.toString();
   projectCreateEvent.project = project.id;
   projectCreateEvent.projectId = projectId.toI32();
   projectCreateEvent.timestamp = event.block.timestamp.toI32();
@@ -76,7 +57,6 @@ export function handleProjectCreate(
     event,
     projectId,
     projectCreateEvent.id,
-    pv,
     ProjectEventKey.projectCreateEvent
   );
 
@@ -86,25 +66,10 @@ export function handleProjectCreate(
    * project is created.
    */
 
-  if (!ProtocolLog.load(PROTOCOL_ID)) {
-    const protocolLog = newProtocolLog();
-    protocolLog.save();
+  let protocolLog = ProtocolLog.load(PROTOCOL_ID);
+  if (!protocolLog) {
+    protocolLog = newProtocolLog();
   }
-
-  if (pv === PV.PV1) {
-    let protocolV1Log = ProtocolV1Log.load(PROTOCOL_ID);
-    if (!protocolV1Log) protocolV1Log = newProtocolV1Log();
-    protocolV1Log.projectsCount = protocolV1Log.projectsCount + 1;
-    protocolV1Log.save();
-  }
-
-  if (pv === PV.PV2) {
-    let protocolV2Log = ProtocolV2Log.load(PROTOCOL_ID);
-    if (!protocolV2Log) protocolV2Log = newProtocolV2Log();
-
-    protocolV2Log.projectsCount = protocolV2Log.projectsCount + 1;
-    protocolV2Log.save();
-  }
-
-  updateProtocolEntity();
+  protocolLog.projectsCount = protocolLog.projectsCount + 1;
+  protocolLog.save();
 }

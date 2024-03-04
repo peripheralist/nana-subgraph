@@ -1,6 +1,6 @@
 import { Address, BigInt, Bytes, log } from "@graphprotocol/graph-ts";
 
-import { JBPrices3 } from "../../../generated/JBETHPaymentTerminal3/JBPrices3";
+import { JBPrices } from "../../../generated/JBMultiTerminal/JBPrices";
 import {
   BIGINT_WAD,
   V2V3_CURRENCY_ETH,
@@ -8,14 +8,14 @@ import {
 } from "../../constants";
 import { address_v3_jbPrices } from "../../contractAddresses";
 
-export function v3USDPriceForEth(ethAmount: BigInt): BigInt | null {
+export function usdPriceForEth(ethAmount: BigInt): BigInt | null {
   if (!address_v3_jbPrices) return null;
 
-  const pricesContract = JBPrices3.bind(
+  const pricesContract = JBPrices.bind(
     Address.fromBytes(Bytes.fromHexString(address_v3_jbPrices!))
   );
 
-  const priceForCall = pricesContract.try_priceFor(
+  const priceForCall = pricesContract.try_pricePerUnitOf(
     V2V3_CURRENCY_USD,
     V2V3_CURRENCY_ETH,
     BigInt.fromI32(18)

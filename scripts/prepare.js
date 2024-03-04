@@ -3,8 +3,6 @@ const fs = require("fs");
 const jsyaml = require("js-yaml");
 const mustache = require("mustache");
 
-const PREFIXES = ["v1", "v2", "v3", "shared"];
-
 const network = process.argv.slice(2)[0];
 
 const { stdout, exit } = process;
@@ -48,34 +46,32 @@ function writeFilesFromTemplate() {
 
   stdout.write(`\nUsing contracts in ${configTemplatePath}...\n`);
 
-  for (const p of PREFIXES) {
-    // Iterate over all var names declared in config template
-    // Add to fileContents using values from actual config
-    const contractNames = configTemplate[p];
+  // Iterate over all contract names declared in config template
+  // Add to fileContents using values from actual config
+  configTemplate["contracts"].forEach((c) => {
+    const contract = config[c];
 
-    contractNames.forEach((c) => {
-      const contract = config[p] && config[p][c] ? config[p][c] : undefined;
+    stdout.write(chalk.gray(`  ${c}...`));
 
-      stdout.write(chalk.gray(`  ${p}_${c}...`));
+    templateContractsCount++;
 
-      templateContractsCount++;
+    if (!contract) {
+      stdout.write(chalk.yellow(" No config\n"));
+    } else {
+      configContractsCount++;
+      stdout.write(" OK\n");
+    }
 
-      if (!contract) {
-        stdout.write(chalk.yellow(" No config\n"));
-      } else {
-        configContractsCount++;
-        stdout.write(" OK\n");
-      }
+    const address =
+      contract && contract.address ? `"${contract.address}"` : null;
+    const startBlock =
+      contract && contract.startBlock
+        ? contract.startBlock
+        : config["startBlock"] || 0;
 
-      const address =
-        contract && contract.address ? `"${contract.address}"` : null;
-      const startBlock =
-        contract && contract.startBlock ? contract.startBlock : 0;
-
-      addressesFileContents += `export const address_${p}_${c}: string | null = ${address};\n`;
-      startBlocksFileContents += `export const startBlock_${p}_${c}: number = ${startBlock};\n`;
-    });
-  }
+    addressesFileContents += `export const address_${c}: string | null = ${address};\n`;
+    startBlocksFileContents += `export const startBlock_${c}: number = ${startBlock};\n`;
+  });
 
   stdout.write(
     chalk[configContractsCount < templateContractsCount ? "yellow" : "green"](
@@ -109,16 +105,7 @@ function writeSubgraph() {
   // Delete subgraph.yaml if exists
   fs.rmSync(subgraphPath, { force: true });
 
-  // Build dataSource snippets from configs
-  // We give this to subgraph.template.yaml to render subgraph.yaml
-  const dataSourceSnippets = {};
-  for (const p of PREFIXES) {
-    stdout.write(chalk.gray(`  ${p}...\n`));
-
-    dataSourceSnippets[`dataSources_${p}`] = mustache
-      .render(fs.readFileSync(`${p}.template.yaml`).toString(), config)
-      .toString();
-  }
+  // stdout.write(chalk.gray(`  ${p}...\n`));
 
   let graftConfig;
   try {
@@ -147,7 +134,7 @@ function writeSubgraph() {
           // subgraph.template.yaml also needs config.network
           network: config.network,
           graftConfig,
-          ...dataSourceSnippets,
+          ...config,
         })
         .toString()
     );

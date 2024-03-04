@@ -1,6 +1,6 @@
 import { BigInt, Bytes } from "@graphprotocol/graph-ts";
 import { FundingCycle, Project } from "../../../generated/schema";
-import { idForFundingCycle, idForProject } from "../ids";
+import { idForFundingCycle } from "../ids";
 import {
   BIGINT_0,
   BIGINT_1,

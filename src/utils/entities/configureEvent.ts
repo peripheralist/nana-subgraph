@@ -2,7 +2,7 @@ import { BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
 
 import { ConfigureEvent } from "../../../generated/schema";
 import { PV } from "../../enums";
-import { idForConfigureEvent, idForProject } from "../ids";
+import { idForConfigureEvent } from "../ids";
 
 export function newPV2ConfigureEvent(
   // Note: Can't use an object arg here because assemblyscript

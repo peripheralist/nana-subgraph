@@ -2,10 +2,6 @@
 
 type ProtocolLog @entity {
   id: ID!
-  v1: ProtocolV1Log @derivedFrom(field: "log")
-  v2: ProtocolV2Log @derivedFrom(field: "log")
-  v3: ProtocolV3Log @derivedFrom(field: "log")
-
   projectsCount: Int!
   volume: BigInt!
   volumeUSD: BigInt!
@@ -37,7 +33,6 @@ type ProjectCreateEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
@@ -48,17 +43,9 @@ type ProjectCreateEvent @entity {
 type Project @entity {
   id: ID!
   projectId: Int!
-  pv: String!
   handle: String
-  metadataUri: String
-
-  # Only v1.x
-  terminal: Bytes
-
-  # Only v2 + v3
-  metadataDomain: BigInt
   deployer: Bytes
-
+  metadata: String
   owner: Bytes!
   creator: Bytes!
   createdAt: Int!
@@ -119,7 +106,6 @@ type Participant @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
   address: Bytes!
   wallet: Wallet!
   volume: BigInt!
@@ -146,8 +132,7 @@ type ProjectEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
-  terminal: Bytes # Only terminal events
+  # terminal: Bytes # Only terminal events
   timestamp: Int!
   from: Bytes!
   caller: Bytes
@@ -183,20 +168,20 @@ type PayEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
-  terminal: Bytes!
+  # terminal: Bytes!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
   caller: Bytes!
 
-  isDistribution: Boolean!
+  # isDistribution: Boolean!
   distributionFromProjectId: Int
   beneficiary: Bytes!
   amount: BigInt!
   amountUSD: BigInt
   note: String!
   feeFromV2Project: Int # Indicates payment is a fee from project with this ID
+  beneficiaryTokenCount: BigInt!
 }
 
 # shared
@@ -204,7 +189,6 @@ type AddToBalanceEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
   terminal: Bytes!
   timestamp: Int!
   txHash: Bytes!
@@ -221,7 +205,6 @@ type MintTokensEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
@@ -237,8 +220,7 @@ type RedeemEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
-  terminal: Bytes!
+  # terminal: Bytes!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
@@ -258,7 +240,6 @@ type DeployedERC20Event @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
@@ -279,7 +260,6 @@ type BurnEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  pv: String!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
@@ -312,7 +292,6 @@ type NFTCollection @entity {
   projectId: Int!
   name: String!
   symbol: String!
-  governanceType: Int!
   createdAt: Int!
 
   tiers: [NFTTier!]! @derivedFrom(field: "collection")
@@ -323,20 +302,21 @@ type NFTTier @entity {
   id: ID!
   collection: NFTCollection!
   tierId: Int!
-  allowManualMint: Boolean!
+  allowOwnerMint: Boolean!
   price: BigInt!
-  encodedIpfsUri: String
+  encodedIpfsUri: Bytes
   resolvedUri: String
   initialQuantity: BigInt!
-  remainingQuantity: BigInt!
+  cannotBeRemoved: Boolean!
+  remainingSupply: BigInt!
   transfersPausable: Boolean!
   votingUnits: BigInt!
   createdAt: Int!
 
   # Supported in version ^3.1
   category: Int
-  reservedRate: BigInt
-  reservedTokenBeneficiary: Bytes
+  reserveFrequency: BigInt
+  reserveBeneficiary: Bytes
 
   nfts: [NFT!]! @derivedFrom(field: "tier")
 }
@@ -344,20 +324,6 @@ type NFTTier @entity {
 #############################################################################
 ############################### v1.x entities ###############################
 #############################################################################
-# v1, v1.1
-type ProtocolV1Log @entity {
-  id: ID!
-  log: ProtocolLog!
-  projectsCount: Int!
-  volume: BigInt!
-  volumeUSD: BigInt!
-  volumeRedeemed: BigInt!
-  volumeRedeemedUSD: BigInt!
-  paymentsCount: Int!
-  redeemCount: Int!
-  erc20Count: Int!
-}
-
 # v1, v1.1
 type PrintReservesEvent @entity {
   id: ID!
@@ -501,24 +467,10 @@ type SetFundAccessConstraintsEvent @entity {
   distributionLimitCurrency: Int!
   overflowAllowance: BigInt!
   overflowAllowanceCurrency: Int!
-  terminal: Bytes!
+  # terminal: Bytes!
   token: Bytes
   fundingCycleConfiguration: BigInt!
   fundingCycleNumber: Int
-}
-
-# v2
-type ProtocolV2Log @entity {
-  id: ID!
-  log: ProtocolLog!
-  projectsCount: Int!
-  volume: BigInt!
-  volumeUSD: BigInt!
-  volumeRedeemed: BigInt!
-  volumeRedeemedUSD: BigInt!
-  paymentsCount: Int!
-  redeemCount: Int!
-  erc20Count: Int!
 }
 
 # v2
@@ -528,22 +480,21 @@ type DistributePayoutsEvent @entity {
   projectId: Int!
   timestamp: Int!
   txHash: Bytes!
-  terminal: Bytes!
+  # terminal: Bytes!
   from: Bytes!
   caller: Bytes!
 
-  fundingCycleConfiguration: BigInt!
-  fundingCycleNumber: Int!
   beneficiary: Bytes!
   amount: BigInt!
-  amountUSD: BigInt
-  distributedAmount: BigInt!
-  distributedAmountUSD: BigInt
+  # amountUSD: BigInt
+  amountPaidOut: BigInt!
+  # distributedAmountUSD: BigInt
+  rulesetCycleNumber: BigInt!
+  rulesetId: BigInt!
   fee: BigInt!
   feeUSD: BigInt
   beneficiaryDistributionAmount: BigInt!
   beneficiaryDistributionAmountUSD: BigInt
-  memo: String
   splitDistributions: [DistributeToPayoutSplitEvent!]!
     @derivedFrom(field: "distributePayoutsEvent")
 }
@@ -555,24 +506,24 @@ type DistributeToPayoutSplitEvent @entity {
   projectId: Int!
   timestamp: Int!
   txHash: Bytes!
-  terminal: Bytes!
+  # terminal: Bytes!
   from: Bytes!
   caller: Bytes!
 
-  domain: BigInt!
-  group: BigInt!
+  # domain: BigInt!
+  # group: BigInt!
   amount: BigInt!
-  amountUSD: BigInt
+  # amountUSD: BigInt
   distributePayoutsEvent: DistributePayoutsEvent!
 
   # Split struct properties below
-  preferClaimed: Boolean!
+  # preferClaimed: Boolean!
   preferAddToBalance: Boolean!
   percent: Int!
   splitProjectId: Int!
   beneficiary: Bytes!
   lockedUntil: Int!
-  allocator: Bytes!
+  # allocator: Bytes!
 }
 
 # v2
@@ -608,12 +559,11 @@ type DistributeToReservedTokenSplitEvent @entity {
   distributeReservedTokensEvent: DistributeReservedTokensEvent!
 
   # Split struct properties below
-  preferClaimed: Boolean!
+  preferAddToBalance: Boolean!
   percent: Int!
   splitProjectId: Int!
   beneficiary: Bytes!
   lockedUntil: Int!
-  allocator: Bytes!
 }
 
 # v2
@@ -764,20 +714,6 @@ type FundingCycle @entity {
   metametadata: Int!
 
   withdrawnAmount: BigInt!
-}
-
-# v3
-type ProtocolV3Log @entity {
-  id: ID!
-  log: ProtocolLog!
-  projectsCount: Int!
-  volume: BigInt!
-  volumeUSD: BigInt!
-  volumeRedeemed: BigInt!
-  volumeRedeemedUSD: BigInt!
-  paymentsCount: Int!
-  redeemCount: Int!
-  erc20Count: Int!
 }
 
 type ETHERC20SplitsPayer @entity {

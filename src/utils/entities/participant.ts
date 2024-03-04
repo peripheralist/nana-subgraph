@@ -1,19 +1,13 @@
 import { BigInt, Bytes } from "@graphprotocol/graph-ts";
 import { Participant, Wallet } from "../../../generated/schema";
-import { PV } from "../../enums";
 import { toHexLowercase } from "../format";
-import { idForParticipant, idForProject } from "../ids";
+import { idForParticipant } from "../ids";
 import { BIGINT_0 } from "../../constants";
 
-export function newParticipant(
-  pv: PV,
-  projectId: BigInt,
-  wallet: Bytes
-): Participant {
-  const participant = new Participant(idForParticipant(projectId, pv, wallet));
-  participant.pv = pv.toString();
+export function newParticipant(projectId: BigInt, wallet: Bytes): Participant {
+  const participant = new Participant(idForParticipant(projectId, wallet));
   participant.projectId = projectId.toI32();
-  participant.project = idForProject(projectId, pv);
+  participant.project = projectId.toString();
   participant.address = wallet;
   participant.wallet = wallet.toHexString();
   participant.balance = BIGINT_0;

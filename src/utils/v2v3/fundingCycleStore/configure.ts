@@ -1,16 +1,13 @@
 import { Address, BigInt, ethereum } from "@graphprotocol/graph-ts";
 
-import { ProjectEventKey, PV } from "../../../enums";
+import { Project } from "../../../../generated/schema";
+import { ProjectEventKey } from "../../../enums";
 import { newPV2ConfigureEvent } from "../../entities/configureEvent";
-import { saveNewProjectEvent } from "../../entities/projectEvent";
 import {
   extrapolateLatestFC,
   newFundingCycle,
 } from "../../entities/fundingCycle";
-import { Project } from "../../../../generated/schema";
-import { idForProject } from "../../ids";
-
-const pv = PV.PV2;
+import { saveNewProjectEvent } from "../../entities/projectEvent";
 
 export function handleV2V3Configure(
   event: ethereum.Event,
@@ -45,7 +42,6 @@ export function handleV2V3Configure(
     event,
     projectId,
     configureEvent.id,
-    pv,
     ProjectEventKey.configureEvent
   );
 
@@ -67,7 +63,7 @@ export function handleV2V3Configure(
   fc.configureEvent = configureEvent.id;
   fc.save();
 
-  const project = Project.load(idForProject(projectId, pv));
+  const project = Project.load(projectId.toString());
   if (project) {
     project.latestFundingCycle = number.toI32();
     project.save();

@@ -1,0 +1,31 @@
+{
+  "network": "sepolia",
+  "startBlock": 5276470,
+  "jbProjects": {
+    "address": "0xA2344fc40695cc7626904CCD4ef919487AffC184"
+  },
+  "jbPrices": {
+    "address": "0x01602FF51D4BF29A2051BA670e2D4CD19ed035ee"
+  },
+  "jbTokens": {
+    "address": "0xb2e00Cf642526a8a17d966F8f52605e77Bc6f709"
+  },
+  "jbTerminalStore": {
+    "address": "0x6Fb249E55C472fF83dF6F3cDF09A0f414ea9635b"
+  },
+  "jbController": {
+    "address": "0x02AF7F7E55459592C93DBD25A55f110149DdfaeC"
+  },
+  "jbDirectory": {
+    "address": "0x4a0E06016e11d15C34B9902ECca70f7582A174A9"
+  },
+  "jbMultiTerminal": {
+    "address": "0x3980ae5F6C10aF7628cbf9246932333d6927d7Dc"
+  },
+  "jb721TiersHookDeployer": {
+    "address": "0xA5C0cddE627E8A864a6da439ecB59E7fc285dE5c"
+  },
+  "jb721TiersHookStore": {
+    "address": "0x1326A0a3ba1D7db771529A1BE0e5Fe3Deeb7d60E"
+  }
+}
