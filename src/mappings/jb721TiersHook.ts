@@ -171,7 +171,7 @@ export function handleAddTier(event: AddTier): void {
   nftTier.price = tier.price;
   nftTier.encodedIpfsUri = tier.encodedIPFSUri;
   nftTier.resolvedUri = tier.resolvedUri;
-  nftTier.initialQuantity = tier.initialSupply;
+  nftTier.initialSupply = tier.initialSupply;
   nftTier.remainingSupply = tier.initialSupply;
   nftTier.reserveFrequency = tier.reserveFrequency;
   nftTier.reserveBeneficiary = tier.reserveBeneficiary;

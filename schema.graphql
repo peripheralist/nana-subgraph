@@ -306,7 +306,7 @@ type NFTTier @entity {
   price: BigInt!
   encodedIpfsUri: Bytes
   resolvedUri: String
-  initialQuantity: BigInt!
+  initialSupply: BigInt!
   cannotBeRemoved: Boolean!
   remainingSupply: BigInt!
   transfersPausable: Boolean!

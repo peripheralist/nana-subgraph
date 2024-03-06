@@ -8,7 +8,7 @@ export function saveNewNFTTier(
   allowOwnerMint: boolean,
   votingUnits: BigInt,
   price: BigInt,
-  initialQuantity: BigInt,
+  initialSupply: BigInt,
   reservedRate: BigInt,
   reservedTokenBeneficiary: Bytes,
   transfersPausable: boolean,
@@ -25,8 +25,8 @@ export function saveNewNFTTier(
   nftTier.price = price;
   nftTier.encodedIpfsUri = encodedIPFSUri;
   nftTier.resolvedUri = resolvedUri;
-  nftTier.initialQuantity = initialQuantity;
-  nftTier.remainingSupply = initialQuantity;
+  nftTier.initialSupply = initialSupply;
+  nftTier.remainingSupply = initialSupply;
   nftTier.reservedRate = reservedRate;
   nftTier.reservedTokenBeneficiary = reservedTokenBeneficiary;
   nftTier.transfersPausable = transfersPausable;
