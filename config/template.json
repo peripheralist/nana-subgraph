@@ -8,6 +8,7 @@
     "jbPrices",
     "jbDirectory",
     "jb721TiersHookDeployer",
-    "jb721TiersHookStore"
+    "jb721TiersHookStore",
+    "jbPermissions"
   ]
 }

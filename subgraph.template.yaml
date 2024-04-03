@@ -224,3 +224,25 @@ dataSources:
           handler: handleHookDeployed
       file: ./src/mappings/jb721TiersHookDeployer.ts
   {{ /jb721TiersHookDeployer }}
+  {{ #jbPermissions }}
+  - kind: ethereum/contract
+    name: JBPermissions
+    network: {{network}}
+    source:
+      abi: JBPermissions
+      address: '{{address}}'
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - PermissionHolder
+      abis:
+        - name: JBPermissions
+          file: ./abis/JBPermissions.json
+      eventHandlers:
+        - event: OperatorPermissionsSet(indexed address,indexed address,indexed uint256,uint256[],uint256,address)
+          handler: handleOperatorPermissionsSet
+      file: ./src/mappings/jbPermissions.ts
+  {{ /jbPermissions }}

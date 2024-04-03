@@ -83,3 +83,10 @@ export function idForMigrateEvent(
 export function idForFundingCycle(projectId: BigInt, number: BigInt): string {
   return `${projectId.toString()}-${number.toString()}`;
 }
+
+export function idForPermissionsHolder(
+  projectId: BigInt,
+  operator: Address
+): string {
+  return `${projectId.toString()}-${operator.toHexString()}`;
+}

@@ -1,5 +1,3 @@
-# Note: `project.id` is string concatenated from multiple properties. `projectId` represents an integer id of the project.
-
 type ProtocolLog @entity {
   id: ID!
   projectsCount: Int!
@@ -22,13 +20,6 @@ type _Schema_
     include: [{ entity: "Project", fields: [{ name: "handle" }] }]
   )
 
-#############################################################################
-############################## shared entities ##############################
-#############################################################################
-
-# Note: Events used for v1, v2 and v3 contracts include `pv` (projects version) and `terminal` (terminal address) properties which allows querying events for specific contract versions.
-
-# shared
 type ProjectCreateEvent @entity {
   id: ID!
   project: Project!
@@ -39,7 +30,6 @@ type ProjectCreateEvent @entity {
   caller: Bytes!
 }
 
-# shared
 type Project @entity {
   id: ID!
   projectId: Int!
@@ -65,6 +55,7 @@ type Project @entity {
   latestFundingCycle: Int!
 
   nftsMintedCount: Int! # only if project has jb721DelegateTokens
+
   # Derived event entities
   addToBalanceEvents: [AddToBalanceEvent!]! @derivedFrom(field: "project")
   burnEvents: [BurnEvent!]! @derivedFrom(field: "project")
@@ -99,9 +90,9 @@ type Project @entity {
   nftCollections: [NFTCollection!]! @derivedFrom(field: "project")
   participants: [Participant!]! @derivedFrom(field: "project")
   migrateEvents: [MigrateEvent!]! @derivedFrom(field: "project")
+  permissionsHolders: [PermissionsHolder!]! @derivedFrom(field: "project")
 }
 
-# shared
 type Participant @entity {
   id: ID!
   project: Project!
@@ -118,7 +109,6 @@ type Participant @entity {
   jb721DelegateTokens: [NFT!]! @derivedFrom(field: "owner")
 }
 
-# shared
 type Wallet @entity {
   id: ID!
   volume: BigInt!
@@ -127,7 +117,7 @@ type Wallet @entity {
   participants: [Participant!]! @derivedFrom(field: "wallet")
 }
 
-# shared
+
 type ProjectEvent @entity {
   id: ID!
   project: Project!
@@ -163,7 +153,7 @@ type ProjectEvent @entity {
   migrateEvent: MigrateEvent
 }
 
-# shared
+
 type PayEvent @entity {
   id: ID!
   project: Project!
@@ -184,7 +174,7 @@ type PayEvent @entity {
   beneficiaryTokenCount: BigInt!
 }
 
-# shared
+
 type AddToBalanceEvent @entity {
   id: ID!
   project: Project!
@@ -200,7 +190,7 @@ type AddToBalanceEvent @entity {
   note: String
 }
 
-# shared
+
 type MintTokensEvent @entity {
   id: ID!
   project: Project!
@@ -215,7 +205,7 @@ type MintTokensEvent @entity {
   memo: String!
 }
 
-# shared
+
 type RedeemEvent @entity {
   id: ID!
   project: Project!
@@ -235,7 +225,7 @@ type RedeemEvent @entity {
   returnAmountUSD: BigInt
 }
 
-# shared
+
 type DeployedERC20Event @entity {
   id: ID!
   project: Project!
@@ -246,16 +236,16 @@ type DeployedERC20Event @entity {
   caller: Bytes!
 
   symbol: String!
-  address: Bytes # will be empty for v1.x events
+  address: Bytes!
 }
 
-# shared
+
 type ENSNode @entity {
   id: ID!
   projectId: Int
 }
 
-# shared
+
 type BurnEvent @entity {
   id: ID!
   project: Project!
@@ -271,7 +261,7 @@ type BurnEvent @entity {
   erc20Amount: BigInt!
 }
 
-# shared
+
 type NFT @entity {
   id: ID!
   tokenId: BigInt!
@@ -312,11 +302,9 @@ type NFTTier @entity {
   transfersPausable: Boolean!
   votingUnits: BigInt!
   createdAt: Int!
-
-  # Supported in version ^3.1
-  category: Int
-  reserveFrequency: BigInt
-  reserveBeneficiary: Bytes
+  category: Int!
+  reserveFrequency: BigInt!
+  reserveBeneficiary: Bytes!
 
   nfts: [NFT!]! @derivedFrom(field: "tier")
 }
@@ -747,4 +735,13 @@ type DeployETHERC20SplitsPayerEvent @entity {
   owner: Bytes!
   preferAddToBalance: Boolean!
   splitsPayer: Bytes!
+}
+
+type PermissionsHolder @entity {
+  id: ID!
+  account: Bytes!
+  projectId: Int!
+  project: Project!
+  permissions: [BigInt!]!
+  operator: Bytes!
 }

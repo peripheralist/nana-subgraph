@@ -1,31 +1,34 @@
 {
   "network": "sepolia",
-  "startBlock": 5276470,
+  "startBlock": 5520500,
   "jbProjects": {
-    "address": "0xA2344fc40695cc7626904CCD4ef919487AffC184"
+    "address": "0x45452B26fe78D2b83247279F87c847F4F4A8FCEb"
   },
   "jbPrices": {
-    "address": "0x01602FF51D4BF29A2051BA670e2D4CD19ed035ee"
+    "address": "0x801FF757D8Fd571934e306Df9282de42c901b835"
   },
   "jbTokens": {
-    "address": "0xb2e00Cf642526a8a17d966F8f52605e77Bc6f709"
+    "address": "0x266b64c59E45CCCAEEa8d34758c495A0517139f0"
   },
   "jbTerminalStore": {
-    "address": "0x6Fb249E55C472fF83dF6F3cDF09A0f414ea9635b"
+    "address": "0x4A13af5BbE0a9F8A7d4280f34d09638D2087eb0f"
   },
   "jbController": {
-    "address": "0x02AF7F7E55459592C93DBD25A55f110149DdfaeC"
+    "address": "0x698d26DF9F8d5CF0Fd359D26aDD623602a2bC355"
   },
   "jbDirectory": {
-    "address": "0x4a0E06016e11d15C34B9902ECca70f7582A174A9"
+    "address": "0x6A6988E79a621Fc7Ea74D67a31E9cefCcC98e949"
   },
   "jbMultiTerminal": {
-    "address": "0x3980ae5F6C10aF7628cbf9246932333d6927d7Dc"
+    "address": "0xd2e70177143C40d1CC657Dc2516B95b7FFF0dEe4"
   },
   "jb721TiersHookDeployer": {
-    "address": "0xA5C0cddE627E8A864a6da439ecB59E7fc285dE5c"
+    "address": "0x7a8F8386Bf3D331B216ae301BEA5EC47CC51A8B2"
   },
   "jb721TiersHookStore": {
-    "address": "0x1326A0a3ba1D7db771529A1BE0e5Fe3Deeb7d60E"
+    "address": "0x669e8E2D861D357434d95d4359BeF1fe4026E478"
+  },
+  "jbPermissions": {
+    "address": "0xa1Ba58fcA530D0b011646167C9EB81F54d9C9dF6"
   }
 }
