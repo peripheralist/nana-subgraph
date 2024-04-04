@@ -148,16 +148,16 @@ dataSources:
       eventHandlers:
         - event: Pay(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,string,bytes,address)
           handler: handlePay
-        # - event: RedeemTokens(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,bytes,address)
-        #   handler: handleRedeemTokens
+        - event: RedeemTokens(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,uint256,bytes,address)
+          handler: handleRedeemTokens
         - event: AddToBalance(indexed uint256,uint256,uint256,string,bytes,address)
           handler: handleAddToBalance
         - event: SendPayouts(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,uint256,address)
           handler: handleSendPayouts
         - event: SendPayoutToSplit(indexed uint256,indexed uint256,indexed uint256,(bool,uint256,uint256,address,uint256,address),uint256,uint256,address)
           handler: handleSendPayoutToSplit
-        # - event: UseAllowance(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,string,address)
-        #   handler: handleUseAllowance
+        - event: UseAllowance(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,string,address)
+          handler: handleUseAllowance
         - event: ProcessFee(indexed uint256,indexed address,indexed uint256,bool,address,address)
           handler: handleProcessFee
       file: ./src/mappings/jbMultiTerminal.ts

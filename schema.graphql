@@ -217,7 +217,7 @@ type RedeemEvent @entity {
   caller: Bytes!
 
   metadata: Bytes # only v2/v3
-  memo: String # only v2/v3
+  # memo: String # only v2/v3
   holder: Bytes!
   beneficiary: Bytes!
   amount: BigInt!
@@ -564,8 +564,8 @@ type UseAllowanceEvent @entity {
   from: Bytes!
   caller: Bytes!
 
-  fundingCycleConfiguration: BigInt!
-  fundingCycleNumber: Int!
+  rulesetId: BigInt!
+  rulesetCycleNumber: Int!
   beneficiary: Bytes!
   amount: BigInt!
   amountUSD: BigInt

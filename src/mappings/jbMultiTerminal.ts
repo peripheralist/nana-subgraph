@@ -4,8 +4,10 @@ import {
   AddToBalance,
   Pay,
   ProcessFee,
+  RedeemTokens,
   SendPayoutToSplit,
   SendPayouts,
+  UseAllowance,
 } from "../../generated/JBMultiTerminal/JBMultiTerminal";
 import {
   AddToBalanceEvent,
@@ -15,21 +17,24 @@ import {
   PayEvent,
   Project,
   ProtocolLog,
+  RedeemEvent,
+  UseAllowanceEvent,
   Wallet,
 } from "../../generated/schema";
 import { BIGINT_0, PROTOCOL_ID } from "../constants";
-import { handleV2V3ProcessFee } from "../utils/v2v3/ethPaymentTerminal/processFee";
+import { ProjectEventKey } from "../enums";
+import { newParticipant, newWallet } from "../utils/entities/participant";
 import { saveNewProjectEvent } from "../utils/entities/projectEvent";
+import { toHexLowercase } from "../utils/format";
 import {
   idForParticipant,
   idForPayEvent,
   idForPrevPayEvent,
   idForProjectTx,
 } from "../utils/ids";
-import { ProjectEventKey } from "../enums";
+import { usdPriceForEth } from "../utils/prices/prices";
 import { handleTrendingPayment } from "../utils/trending";
-import { newParticipant, newWallet } from "../utils/entities/participant";
-import { toHexLowercase } from "../utils/format";
+import { handleV2V3ProcessFee } from "../utils/v2v3/ethPaymentTerminal/processFee";
 
 export function handleAddToBalance(event: AddToBalance): void {
   const projectId = event.params.projectId;
@@ -308,73 +313,101 @@ export function handlePay(event: Pay): void {
   // updateProtocolEntity();
 }
 
-// export function handleRedeemTokens(event: RedeemTokens): void {
-//   const reclaimedAmountUSD = v3USDPriceForEth(event.params.reclaimedAmount);
+export function handleRedeemTokens(event: RedeemTokens): void {
+  const reclaimedAmountUSD = usdPriceForEth(
+    event.params.projectId,
+    event.params.reclaimedAmount
+  );
 
-//   handleV2V3RedeemTokens(
-//     event,
-//     event.params.projectId,
-//     terminal,
-//     event.params.tokenCount,
-//     event.params.beneficiary,
-//     event.params.reclaimedAmount,
-//     reclaimedAmountUSD,
-//     event.params.holder,
-//     event.params.metadata,
-//     event.params.memo,
-//     event.params.caller
-//   );
+  const idOfProject = event.params.projectId.toString();
 
-//   let protocolV3Log = ProtocolV3Log.load(PROTOCOL_ID);
-//   if (!protocolV3Log) protocolV3Log = newProtocolV3Log();
-//   protocolV3Log.volumeRedeemed = protocolV3Log.volumeRedeemed.plus(
-//     event.params.reclaimedAmount
-//   );
-//   if (reclaimedAmountUSD) {
-//     protocolV3Log.volumeRedeemedUSD = protocolV3Log.volumeRedeemedUSD.plus(
-//       reclaimedAmountUSD
-//     );
-//   }
-//   protocolV3Log.redeemCount = protocolV3Log.redeemCount + 1;
-//   protocolV3Log.save();
-//   updateProtocolEntity();
-// }
+  const redeemEvent = new RedeemEvent(
+    idForProjectTx(event.params.projectId, event, true)
+  );
 
-// export function handleUseAllowance(event: UseAllowance): void {
-//   const amountUSD = v3USDPriceForEth(event.params.amount);
-//   const distributedAmountUSD = v3USDPriceForEth(event.params.distributedAmount);
-//   const netDistributedamountUSD = v3USDPriceForEth(
-//     event.params.netDistributedamount
-//   );
+  redeemEvent.projectId = event.params.projectId.toI32();
+  redeemEvent.amount = event.params.tokenCount;
+  redeemEvent.beneficiary = event.params.beneficiary;
+  redeemEvent.caller = event.params.caller;
+  redeemEvent.from = event.transaction.from;
+  redeemEvent.holder = event.params.holder;
+  redeemEvent.returnAmount = event.params.reclaimedAmount;
+  redeemEvent.returnAmountUSD = reclaimedAmountUSD;
+  redeemEvent.project = idOfProject;
+  redeemEvent.timestamp = event.block.timestamp.toI32();
+  redeemEvent.txHash = event.transaction.hash;
+  redeemEvent.metadata = event.params.metadata;
+  redeemEvent.save();
 
-//   handleV2V3UseAllowance(
-//     event,
-//     event.params.projectId,
-//     event.params.amount,
-//     amountUSD,
-//     event.params.distributedAmount,
-//     distributedAmountUSD,
-//     event.params.netDistributedamount,
-//     netDistributedamountUSD,
-//     event.params.beneficiary,
-//     event.params.fundingCycleConfiguration,
-//     event.params.fundingCycleNumber,
-//     event.params.memo,
-//     event.params.caller,
-//     terminal
-//   );
-// }
+  saveNewProjectEvent(
+    event,
+    event.params.projectId,
+    redeemEvent.id,
+    ProjectEventKey.redeemEvent,
+    event.params.caller
+  );
+
+  const project = Project.load(idOfProject);
+  if (!project) {
+    log.error("[handleRedeemTokens] Missing project. ID:{}", [idOfProject]);
+    return;
+  }
+  project.redeemVolume = project.redeemVolume.plus(
+    event.params.reclaimedAmount
+  );
+  if (reclaimedAmountUSD) {
+    project.redeemVolumeUSD = project.redeemVolumeUSD.plus(reclaimedAmountUSD);
+  }
+  project.currentBalance = project.currentBalance.minus(
+    event.params.reclaimedAmount
+  );
+  project.redeemCount = project.redeemCount + 1;
+  project.save();
+}
+
+export function handleUseAllowance(event: UseAllowance): void {
+  const projectId = event.params.projectId;
+
+  const amountUSD = usdPriceForEth(projectId, event.params.amount);
+  const distributedAmountUSD = usdPriceForEth(
+    projectId,
+    event.params.amountPaidOut
+  );
+  const netDistributedamountUSD = usdPriceForEth(
+    projectId,
+    event.params.netAmountPaidOut
+  );
+
+  const useAllowanceEventId = idForProjectTx(projectId, event, true);
+  const useAllowanceEvent = new UseAllowanceEvent(useAllowanceEventId);
+
+  useAllowanceEvent.project = projectId.toString();
+  useAllowanceEvent.projectId = projectId.toI32();
+  useAllowanceEvent.timestamp = event.block.timestamp.toI32();
+  useAllowanceEvent.txHash = event.transaction.hash;
+  useAllowanceEvent.amount = event.params.amount;
+  useAllowanceEvent.amountUSD = amountUSD;
+  useAllowanceEvent.beneficiary = event.params.beneficiary;
+  useAllowanceEvent.caller = event.params.caller;
+  useAllowanceEvent.from = event.transaction.from;
+  useAllowanceEvent.distributedAmount = event.params.amountPaidOut;
+  useAllowanceEvent.distributedAmountUSD = distributedAmountUSD;
+  useAllowanceEvent.rulesetId = event.params.rulesetId;
+  useAllowanceEvent.rulesetCycleNumber = event.params.rulesetCycleNumber.toI32();
+  useAllowanceEvent.memo = event.params.memo;
+  useAllowanceEvent.netDistributedamount = event.params.netAmountPaidOut;
+  useAllowanceEvent.netDistributedamountUSD = netDistributedamountUSD;
+  useAllowanceEvent.save();
+
+  saveNewProjectEvent(
+    event,
+    projectId,
+    useAllowanceEvent.id,
+    ProjectEventKey.useAllowanceEvent,
+    event.params.caller
+  );
+}
 
 export function handleProcessFee(event: ProcessFee): void {
   handleV2V3ProcessFee(event.params.projectId);
 }
-
-// export function handleMigrate(event: Migrate): void {
-//   handleV2V3TerminalMigrate(
-//     event,
-//     event.params.projectId,
-//     event.params.amount,
-//     event.params.caller,
-//     event.params.to
-//   );
-// }
