@@ -528,7 +528,6 @@ type DistributeReservedTokensEvent @entity {
   beneficiary: Bytes!
   tokenCount: BigInt!
   beneficiaryTokenCount: BigInt!
-  memo: String!
   splitDistributions: [DistributeToReservedTokenSplitEvent!]!
     @derivedFrom(field: "distributeReservedTokensEvent")
 }

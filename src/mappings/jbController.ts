@@ -86,7 +86,6 @@ export function handleSendReservedTokensToSplits(
   distributeReservedTokensEvent.tokenCount = event.params.tokenCount;
   distributeReservedTokensEvent.beneficiaryTokenCount =
     event.params.beneficiaryTokenCount;
-  distributeReservedTokensEvent.memo = event.params.memo;
   distributeReservedTokensEvent.save();
 
   saveNewProjectEvent(

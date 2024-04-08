@@ -1,24 +1,22 @@
-# Juicebox Subgraph
+# Juicebox Nana Subgraph
 
 ## Overview
 
-Multiple subgraphs are maintained by [Peel](https://discord.gg/b4rpjgGPHX) in a Graph Studio owned by the [Peel Gnosis safe](https://gnosis-safe.io/app/eth:0x0e9D15e28e3De9bB3CF64FFbC2f2F49Da9Ac545B).
+The Nana subgraph indexes events from Juicebox nana fork contracts.
 
-Juicebox mainnet subgraph is published here: https://thegraph.com/explorer/subgraph?id=FVmuv3TndQDNd2BWARV8Y27yuKKukryKXPzvAS5E7htC&view=Overview
+Contract names are defined in `config/template.json`
 
 Contract addresses and startBlocks are defined in `config/<network>.json`
 
 Subgraph data sources (contract definitions and event handlers) are defined in `subgraph.template.yaml`
 
-*`subgraph.yaml` is gitignored and should not be edited.*
+`subgraph.yaml` is manually generated and should not be edited.
 
 ## Getting started
 
-```bash
-yarn install
+`yarn install` Install dependencies
 
-yarn global add @graphprotocol/graph-cli
-```
+`yarn global add @graphprotocol/graph-cli` (Only necessary for deploying)
 
 ## Config
 
@@ -56,18 +54,15 @@ See `config/graft.example.json` as an example.
 To deploy a new subgraph version, first prepare the subgraph for the intended network. This will:
 - Run a sanity check beyond the integrated graph-cli checks that ensures there are no missing or extra mapping functions or dataSources
 - Generate files with network-dependent variables `src/startBlocks.ts` and `src/contractAddresses.ts`
-- Generate schema types
-- Generate the subgraph.yaml
+- Generate TS types for the schema defined in `schema.graphql`
+- Compiles new gitignored `subgraph.yaml`
 
 ```bash
 yarn prep:goerli
 yarn prep:mainnet
 ```
 
-- Generates TS types for the schema defined in `schema.graphql`
-- Compiles new gitignored `subgraph.yaml`
-
-First you will need to authenticate with the proper deploy key for the given network (you'll only need to do this once).
+Before deploying, you will need to authenticate with a deploy key for the given network (you'll only need to do this once).
 
 ```bash
 graph auth --studio ${your-key}
@@ -78,10 +73,11 @@ Once authenticated:
 graph deploy --studio <subgraph-name>
 ```
 
-> Note: previous subgraph versions will be automatically archived when new versions are deployed, and must be manually unarchived if needed.
+### Optional helper script:
 
-To check health of a deployed subgraph: 
+```bash
+yarn update:sepolia
+yarn update:mainnet
+```
 
-```
-curl -X POST -d '{ "query": "{indexingStatuses(subgraphs: [\"<deployment-id>\"]) {synced health fatalError {message block { number } handler } subgraph chains { chainHeadBlock { number } latestBlock { number }}}}"}' https://api.thegraph.com/index-node/graphql
-```
+Updates contract abis, addresses, and startBlocks

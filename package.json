@@ -4,6 +4,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
+    "update:sepolia": "node scripts/updateContracts.js sepolia",
     "prep:sepolia": "node scripts/prepare.js sepolia && yarn codegen",
     "prep:optimism-sepolia": "node scripts/prepare.js optimism-sepolia && yarn codegen",
     "lint": "eslint --ext .ts ./",
