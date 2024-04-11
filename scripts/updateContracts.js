@@ -27,37 +27,36 @@ async function main() {
     network,
   };
 
-  await Promise.all(
-    configTemplate["contracts"].sort().map((name) => {
-      const url = (name.includes("721") ? nana721GithubUrl : nanaCoreGithubUrl)(
-        name.replace("jb", "JB")
-      ); // i am disgusting
+  // Sequential promises to maintain sort
+  for (const name of configTemplate["contracts"].sort()) {
+    const url = (name.includes("721") ? nana721GithubUrl : nanaCoreGithubUrl)(
+      name.replace("jb", "JB")
+    ); // determine which url to use. crude but effective
 
-      // read deployment file from github
-      return axios
-        .get(url, {
-          headers: { Accept: "application/vnd.github.object+json" },
-        })
-        .then((res) => {
-          const { address, receipt, abi, contractName } = res.data;
-          const { blockNumber: startBlock } = receipt;
+    // read deployment file from github
+    await axios
+      .get(url, {
+        headers: { Accept: "application/vnd.github.object+json" },
+      })
+      .then((res) => {
+        const { address, receipt, abi, contractName } = res.data;
+        const { blockNumber: startBlock } = receipt;
 
-          // update abi
-          fs.writeFileSync(`abis/${contractName}.json`, JSON.stringify(abi));
+        // update abi
+        fs.writeFileSync(`abis/${contractName}.json`, JSON.stringify(abi));
 
-          // update config using deployment file
-          config[name] = {
-            address,
-            startBlock,
-          };
-        })
-        .catch((e) => {
-          stdout.write(`Update failed for ${name}\n`);
-          stdout.write(e);
-          exit(1);
-        });
-    })
-  );
+        // update config using deployment file
+        config[name] = {
+          address,
+          startBlock,
+        };
+      })
+      .catch((e) => {
+        stdout.write(`Update failed for ${name}\n`);
+        stdout.write(e);
+        exit(1);
+      });
+  }
 
   fs.writeFileSync(`config/${network}.json`, JSON.stringify(config));
 
