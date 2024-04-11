@@ -1,43 +1,43 @@
 {
   "network": "sepolia",
   "jbPermissions": {
-    "address": "0x953AB7f10EfE861B21CfB9630768818A04742587",
-    "startBlock": 5617603
+    "address": "0x711eda44F3D42F3d255846b5EE36Cf70Fd912E50",
+    "startBlock": 5671408
   },
-  "jb721TiersHookStore": {
-    "address": "0x669e8E2D861D357434d95d4359BeF1fe4026E478",
-    "startBlock": 5466718
+  "jbPrices": {
+    "address": "0x3FfC68011DA65428875CfDaC2C6e4778090cf171",
+    "startBlock": 5671411
   },
   "jb721TiersHookDeployer": {
     "address": "0x5400f3A86278F0322F0E2FfB4570451bACd4Ff34",
     "startBlock": 5617823
   },
-  "jbPrices": {
-    "address": "0x08A5638AE0efd3Aabc61622D1C46daA9b6DCEA09",
-    "startBlock": 5617605
+  "jbProjects": {
+    "address": "0xfa679f5ecdd8bE404c1FbAa7f29aEB2b12F5B662",
+    "startBlock": 5671408
   },
   "jbTokens": {
-    "address": "0xF25dCe432B7ED1CCd5F0A2481f980862e359A092",
-    "startBlock": 5617603
-  },
-  "jbProjects": {
-    "address": "0xE9a6F248F9f8854E9f161c84c34F2589Ec362BE9",
-    "startBlock": 5617603
-  },
-  "jbTerminalStore": {
-    "address": "0x9Ef5Ff7ACa23B94309986eE3b4C1B13082913B59",
-    "startBlock": 5617605
+    "address": "0xee922D1cb6551D45E2d9B197EC423Fb8C3C85d50",
+    "startBlock": 5671408
   },
   "jbDirectory": {
-    "address": "0x71Ff91C8A27b436f7025C053c01A3F6AAE3Fc62E",
-    "startBlock": 5617603
+    "address": "0x44d360C8c4105f180e07668bd3374c7A6F812FAF",
+    "startBlock": 5671408
+  },
+  "jb721TiersHookStore": {
+    "address": "0x669e8E2D861D357434d95d4359BeF1fe4026E478",
+    "startBlock": 5466718
+  },
+  "jbTerminalStore": {
+    "address": "0xC30D3e0e3565BE0801dB464Cea108604A9e7F262",
+    "startBlock": 5671411
   },
   "jbMultiTerminal": {
-    "address": "0x7deD6685996ae04BeA60B75E827379d95B40685C",
-    "startBlock": 5617610
+    "address": "0xAA62Cfe29251Db6774ECc77860b3c25dA3bcDc79",
+    "startBlock": 5671413
   },
   "jbController": {
-    "address": "0xBeb17Ba97066906106d72fCA2F05F1E307E74B76",
-    "startBlock": 5617605
+    "address": "0x75295C69178F42cfe9Cf710f307891D6cE471920",
+    "startBlock": 5671411
   }
 }
