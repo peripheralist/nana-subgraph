@@ -1,8 +1,8 @@
 {
   "network": "sepolia",
   "jb721TiersHookDeployer": {
-    "address": "0x5400f3A86278F0322F0E2FfB4570451bACd4Ff34",
-    "startBlock": 5617823
+    "address": "0x0f9A3E14f7fB9aC89Ce32D50a2eAdE21ffeb97F3",
+    "startBlock": 5675629
   },
   "jb721TiersHookStore": {
     "address": "0x669e8E2D861D357434d95d4359BeF1fe4026E478",

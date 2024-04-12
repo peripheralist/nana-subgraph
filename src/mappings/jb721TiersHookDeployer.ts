@@ -10,20 +10,21 @@ import { HookDeployed } from "../../generated/JB721TiersHookDeployer/JB721TiersH
 import { JB721TiersHook as JB721TiersHookTemplate } from "../../generated/templates";
 import { JB721TiersHook } from "../../generated/JB721TiersHookDeployer/JB721TiersHook";
 import { JB721TiersHookStore } from "../../generated/JB721TiersHookDeployer/JB721TiersHookStore";
-// import { JB721Delegate3_4 } from "../../../generated/JBTiered721DelegateDeployer3_4/JB721Delegate3_4";
 import { address_jb721TiersHookStore } from "../contractAddresses";
 import { NFTCollection, NFTTier } from "../../generated/schema";
 import { idForNFTTier } from "../utils/ids";
 
 export function handleHookDeployed(event: HookDeployed): void {
+  const logTag = "jb721TiersHookDeployer:handleHookDeployed";
+
   const address = event.params.newHook;
 
   /**
    * Create a new dataSource to track NFT mints & transfers
    */
-  const jbTiered721DelegateContext = new DataSourceContext();
-  jbTiered721DelegateContext.setBigInt("projectId", event.params.projectId);
-  JB721TiersHookTemplate.createWithContext(address, jbTiered721DelegateContext);
+  const jb721TiersHookContext = new DataSourceContext();
+  jb721TiersHookContext.setBigInt("projectId", event.params.projectId);
+  JB721TiersHookTemplate.createWithContext(address, jb721TiersHookContext);
 
   /**
    * Create collection entity
@@ -34,26 +35,22 @@ export function handleHookDeployed(event: HookDeployed): void {
   collection.project = event.params.projectId.toString();
   collection.createdAt = event.block.timestamp.toI32();
 
-  const jb721HookContract = JB721TiersHook.bind(Address.fromBytes(address));
+  const jb721TiersHookContract = JB721TiersHook.bind(
+    Address.fromBytes(address)
+  );
 
   // Name
-  const nameCall = jb721HookContract.try_name();
+  const nameCall = jb721TiersHookContract.try_name();
   if (nameCall.reverted) {
-    log.error(
-      "[jbTiered721DelegateDeployer_3_4:handleDelegateDeployed] name() reverted for {}",
-      [address.toHexString()]
-    );
+    log.error(`[${logTag}] name() reverted for {}`, [address.toHexString()]);
     return;
   }
   collection.name = nameCall.value;
 
   // Symbol
-  const symbolCall = jb721HookContract.try_symbol();
+  const symbolCall = jb721TiersHookContract.try_symbol();
   if (symbolCall.reverted) {
-    log.error(
-      "[jbTiered721DelegateDeployer_3_4:handleDelegateDeployed] symbol() reverted for {}",
-      [address.toHexString()]
-    );
+    log.error(`[${logTag}] symbol() reverted for {}`, [address.toHexString()]);
     return;
   }
   collection.symbol = symbolCall.value;
@@ -64,27 +61,21 @@ export function handleHookDeployed(event: HookDeployed): void {
    * Create entity for each tier in collection
    */
   if (!address_jb721TiersHookStore) {
-    log.error(
-      "[jb721TiersHookDeployer:handleHookDeployed] missing address_jb721TiersHookStore",
-      []
-    );
+    log.error(`[${logTag}] missing address_jb721TiersHookStore`, []);
     return;
   }
-  const jbTiered721DelegateStoreContract = JB721TiersHookStore.bind(
+  const jb721TiersHookStoreContract = JB721TiersHookStore.bind(
     Address.fromBytes(Bytes.fromHexString(address_jb721TiersHookStore!))
   );
 
-  const maxTierCall = jbTiered721DelegateStoreContract.try_maxTierIdOf(address);
+  const maxTierCall = jb721TiersHookStoreContract.try_maxTierIdOf(address);
   if (maxTierCall.reverted) {
     // Will revert for non-tiered tokens, among maybe other reasons
-    log.error(
-      "[jb721TiersHookDeployer:handleHookDeployed] maxTier() reverted for {}",
-      [address.toHexString()]
-    );
+    log.error(`[${logTag}] maxTier() reverted for {}`, [address.toHexString()]);
     return;
   }
 
-  const tiersCall = jbTiered721DelegateStoreContract.try_tiersOf(
+  const tiersCall = jb721TiersHookStoreContract.try_tiersOf(
     address,
     [], // Empty array to get all categories
     true,
@@ -93,10 +84,9 @@ export function handleHookDeployed(event: HookDeployed): void {
   );
   if (tiersCall.reverted) {
     // Will revert for non-tiered tokens, among maybe other reasons
-    log.error(
-      "[jbTiered721DelegateDeployer:handleDelegateDeployed] tiers() reverted for address {}",
-      [address.toHexString()]
-    );
+    log.error(`[${logTag}] tiers() reverted for address {}`, [
+      address.toHexString(),
+    ]);
     return;
   }
 
@@ -118,7 +108,7 @@ export function handleHookDeployed(event: HookDeployed): void {
     nftTier.reserveBeneficiary = tier.reserveBeneficiary;
     nftTier.transfersPausable = tier.transfersPausable;
     nftTier.collection = address.toHexString();
-    if (tier.category) nftTier.category = tier.category.toI32();
+    nftTier.category = tier.category.toI32();
     nftTier.createdAt = event.block.timestamp.toI32();
     nftTier.save();
   }
