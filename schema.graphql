@@ -303,8 +303,9 @@ type NFTTier @entity {
   votingUnits: BigInt!
   createdAt: Int!
   category: Int!
-  reserveFrequency: BigInt!
+  reserveFrequency: Int!
   reserveBeneficiary: Bytes!
+  svg: String # Only used for bannyverse
 
   nfts: [NFT!]! @derivedFrom(field: "tier")
 }

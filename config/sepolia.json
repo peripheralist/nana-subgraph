@@ -1,43 +1,58 @@
 {
   "network": "sepolia",
+  "banny721TokenUriResolver": {
+    "name": "Banny721TokenUriResolver",
+    "address": "0x1f236212E69c56fbb0CAFFF4f27A2E3Ab40915a0",
+    "startBlock": 5777336
+  },
   "jb721TiersHookDeployer": {
-    "address": "0x0f9A3E14f7fB9aC89Ce32D50a2eAdE21ffeb97F3",
-    "startBlock": 5675629
+    "name": "JB721TiersHookDeployer",
+    "address": "0xd3838B2875a06E61bEfc3679Ee2C8d88D61067dC",
+    "startBlock": 5748892
   },
   "jb721TiersHookStore": {
-    "address": "0x669e8E2D861D357434d95d4359BeF1fe4026E478",
-    "startBlock": 5466718
+    "name": "JB721TiersHookStore",
+    "address": "0xB2C0Cf85FEf94012Bb4c5e0534B8A5E845BC6312",
+    "startBlock": 5671527
   },
   "jbController": {
-    "address": "0x75295C69178F42cfe9Cf710f307891D6cE471920",
-    "startBlock": 5671411
+    "name": "JBController",
+    "address": "0x799D42391ed21894b105590300EEd66255d72225",
+    "startBlock": 5748758
   },
   "jbDirectory": {
-    "address": "0x44d360C8c4105f180e07668bd3374c7A6F812FAF",
-    "startBlock": 5671408
+    "name": "JBDirectory",
+    "address": "0xCD8c4da77dfb15C05486D3F71Ee4C2C0dfdbc94e",
+    "startBlock": 5748756
   },
   "jbMultiTerminal": {
-    "address": "0xAA62Cfe29251Db6774ECc77860b3c25dA3bcDc79",
-    "startBlock": 5671413
+    "name": "JBMultiTerminal",
+    "address": "0x966Ff291e13C5f8901a9ae5776813B89d772fDB9",
+    "startBlock": 5748760
   },
   "jbPermissions": {
-    "address": "0x711eda44F3D42F3d255846b5EE36Cf70Fd912E50",
-    "startBlock": 5671408
+    "name": "JBPermissions",
+    "address": "0x1e2E8562b635fe19978640C784e47865A83d6605",
+    "startBlock": 5748756
   },
   "jbPrices": {
-    "address": "0x3FfC68011DA65428875CfDaC2C6e4778090cf171",
-    "startBlock": 5671411
+    "name": "JBPrices",
+    "address": "0x6B33bf264D01Ed2660D4F6E4e96BB56F784B1e8f",
+    "startBlock": 5748758
   },
   "jbProjects": {
-    "address": "0xfa679f5ecdd8bE404c1FbAa7f29aEB2b12F5B662",
-    "startBlock": 5671408
+    "name": "JBProjects",
+    "address": "0xf9dadA4628Eb3992202CF253625d4ECebBC1592f",
+    "startBlock": 5748756
   },
   "jbTerminalStore": {
-    "address": "0xC30D3e0e3565BE0801dB464Cea108604A9e7F262",
-    "startBlock": 5671411
+    "name": "JBTerminalStore",
+    "address": "0x07cE005F3Baf3cc2E9CdB1EB21f6eF9112223085",
+    "startBlock": 5748758
   },
   "jbTokens": {
-    "address": "0xee922D1cb6551D45E2d9B197EC423Fb8C3C85d50",
-    "startBlock": 5671408
+    "name": "JBTokens",
+    "address": "0x792b79adb4Aa06edDabd6ddef5EE06dCb946F436",
+    "startBlock": 5748756
   }
 }

@@ -9,6 +9,7 @@
     "jbDirectory",
     "jb721TiersHookDeployer",
     "jb721TiersHookStore",
-    "jbPermissions"
+    "jbPermissions",
+    "banny721TokenUriResolver"
   ]
 }

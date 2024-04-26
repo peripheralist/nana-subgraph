@@ -42,11 +42,14 @@ templates:
       entities:
         - Participant
         - NFT
+        - NFTTier
       abis:
         - name: JB721TiersHook
           file: ./abis/JB721TiersHook.json
         - name: JB721TiersHookStore
           file: ./abis/JB721TiersHookStore.json
+        - name: Banny721TokenUriResolver
+          file: ./abis/Banny721TokenUriResolver.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
@@ -57,10 +60,10 @@ templates:
 dataSources:
   {{ #jbProjects }}
   - kind: ethereum/contract
-    name: JBProjects
+    name: {{name}}
     network: {{network}}
     source:
-      abi: JBProjects
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -72,8 +75,8 @@ dataSources:
         - ProjectCreateEvent
         - ProtocolLog
       abis:
-        - name: JBProjects
-          file: ./abis/JBProjects.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
       eventHandlers:
         - event: Create(indexed uint256,indexed address,address)
           handler: handleCreate
@@ -83,10 +86,10 @@ dataSources:
   {{ /jbProjects }}
   {{ #jbController }}
   - kind: ethereum/contract
-    name: JBController
+    name: {{name}}
     network: {{network}}
     source:
-      abi: JBController
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -101,8 +104,8 @@ dataSources:
         - ConfigureEvent
         - SetFundAccessConstraintsEvent
       abis:
-        - name: JBController
-          file: ./abis/JBController.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
       eventHandlers:
         - event: LaunchProject(uint256,uint256,string,string,address)
           handler: handleLaunchProject
@@ -120,10 +123,10 @@ dataSources:
   {{ /jbController }}
   {{ #jbMultiTerminal }}
   - kind: ethereum/contract
-    name: JBMultiTerminal
+    name: {{name}}
     network: {{network}}
     source:
-      abi: JBMultiTerminal
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -141,8 +144,8 @@ dataSources:
         - UseAllowanceEvent
         - Wallet
       abis:
-        - name: JBMultiTerminal
-          file: ./abis/JBMultiTerminal.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
         - name: JBPrices
           file: ./abis/JBPrices.json
       eventHandlers:
@@ -164,10 +167,10 @@ dataSources:
   {{ /jbMultiTerminal }}
   {{ #jbTokens }}
   - kind: ethereum/contract
-    name: JBTokens
+    name: {{name}}
     network: {{network}}
     source:
-      abi: JBTokens
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -181,8 +184,8 @@ dataSources:
         - ProjectEvent
         - ProtocolLog
       abis:
-        - name: JBTokens
-          file: ./abis/JBTokens.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
       eventHandlers:
         - event: Burn(indexed address,indexed uint256,uint256,uint256,uint256,address)
           handler: handleBurn
@@ -198,10 +201,10 @@ dataSources:
   {{ /jbTokens }}
   {{ #jb721TiersHookDeployer }}
   - kind: ethereum/contract
-    name: JB721TiersHookDeployer
+    name: {{name}}
     network: {{network}}
     source:
-      abi: JB721TiersHookDeployer
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -213,12 +216,14 @@ dataSources:
         - NFTTier
         - NFTCollection
       abis:
-        - name: JB721TiersHookDeployer
-          file: ./abis/JB721TiersHookDeployer.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
         - name: JB721TiersHookStore
           file: ./abis/JB721TiersHookStore.json
         - name: JB721TiersHook
           file: ./abis/JB721TiersHook.json
+        - name: Banny721TokenUriResolver
+          file: ./abis/Banny721TokenUriResolver.json
       eventHandlers:
         - event: HookDeployed(indexed uint256,address)
           handler: handleHookDeployed
@@ -226,10 +231,10 @@ dataSources:
   {{ /jb721TiersHookDeployer }}
   {{ #jbPermissions }}
   - kind: ethereum/contract
-    name: JBPermissions
+    name: {{name}}
     network: {{network}}
     source:
-      abi: JBPermissions
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -239,10 +244,32 @@ dataSources:
       entities:
         - PermissionHolder
       abis:
-        - name: JBPermissions
-          file: ./abis/JBPermissions.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
       eventHandlers:
         - event: OperatorPermissionsSet(indexed address,indexed address,indexed uint256,uint256[],uint256,address)
           handler: handleOperatorPermissionsSet
       file: ./src/mappings/jbPermissions.ts
   {{ /jbPermissions }}
+  {{ #banny721TokenUriResolver }}
+  - kind: ethereum/contract
+    name: Banny721TokenUriResolver
+    network: {{network}}
+    source:
+      abi: Banny721TokenUriResolver
+      address: '{{address}}'
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - NFTTier
+      abis:
+        - name: Banny721TokenUriResolver
+          file: ./abis/Banny721TokenUriResolver.json
+      eventHandlers:
+        - event: SetSvgContent(indexed uint256,string,address)
+          handler: handleSetSvgContent
+      file: ./src/mappings/banny721TokenUriResolver.ts
+  {{ /banny721TokenUriResolver }}

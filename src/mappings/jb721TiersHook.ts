@@ -14,10 +14,11 @@ import {
   Transfer,
 } from "../../generated/templates/JB721TiersHook/JB721TiersHook";
 import { JB721TiersHookStore } from "../../generated/templates/JB721TiersHook/JB721TiersHookStore";
-import { idForNFT, idForNFTTier, idForParticipant } from "../utils/ids";
-import { newParticipant } from "../utils/entities/participant";
 import { ADDRESS_ZERO } from "../constants";
 import { address_jb721TiersHookStore } from "../contractAddresses";
+import { getSvgOf } from "../utils/banny721Resolver";
+import { newParticipant } from "../utils/entities/participant";
+import { idForNFT, idForNFTTier, idForParticipant } from "../utils/ids";
 
 export function handleTransfer(event: Transfer): void {
   const context = dataSource.context();
@@ -131,52 +132,56 @@ export function handleTransfer(event: Transfer): void {
 
 export function handleAddTier(event: AddTier): void {
   const logTag = "jb721TiersHook:handleAddTier";
+
   const address = dataSource.address();
-
   const tierId = event.params.tierId;
+  const tier = event.params.tier;
 
-  // Tier data
-  if (!address_jb721TiersHookStore) {
-    log.error(`[${logTag}] missing address_jb721TiersHookStore`, []);
-    return;
-  }
-  const jb721TiersHookStoreContract = JB721TiersHookStore.bind(
-    Address.fromBytes(Bytes.fromHexString(address_jb721TiersHookStore!))
-  );
-  const tierCall = jb721TiersHookStoreContract.try_tierOf(
-    address,
-    tierId,
-    true
-  );
-  if (tierCall.reverted) {
-    // Will revert for non-tiered tokens, among maybe other reasons
-    // Logged on 3/3/24 v8.1.7: ERRO [jb721_v3_4:handleTransfer] tierOf() reverted for address 0xa8e6d676895b0690751ab1eaee09e15a3905d1b5, tierId 2, data_source: JB721Delegate3_4, sgd: 2599, subgraph_id: QmNT7qKcjCnvnPt7xNUr1azCkNBC64hrupuL1maedavFT1, component: SubgraphInstanceManager > UserMapping
-    log.error(`[${logTag}] tierOf() reverted for address {}, tierId {}`, [
-      address.toHexString(),
-      tierId.toString(),
-    ]);
-    return;
-  }
-
-  const tier = tierCall.value;
-
-  const nftTier = new NFTTier(idForNFTTier(address, tier.id));
+  const nftTier = new NFTTier(idForNFTTier(address, tierId));
   nftTier.collection = address.toHexString();
-  nftTier.tierId = tier.id.toI32();
+  nftTier.tierId = tierId.toI32();
   nftTier.allowOwnerMint = tier.allowOwnerMint;
   nftTier.cannotBeRemoved = tier.cannotBeRemoved;
   nftTier.votingUnits = tier.votingUnits;
   nftTier.price = tier.price;
   nftTier.encodedIpfsUri = tier.encodedIPFSUri;
-  nftTier.resolvedUri = tier.resolvedUri;
   nftTier.initialSupply = tier.initialSupply;
   nftTier.remainingSupply = tier.initialSupply;
   nftTier.reserveFrequency = tier.reserveFrequency;
   nftTier.reserveBeneficiary = tier.reserveBeneficiary;
   nftTier.transfersPausable = tier.transfersPausable;
   nftTier.collection = address.toHexString();
-  nftTier.category = tier.category.toI32();
+  nftTier.category = tier.category;
   nftTier.createdAt = event.block.timestamp.toI32();
+
+  // Get resolvedUri from tier call
+  if (!address_jb721TiersHookStore) {
+    log.error(`[${logTag}] missing address_jb721TiersHookStore`, []);
+  } else {
+    const jb721TiersHookStoreContract = JB721TiersHookStore.bind(
+      Address.fromBytes(Bytes.fromHexString(address_jb721TiersHookStore!))
+    );
+
+    const tierCall = jb721TiersHookStoreContract.try_tierOf(
+      address,
+      tierId,
+      true
+    );
+
+    if (tierCall.reverted) {
+      // Will revert for non-tiered tokens, among maybe other reasons
+      // Logged on 3/3/24 v8.1.7: ERRO [jb721_v3_4:handleTransfer] tierOf() reverted for address 0xa8e6d676895b0690751ab1eaee09e15a3905d1b5, tierId 2, data_source: JB721Delegate3_4, sgd: 2599, subgraph_id: QmNT7qKcjCnvnPt7xNUr1azCkNBC64hrupuL1maedavFT1, component: SubgraphInstanceManager > UserMapping
+      log.error(`[${logTag}] tierOf() reverted for address {}, tierId {}`, [
+        address.toHexString(),
+        tierId.toString(),
+      ]);
+    } else {
+      nftTier.resolvedUri = tierCall.value.resolvedUri;
+    }
+  }
+
+  nftTier.svg = getSvgOf(tierId);
+
   nftTier.save();
 }
 

@@ -19,6 +19,8 @@ async function main() {
     `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core/${network}/${name}.json`;
   const nana721GithubUrl = (name) =>
     `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook/${network}/${name}.json`;
+  const bannyverseGithubUrl = (name) =>
+    `${baseUrl}/mejango/bannyverse-core/main/deployments/bannyverse-core/${network}/${name}.json`;
 
   const configTemplate = JSON.parse(fs.readFileSync("config/template.json"));
 
@@ -29,9 +31,15 @@ async function main() {
 
   // Sequential promises to maintain sort
   for (const name of configTemplate["contracts"].sort()) {
-    const url = (name.includes("721") ? nana721GithubUrl : nanaCoreGithubUrl)(
-      name.replace("jb", "JB")
-    ); // determine which url to use. crude but effective
+    let url;
+
+    if (name.includes("banny")) {
+      url = bannyverseGithubUrl(name.replace("b", "B"));
+    } else if (name.includes("721")) {
+      url = nana721GithubUrl(name.replace("jb", "JB"));
+    } else {
+      url = nanaCoreGithubUrl(name.replace("jb", "JB"));
+    } // determine which url to use. crude but effective
 
     // read deployment file from github
     await axios
@@ -43,10 +51,14 @@ async function main() {
         const { blockNumber: startBlock } = receipt;
 
         // update abi
-        fs.writeFileSync(`abis/${contractName}.json`, JSON.stringify(abi));
+        fs.writeFileSync(
+          `abis/${contractName}.json`,
+          JSON.stringify(abi, null, 2)
+        );
 
         // update config using deployment file
         config[name] = {
+          name: contractName,
           address,
           startBlock,
         };
@@ -58,7 +70,7 @@ async function main() {
       });
   }
 
-  fs.writeFileSync(`config/${network}.json`, JSON.stringify(config));
+  fs.writeFileSync(`config/${network}.json`, JSON.stringify(config, null, 2));
 
   stdout.write(chalk.green("Success\n"));
 }

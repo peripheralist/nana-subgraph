@@ -1,4 +1,4 @@
-import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { Address, BigInt, Bytes } from "@graphprotocol/graph-ts";
 
 export const PROTOCOL_ID = "1";
 export const MAX_REDEMPTION_RATE = 10_000;
@@ -20,3 +20,7 @@ export const BIGINT_WAD = BigInt.fromString("1000000000000000000");
 export const V1_CURRENCY_USD = BigInt.fromI32(1);
 export const V2V3_CURRENCY_ETH = BigInt.fromI32(1);
 export const V2V3_CURRENCY_USD = BigInt.fromI32(2);
+
+export const bannyNftCollection = Address.fromBytes(
+  Bytes.fromHexString("0xc5fe393cb89632eaa226d77c5080ff34db71b25f")
+);

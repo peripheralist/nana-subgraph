@@ -6,12 +6,13 @@ import {
   log,
 } from "@graphprotocol/graph-ts";
 
-import { HookDeployed } from "../../generated/JB721TiersHookDeployer/JB721TiersHookDeployer";
-import { JB721TiersHook as JB721TiersHookTemplate } from "../../generated/templates";
 import { JB721TiersHook } from "../../generated/JB721TiersHookDeployer/JB721TiersHook";
+import { HookDeployed } from "../../generated/JB721TiersHookDeployer/JB721TiersHookDeployer";
 import { JB721TiersHookStore } from "../../generated/JB721TiersHookDeployer/JB721TiersHookStore";
-import { address_jb721TiersHookStore } from "../contractAddresses";
 import { NFTCollection, NFTTier } from "../../generated/schema";
+import { JB721TiersHook as JB721TiersHookTemplate } from "../../generated/templates";
+import { address_jb721TiersHookStore } from "../contractAddresses";
+import { getSvgOf } from "../utils/banny721Resolver";
 import { idForNFTTier } from "../utils/ids";
 
 export function handleHookDeployed(event: HookDeployed): void {
@@ -104,12 +105,14 @@ export function handleHookDeployed(event: HookDeployed): void {
     nftTier.resolvedUri = tier.resolvedUri;
     nftTier.initialSupply = tier.initialSupply;
     nftTier.remainingSupply = tier.initialSupply;
-    nftTier.reserveFrequency = tier.reserveFrequency;
+    nftTier.reserveFrequency = tier.reserveFrequency.toI32();
     nftTier.reserveBeneficiary = tier.reserveBeneficiary;
     nftTier.transfersPausable = tier.transfersPausable;
     nftTier.collection = address.toHexString();
     nftTier.category = tier.category.toI32();
     nftTier.createdAt = event.block.timestamp.toI32();
+    nftTier.svg = getSvgOf(tier.id);
+
     nftTier.save();
   }
 }
