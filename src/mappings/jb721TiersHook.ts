@@ -74,6 +74,7 @@ export function handleTransfer(event: Transfer): void {
 
     if (tier) {
       nft.tier = tierId;
+      nft.category = tierCall.value.category;
 
       tier.remainingSupply = tierCall.value.remainingSupply;
       tier.save();

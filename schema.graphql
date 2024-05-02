@@ -269,10 +269,32 @@ type NFT @entity {
   tier: NFTTier!
   project: Project!
   projectId: Int!
+  category: BigInt!
 
   # dynamic fields
   owner: Participant!
   tokenUri: String!
+}
+
+type DecoratedBanny @entity {
+  id: ID!
+  nft: NFT!
+
+  # equipped tiers
+  world: BigInt
+  backside: BigInt
+  naked: BigInt
+  head: BigInt
+  glasses: BigInt
+  mouth: BigInt
+  legs: BigInt
+  suitBottom: BigInt
+  suitTop: BigInt
+  suit: BigInt
+  necklace: BigInt
+  headTop: BigInt
+  fist: BigInt
+  topping: BigInt
 }
 
 type NFTCollection @entity {
