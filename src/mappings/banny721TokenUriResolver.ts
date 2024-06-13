@@ -23,16 +23,16 @@ export function handleSetSvgContent(event: SetSvgContent): void {
 
 // TODO merge DecoratedBanny functionality with NFT somehow? Or give BannyToken feature parity with NFT, which will require mint/transfer handlers.
 export function handleDecorateBanny(event: DecorateBanny): void {
-  const id = event.params.nakenBannyId.toString();
+  const id = event.params.nakedBannyId.toString();
   let banny = DecoratedBanny.load(id);
 
   if (!banny) {
     log.error("[handleDecorateBanny] missing banny token with id {}", [
-      event.params.nakenBannyId.toString(),
+      event.params.nakedBannyId.toString(),
     ]);
 
     banny = new DecoratedBanny(id);
-    banny.nft = idForNFT(bannyNftCollection, event.params.nakenBannyId);
+    banny.nft = idForNFT(bannyNftCollection, event.params.nakedBannyId);
   }
 
   for (let i = 0; i < BANNY_CATEGORIES.length; i++) {

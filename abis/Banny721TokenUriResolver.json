@@ -372,7 +372,7 @@
         "internalType": "address"
       },
       {
-        "name": "nakenBannyId",
+        "name": "nakedBannyId",
         "type": "uint256",
         "indexed": true,
         "internalType": "uint256"
