@@ -20,6 +20,11 @@
     "name": "assetIdsOf",
     "inputs": [
       {
+        "name": "hook",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
         "name": "nakedBannyId",
         "type": "uint256",
         "internalType": "uint256"
@@ -328,6 +333,11 @@
     "name": "userOf",
     "inputs": [
       {
+        "name": "hook",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
         "name": "worldId",
         "type": "uint256",
         "internalType": "uint256"
@@ -346,6 +356,11 @@
     "type": "function",
     "name": "wearerOf",
     "inputs": [
+      {
+        "name": "hook",
+        "type": "address",
+        "internalType": "address"
+      },
       {
         "name": "outfitId",
         "type": "uint256",

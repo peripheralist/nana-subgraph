@@ -1740,16 +1740,6 @@
   },
   {
     "type": "error",
-    "name": "INADEQUATE_PAYOUT_AMOUNT",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "INADEQUATE_RECLAIM_AMOUNT",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "NO_MSG_VALUE_ALLOWED",
     "inputs": []
   },
@@ -1813,6 +1803,16 @@
   {
     "type": "error",
     "name": "UNDER_MIN_RETURNED_TOKENS",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UNDER_MIN_TOKENS_PAID_OUT",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UNDER_MIN_TOKENS_RECLAIMED",
     "inputs": []
   }
 ]

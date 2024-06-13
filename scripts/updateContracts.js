@@ -16,7 +16,7 @@ async function main() {
 
   const baseUrl = "https://raw.githubusercontent.com";
   const nanaCoreGithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core/${network}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core-testnet/${network}/${name}.json`;
   const nana721GithubUrl = (name) =>
     `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook/${network}/${name}.json`;
   const bannyverseGithubUrl = (name) =>

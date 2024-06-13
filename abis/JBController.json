@@ -291,6 +291,11 @@
             "internalType": "bool"
           },
           {
+            "name": "allowSetCustomToken",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "allowTerminalMigration",
             "type": "bool",
             "internalType": "bool"
@@ -301,12 +306,12 @@
             "internalType": "bool"
           },
           {
-            "name": "allowControllerMigration",
+            "name": "allowSetController",
             "type": "bool",
             "internalType": "bool"
           },
           {
-            "name": "allowSetController",
+            "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -483,6 +488,11 @@
             "internalType": "bool"
           },
           {
+            "name": "allowSetCustomToken",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "allowTerminalMigration",
             "type": "bool",
             "internalType": "bool"
@@ -493,12 +503,12 @@
             "internalType": "bool"
           },
           {
-            "name": "allowControllerMigration",
+            "name": "allowSetController",
             "type": "bool",
             "internalType": "bool"
           },
           {
-            "name": "allowSetController",
+            "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -655,6 +665,11 @@
             "internalType": "bool"
           },
           {
+            "name": "allowSetCustomToken",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "allowTerminalMigration",
             "type": "bool",
             "internalType": "bool"
@@ -665,12 +680,12 @@
             "internalType": "bool"
           },
           {
-            "name": "allowControllerMigration",
+            "name": "allowSetController",
             "type": "bool",
             "internalType": "bool"
           },
           {
-            "name": "allowSetController",
+            "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -794,6 +809,11 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowSetCustomToken",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "allowTerminalMigration",
                 "type": "bool",
                 "internalType": "bool"
@@ -804,12 +824,12 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowControllerMigration",
+                "name": "allowSetController",
                 "type": "bool",
                 "internalType": "bool"
               },
               {
-                "name": "allowSetController",
+                "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1054,6 +1074,11 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowSetCustomToken",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "allowTerminalMigration",
                 "type": "bool",
                 "internalType": "bool"
@@ -1064,12 +1089,12 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowControllerMigration",
+                "name": "allowSetController",
                 "type": "bool",
                 "internalType": "bool"
               },
               {
-                "name": "allowSetController",
+                "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1241,7 +1266,7 @@
   },
   {
     "type": "function",
-    "name": "migrateController",
+    "name": "migrate",
     "inputs": [
       {
         "name": "projectId",
@@ -1251,7 +1276,7 @@
       {
         "name": "to",
         "type": "address",
-        "internalType": "contract IJBMigratable"
+        "internalType": "contract IERC165"
       }
     ],
     "outputs": [],
@@ -1428,6 +1453,11 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowSetCustomToken",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "allowTerminalMigration",
                 "type": "bool",
                 "internalType": "bool"
@@ -1438,12 +1468,12 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowControllerMigration",
+                "name": "allowSetController",
                 "type": "bool",
                 "internalType": "bool"
               },
               {
-                "name": "allowSetController",
+                "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1728,6 +1758,11 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowSetCustomToken",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "allowTerminalMigration",
                 "type": "bool",
                 "internalType": "bool"
@@ -1738,12 +1773,12 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowControllerMigration",
+                "name": "allowSetController",
                 "type": "bool",
                 "internalType": "bool"
               },
               {
-                "name": "allowSetController",
+                "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -2122,6 +2157,11 @@
             "internalType": "bool"
           },
           {
+            "name": "allowSetCustomToken",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "allowTerminalMigration",
             "type": "bool",
             "internalType": "bool"
@@ -2132,12 +2172,12 @@
             "internalType": "bool"
           },
           {
-            "name": "allowControllerMigration",
+            "name": "allowSetController",
             "type": "bool",
             "internalType": "bool"
           },
           {
-            "name": "allowSetController",
+            "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -2302,7 +2342,7 @@
   },
   {
     "type": "event",
-    "name": "MigrateController",
+    "name": "Migrate",
     "inputs": [
       {
         "name": "projectId",
@@ -2314,7 +2354,7 @@
         "name": "to",
         "type": "address",
         "indexed": false,
-        "internalType": "contract IJBMigratable"
+        "internalType": "contract IERC165"
       },
       {
         "name": "caller",
@@ -2744,6 +2784,11 @@
   {
     "type": "error",
     "name": "RULESETS_ARRAY_EMPTY",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "RULESET_SET_TOKEN_DISABLED",
     "inputs": []
   },
   {
