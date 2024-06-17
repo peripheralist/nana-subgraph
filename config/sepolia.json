@@ -7,13 +7,13 @@
   },
   "jb721TiersHookDeployer": {
     "name": "JB721TiersHookDeployer",
-    "address": "0xF97086E4CeA8D11FCD64cb2E5dDE0Ab7588f5F01",
-    "startBlock": 6033831
+    "address": "0x554CE80D78f5438c73a9759D8BBb52a382138A59",
+    "startBlock": 6081350
   },
   "jb721TiersHookStore": {
     "name": "JB721TiersHookStore",
-    "address": "0xB2C0Cf85FEf94012Bb4c5e0534B8A5E845BC6312",
-    "startBlock": 5671527
+    "address": "0xac41D62aDD150C0f7F9f5bFC3B544cf333a1f988",
+    "startBlock": 6081350
   },
   "jbController": {
     "name": "JBController",

@@ -18,7 +18,7 @@ async function main() {
   const nanaCoreGithubUrl = (name) =>
     `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core-testnet/${network}/${name}.json`;
   const nana721GithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook/${network}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook-testnet/${network}/${name}.json`;
   const bannyverseGithubUrl = (name) =>
     `${baseUrl}/mejango/bannyverse-core/main/deployments/bannyverse-core/${network}/${name}.json`;
 
