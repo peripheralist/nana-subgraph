@@ -22,22 +22,5 @@ export const V2V3_CURRENCY_ETH = BigInt.fromI32(1);
 export const V2V3_CURRENCY_USD = BigInt.fromI32(2);
 
 export const bannyNftCollection = Address.fromBytes(
-  Bytes.fromHexString("0xc5fe393cb89632eaa226d77c5080ff34db71b25f")
+  Bytes.fromHexString("0x02ac74120e1ae0a7d66903a602dcc13e0ab748ee")
 );
-
-export const BANNY_CATEGORIES = [
-  "world",
-  "backside",
-  "naked",
-  "head",
-  "glasses",
-  "mouth",
-  "legs",
-  "suitBottom",
-  "suitTop",
-  "suit",
-  "necklace",
-  "headTop",
-  "fist",
-  "topping",
-];

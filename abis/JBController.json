@@ -38,6 +38,11 @@
         "internalType": "contract IJBFundAccessLimits"
       },
       {
+        "name": "prices",
+        "type": "address",
+        "internalType": "contract IJBPrices"
+      },
+      {
         "name": "trustedForwarder",
         "type": "address",
         "internalType": "address"
@@ -80,6 +85,19 @@
         "name": "",
         "type": "address",
         "internalType": "contract IJBPermissions"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "PRICES",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IJBPrices"
       }
     ],
     "stateMutability": "view"
@@ -135,6 +153,34 @@
       }
     ],
     "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "addPriceFeed",
+    "inputs": [
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "pricingCurrency",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "unitCurrency",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "feed",
+        "type": "address",
+        "internalType": "contract IJBPriceFeed"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -210,38 +256,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -261,19 +307,19 @@
         "internalType": "struct JBRulesetMetadata",
         "components": [
           {
-            "name": "reservedRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "reservedPercent",
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "redemptionRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "baseCurrency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "pausePay",
@@ -311,6 +357,16 @@
             "internalType": "bool"
           },
           {
+            "name": "allowAddAccountingContext",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "allowAddPriceFeed",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -342,8 +398,8 @@
           },
           {
             "name": "metadata",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           }
         ]
       }
@@ -386,6 +442,44 @@
   },
   {
     "type": "function",
+    "name": "executePayReservedTokenToTerminal",
+    "inputs": [
+      {
+        "name": "terminal",
+        "type": "address",
+        "internalType": "contract IJBTerminal"
+      },
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "contract IJBToken"
+      },
+      {
+        "name": "splitAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "metadata",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "getRulesetOf",
     "inputs": [
       {
@@ -407,38 +501,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -458,19 +552,19 @@
         "internalType": "struct JBRulesetMetadata",
         "components": [
           {
-            "name": "reservedRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "reservedPercent",
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "redemptionRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "baseCurrency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "pausePay",
@@ -508,6 +602,16 @@
             "internalType": "bool"
           },
           {
+            "name": "allowAddAccountingContext",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "allowAddPriceFeed",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -539,8 +643,8 @@
           },
           {
             "name": "metadata",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           }
         ]
       }
@@ -584,38 +688,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -635,19 +739,19 @@
         "internalType": "struct JBRulesetMetadata",
         "components": [
           {
-            "name": "reservedRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "reservedPercent",
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "redemptionRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "baseCurrency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "pausePay",
@@ -685,6 +789,16 @@
             "internalType": "bool"
           },
           {
+            "name": "allowAddAccountingContext",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "allowAddPriceFeed",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -716,8 +830,8 @@
           },
           {
             "name": "metadata",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           }
         ]
       },
@@ -750,23 +864,23 @@
         "components": [
           {
             "name": "mustStartAtOrAfter",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -779,19 +893,19 @@
             "internalType": "struct JBRulesetMetadata",
             "components": [
               {
-                "name": "reservedRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "name": "reservedPercent",
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "redemptionRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "baseCurrency",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "pausePay",
@@ -829,6 +943,16 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowAddAccountingContext",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "allowAddPriceFeed",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -860,8 +984,8 @@
               },
               {
                 "name": "metadata",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               }
             ]
           },
@@ -887,13 +1011,13 @@
                   },
                   {
                     "name": "percent",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   },
                   {
                     "name": "projectId",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint56",
+                    "internalType": "uint56"
                   },
                   {
                     "name": "beneficiary",
@@ -902,8 +1026,8 @@
                   },
                   {
                     "name": "lockedUntil",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint48",
+                    "internalType": "uint48"
                   },
                   {
                     "name": "hook",
@@ -936,13 +1060,13 @@
                 "components": [
                   {
                     "name": "amount",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint224",
+                    "internalType": "uint224"
                   },
                   {
                     "name": "currency",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   }
                 ]
               },
@@ -953,13 +1077,13 @@
                 "components": [
                   {
                     "name": "amount",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint224",
+                    "internalType": "uint224"
                   },
                   {
                     "name": "currency",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   }
                 ]
               }
@@ -978,9 +1102,26 @@
             "internalType": "contract IJBTerminal"
           },
           {
-            "name": "tokensToAccept",
-            "type": "address[]",
-            "internalType": "address[]"
+            "name": "accountingContextsToAccept",
+            "type": "tuple[]",
+            "internalType": "struct JBAccountingContext[]",
+            "components": [
+              {
+                "name": "token",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "decimals",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              }
+            ]
           }
         ]
       },
@@ -1015,23 +1156,23 @@
         "components": [
           {
             "name": "mustStartAtOrAfter",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -1044,19 +1185,19 @@
             "internalType": "struct JBRulesetMetadata",
             "components": [
               {
-                "name": "reservedRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "name": "reservedPercent",
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "redemptionRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "baseCurrency",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "pausePay",
@@ -1094,6 +1235,16 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowAddAccountingContext",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "allowAddPriceFeed",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -1125,8 +1276,8 @@
               },
               {
                 "name": "metadata",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               }
             ]
           },
@@ -1152,13 +1303,13 @@
                   },
                   {
                     "name": "percent",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   },
                   {
                     "name": "projectId",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint56",
+                    "internalType": "uint56"
                   },
                   {
                     "name": "beneficiary",
@@ -1167,8 +1318,8 @@
                   },
                   {
                     "name": "lockedUntil",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint48",
+                    "internalType": "uint48"
                   },
                   {
                     "name": "hook",
@@ -1201,13 +1352,13 @@
                 "components": [
                   {
                     "name": "amount",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint224",
+                    "internalType": "uint224"
                   },
                   {
                     "name": "currency",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   }
                 ]
               },
@@ -1218,13 +1369,13 @@
                 "components": [
                   {
                     "name": "amount",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint224",
+                    "internalType": "uint224"
                   },
                   {
                     "name": "currency",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   }
                 ]
               }
@@ -1243,9 +1394,26 @@
             "internalType": "contract IJBTerminal"
           },
           {
-            "name": "tokensToAccept",
-            "type": "address[]",
-            "internalType": "address[]"
+            "name": "accountingContextsToAccept",
+            "type": "tuple[]",
+            "internalType": "struct JBAccountingContext[]",
+            "components": [
+              {
+                "name": "token",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "decimals",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              }
+            ]
           }
         ]
       },
@@ -1307,7 +1475,7 @@
         "internalType": "string"
       },
       {
-        "name": "useReservedRate",
+        "name": "useReservedPercent",
         "type": "bool",
         "internalType": "bool"
       }
@@ -1319,44 +1487,6 @@
         "internalType": "uint256"
       }
     ],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "payReservedTokenToTerminal",
-    "inputs": [
-      {
-        "name": "terminal",
-        "type": "address",
-        "internalType": "contract IJBTerminal"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "token",
-        "type": "address",
-        "internalType": "contract IJBToken"
-      },
-      {
-        "name": "splitAmount",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "beneficiary",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "metadata",
-        "type": "bytes",
-        "internalType": "bytes"
-      }
-    ],
-    "outputs": [],
     "stateMutability": "nonpayable"
   },
   {
@@ -1394,23 +1524,23 @@
         "components": [
           {
             "name": "mustStartAtOrAfter",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -1423,19 +1553,19 @@
             "internalType": "struct JBRulesetMetadata",
             "components": [
               {
-                "name": "reservedRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "name": "reservedPercent",
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "redemptionRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "baseCurrency",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "pausePay",
@@ -1473,6 +1603,16 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowAddAccountingContext",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "allowAddPriceFeed",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -1504,8 +1644,8 @@
               },
               {
                 "name": "metadata",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               }
             ]
           },
@@ -1531,13 +1671,13 @@
                   },
                   {
                     "name": "percent",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   },
                   {
                     "name": "projectId",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint56",
+                    "internalType": "uint56"
                   },
                   {
                     "name": "beneficiary",
@@ -1546,8 +1686,8 @@
                   },
                   {
                     "name": "lockedUntil",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint48",
+                    "internalType": "uint48"
                   },
                   {
                     "name": "hook",
@@ -1580,13 +1720,13 @@
                 "components": [
                   {
                     "name": "amount",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint224",
+                    "internalType": "uint224"
                   },
                   {
                     "name": "currency",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   }
                 ]
               },
@@ -1597,13 +1737,13 @@
                 "components": [
                   {
                     "name": "amount",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint224",
+                    "internalType": "uint224"
                   },
                   {
                     "name": "currency",
-                    "type": "uint256",
-                    "internalType": "uint256"
+                    "type": "uint32",
+                    "internalType": "uint32"
                   }
                 ]
               }
@@ -1677,38 +1817,38 @@
             "components": [
               {
                 "name": "cycleNumber",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint48",
+                "internalType": "uint48"
               },
               {
                 "name": "id",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint48",
+                "internalType": "uint48"
               },
               {
                 "name": "basedOnId",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint48",
+                "internalType": "uint48"
               },
               {
                 "name": "start",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint48",
+                "internalType": "uint48"
               },
               {
                 "name": "duration",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "weight",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint112",
+                "internalType": "uint112"
               },
               {
-                "name": "decayRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "name": "decayPercent",
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "approvalHook",
@@ -1728,19 +1868,19 @@
             "internalType": "struct JBRulesetMetadata",
             "components": [
               {
-                "name": "reservedRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "name": "reservedPercent",
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "redemptionRate",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               },
               {
                 "name": "baseCurrency",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "pausePay",
@@ -1778,6 +1918,16 @@
                 "internalType": "bool"
               },
               {
+                "name": "allowAddAccountingContext",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "allowAddPriceFeed",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -1809,8 +1959,8 @@
               },
               {
                 "name": "metadata",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint16",
+                "internalType": "uint16"
               }
             ]
           }
@@ -1893,13 +2043,13 @@
               },
               {
                 "name": "percent",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint32",
+                "internalType": "uint32"
               },
               {
                 "name": "projectId",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint56",
+                "internalType": "uint56"
               },
               {
                 "name": "beneficiary",
@@ -1908,8 +2058,8 @@
               },
               {
                 "name": "lockedUntil",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint48",
+                "internalType": "uint48"
               },
               {
                 "name": "hook",
@@ -1996,7 +2146,7 @@
         "internalType": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "pure"
   },
   {
     "type": "function",
@@ -2076,38 +2226,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -2127,19 +2277,19 @@
         "internalType": "struct JBRulesetMetadata",
         "components": [
           {
-            "name": "reservedRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "reservedPercent",
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "redemptionRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "baseCurrency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "pausePay",
@@ -2177,6 +2327,16 @@
             "internalType": "bool"
           },
           {
+            "name": "allowAddAccountingContext",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "allowAddPriceFeed",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -2208,8 +2368,8 @@
           },
           {
             "name": "metadata",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           }
         ]
       }
@@ -2400,7 +2560,7 @@
         "internalType": "string"
       },
       {
-        "name": "reservedRate",
+        "name": "reservedPercent",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -2493,13 +2653,13 @@
           },
           {
             "name": "percent",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint56",
+            "internalType": "uint56"
           },
           {
             "name": "beneficiary",
@@ -2508,8 +2668,8 @@
           },
           {
             "name": "lockedUntil",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "hook",
@@ -2574,13 +2734,13 @@
           },
           {
             "name": "percent",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint56",
+            "internalType": "uint56"
           },
           {
             "name": "beneficiary",
@@ -2589,8 +2749,8 @@
           },
           {
             "name": "lockedUntil",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "hook",
@@ -2690,6 +2850,11 @@
   },
   {
     "type": "error",
+    "name": "ADDING_PRICE_FEED_NOT_ALLOWED",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "AddressEmptyCode",
     "inputs": [
       {
@@ -2712,11 +2877,6 @@
   },
   {
     "type": "error",
-    "name": "CONTROLLER_MIGRATION_NOT_ALLOWED",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "CREDIT_TRANSFERS_PAUSED",
     "inputs": []
   },
@@ -2727,17 +2887,12 @@
   },
   {
     "type": "error",
-    "name": "INVALID_BASE_CURRENCY",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "INVALID_REDEMPTION_RATE",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_RESERVED_RATE",
+    "name": "INVALID_RESERVED_PERCENT",
     "inputs": []
   },
   {

@@ -150,13 +150,13 @@
           },
           {
             "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint56",
+            "internalType": "uint56"
           },
           {
             "name": "permissionIds",
-            "type": "uint256[]",
-            "internalType": "uint256[]"
+            "type": "uint8[]",
+            "internalType": "uint8[]"
           }
         ]
       }
@@ -188,9 +188,9 @@
       },
       {
         "name": "permissionIds",
-        "type": "uint256[]",
+        "type": "uint8[]",
         "indexed": false,
-        "internalType": "uint256[]"
+        "internalType": "uint8[]"
       },
       {
         "name": "packed",

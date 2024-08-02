@@ -19,8 +19,12 @@ async function main() {
     `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core-testnet/${network}/${name}.json`;
   const nana721GithubUrl = (name) =>
     `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook-testnet/${network}/${name}.json`;
+  const bannyVerseSubRoute = () => {
+    if (["sepolia"].includes(network)) return "bannyverse-core-testnet";
+    return "bannyverse-core";
+  };
   const bannyverseGithubUrl = (name) =>
-    `${baseUrl}/mejango/bannyverse-core/main/deployments/bannyverse-core/${network}/${name}.json`;
+    `${baseUrl}/mejango/bannyverse-core/main/deployments/${bannyVerseSubRoute()}/${network}/${name}.json`;
 
   const configTemplate = JSON.parse(fs.readFileSync("config/template.json"));
 
@@ -64,7 +68,7 @@ async function main() {
         };
       })
       .catch((e) => {
-        stdout.write(`Update failed for ${name}\n`);
+        stdout.write(`Update failed for ${name}\n Using url: ${url}\n`);
         stdout.write(e);
         exit(1);
       });

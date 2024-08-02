@@ -13,11 +13,6 @@
         "internalType": "contract IJBProjects"
       },
       {
-        "name": "directory",
-        "type": "address",
-        "internalType": "contract IJBDirectory"
-      },
-      {
         "name": "splits",
         "type": "address",
         "internalType": "contract IJBSplits"
@@ -119,6 +114,19 @@
         "name": "",
         "type": "address",
         "internalType": "contract IJBProjects"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "RULESETS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IJBRulesets"
       }
     ],
     "stateMutability": "view"
@@ -236,9 +244,26 @@
         "internalType": "uint256"
       },
       {
-        "name": "tokens",
-        "type": "address[]",
-        "internalType": "address[]"
+        "name": "accountingContexts",
+        "type": "tuple[]",
+        "internalType": "struct JBAccountingContext[]",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "decimals",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "currency",
+            "type": "uint32",
+            "internalType": "uint32"
+          }
+        ]
       }
     ],
     "outputs": [],
@@ -327,13 +352,13 @@
           },
           {
             "name": "percent",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint56",
+            "internalType": "uint56"
           },
           {
             "name": "beneficiary",
@@ -342,8 +367,8 @@
           },
           {
             "name": "lockedUntil",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "hook",
@@ -448,8 +473,8 @@
           },
           {
             "name": "unlockTimestamp",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           }
         ]
       }
@@ -676,7 +701,7 @@
         "internalType": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "pure"
   },
   {
     "type": "function",
@@ -911,17 +936,17 @@
                 "internalType": "address"
               },
               {
-                "name": "value",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
                 "name": "decimals",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint8",
+                "internalType": "uint8"
               },
               {
                 "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              },
+              {
+                "name": "value",
                 "type": "uint256",
                 "internalType": "uint256"
               }
@@ -938,17 +963,17 @@
                 "internalType": "address"
               },
               {
-                "name": "value",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
                 "name": "decimals",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint8",
+                "internalType": "uint8"
               },
               {
                 "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              },
+              {
+                "name": "value",
                 "type": "uint256",
                 "internalType": "uint256"
               }
@@ -1043,17 +1068,17 @@
                 "internalType": "address"
               },
               {
-                "name": "value",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
                 "name": "decimals",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint8",
+                "internalType": "uint8"
               },
               {
                 "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              },
+              {
+                "name": "value",
                 "type": "uint256",
                 "internalType": "uint256"
               }
@@ -1070,17 +1095,17 @@
                 "internalType": "address"
               },
               {
-                "name": "value",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
                 "name": "decimals",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint8",
+                "internalType": "uint8"
               },
               {
                 "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              },
+              {
+                "name": "value",
                 "type": "uint256",
                 "internalType": "uint256"
               }
@@ -1256,13 +1281,13 @@
           },
           {
             "name": "percent",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint56",
+            "internalType": "uint56"
           },
           {
             "name": "beneficiary",
@@ -1271,8 +1296,8 @@
           },
           {
             "name": "lockedUntil",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "hook",
@@ -1490,13 +1515,13 @@
           },
           {
             "name": "percent",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint56",
+            "internalType": "uint56"
           },
           {
             "name": "beneficiary",
@@ -1505,8 +1530,8 @@
           },
           {
             "name": "lockedUntil",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "hook",
@@ -1608,12 +1633,6 @@
         "internalType": "uint256"
       },
       {
-        "name": "token",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
         "name": "context",
         "type": "tuple",
         "indexed": false,
@@ -1713,6 +1732,11 @@
   },
   {
     "type": "error",
+    "name": "ADDING_ACCOUNTING_CONTEXT_NOT_ALLOWED",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "AddressEmptyCode",
     "inputs": [
       {
@@ -1735,7 +1759,22 @@
   },
   {
     "type": "error",
+    "name": "FEE_TERMINAL_NOT_FOUND",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "FailedInnerCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "INVALID_ACCOUNTING_CONTEXT_CURRENCY",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "INVALID_ACCOUNTING_CONTEXT_DECIMALS",
     "inputs": []
   },
   {
@@ -1773,6 +1812,16 @@
         "internalType": "uint256"
       }
     ]
+  },
+  {
+    "type": "error",
+    "name": "RECIPIENT_PROJECT_TERMINAL_NOT_FOUND",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SPLIT_HOOK_INVALID",
+    "inputs": []
   },
   {
     "type": "error",

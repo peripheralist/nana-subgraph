@@ -135,7 +135,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "tokenCount",
+        "name": "tokensRedeemed",
         "type": "uint256",
         "internalType": "uint256"
       },
@@ -164,7 +164,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "tokenCount",
+        "name": "tokensRedeemed",
         "type": "uint256",
         "internalType": "uint256"
       },
@@ -316,17 +316,17 @@
             "internalType": "address"
           },
           {
-            "name": "value",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
             "name": "decimals",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint8",
+            "internalType": "uint8"
           },
           {
             "name": "currency",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "value",
             "type": "uint256",
             "internalType": "uint256"
           }
@@ -356,38 +356,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -481,38 +481,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -611,38 +611,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",
@@ -765,38 +765,38 @@
         "components": [
           {
             "name": "cycleNumber",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "basedOnId",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "start",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint48",
+            "internalType": "uint48"
           },
           {
             "name": "duration",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "weight",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint112",
+            "internalType": "uint112"
           },
           {
-            "name": "decayRate",
-            "type": "uint256",
-            "internalType": "uint256"
+            "name": "decayPercent",
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "approvalHook",

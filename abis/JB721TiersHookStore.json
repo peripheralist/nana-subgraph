@@ -637,33 +637,33 @@
         "components": [
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "price",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint104",
+            "internalType": "uint104"
           },
           {
             "name": "remainingSupply",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "initialSupply",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "votingUnits",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint104",
+            "internalType": "uint104"
           },
           {
             "name": "reserveFrequency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "reserveBeneficiary",
@@ -677,8 +677,8 @@
           },
           {
             "name": "category",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint24",
+            "internalType": "uint24"
           },
           {
             "name": "allowOwnerMint",
@@ -733,33 +733,33 @@
         "components": [
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "price",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint104",
+            "internalType": "uint104"
           },
           {
             "name": "remainingSupply",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "initialSupply",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "votingUnits",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint104",
+            "internalType": "uint104"
           },
           {
             "name": "reserveFrequency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "reserveBeneficiary",
@@ -773,8 +773,8 @@
           },
           {
             "name": "category",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint24",
+            "internalType": "uint24"
           },
           {
             "name": "allowOwnerMint",
@@ -868,33 +868,33 @@
         "components": [
           {
             "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "price",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint104",
+            "internalType": "uint104"
           },
           {
             "name": "remainingSupply",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "initialSupply",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint32",
+            "internalType": "uint32"
           },
           {
             "name": "votingUnits",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint104",
+            "internalType": "uint104"
           },
           {
             "name": "reserveFrequency",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint16",
+            "internalType": "uint16"
           },
           {
             "name": "reserveBeneficiary",
@@ -908,8 +908,8 @@
           },
           {
             "name": "category",
-            "type": "uint256",
-            "internalType": "uint256"
+            "type": "uint24",
+            "internalType": "uint24"
           },
           {
             "name": "allowOwnerMint",

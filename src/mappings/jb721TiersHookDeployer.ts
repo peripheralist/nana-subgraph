@@ -105,11 +105,11 @@ export function handleHookDeployed(event: HookDeployed): void {
     nftTier.resolvedUri = tier.resolvedUri;
     nftTier.initialSupply = tier.initialSupply;
     nftTier.remainingSupply = tier.initialSupply;
-    nftTier.reserveFrequency = tier.reserveFrequency.toI32();
+    nftTier.reserveFrequency = tier.reserveFrequency;
     nftTier.reserveBeneficiary = tier.reserveBeneficiary;
     nftTier.transfersPausable = tier.transfersPausable;
     nftTier.collection = address.toHexString();
-    nftTier.category = tier.category.toI32();
+    nftTier.category = tier.category;
     nftTier.createdAt = event.block.timestamp.toI32();
     nftTier.svg = getSvgOf(tier.id);
 

@@ -528,11 +528,6 @@
   },
   {
     "type": "error",
-    "name": "ASSET_IS_ALREADY_BEING_WORN",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "CONTENTS_ALREADY_STORED",
     "inputs": []
   },
@@ -554,6 +549,11 @@
   {
     "type": "error",
     "name": "HEAD_ALREADY_ADDED",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OUTFIT_IS_ALREADY_BEING_WORN",
     "inputs": []
   },
   {
@@ -621,6 +621,11 @@
   {
     "type": "error",
     "name": "UNRECOGNIZED_WORLD",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "WORLD_IS_ALREADY_BEING_USED",
     "inputs": []
   }
 ]
