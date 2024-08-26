@@ -21,6 +21,8 @@ export const V1_CURRENCY_USD = BigInt.fromI32(1);
 export const V2V3_CURRENCY_ETH = BigInt.fromI32(1);
 export const V2V3_CURRENCY_USD = BigInt.fromI32(2);
 
-export const bannyNftCollection = Address.fromBytes(
-  Bytes.fromHexString("0x02ac74120e1ae0a7d66903a602dcc13e0ab748ee")
+// latest hook address can be found in HookDeployed events emitted by jb721TiersHookDeployer
+// e.g. https://etherscan.io/address/<deployer-address>#events
+export const bannyNftHookAddress = Address.fromBytes(
+  Bytes.fromHexString("0xf103babb58f333f910b2c6d17c3a26518ac2a980")
 );

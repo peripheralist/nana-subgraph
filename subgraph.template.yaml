@@ -268,8 +268,12 @@ dataSources:
       abis:
         - name: Banny721TokenUriResolver
           file: ./abis/Banny721TokenUriResolver.json
+        - name: JB721TiersHook
+          file: ./abis/JB721TiersHook.json
       eventHandlers:
         - event: SetSvgContent(indexed uint256,string,address)
           handler: handleSetSvgContent
+        - event: DecorateBanny(indexed address,indexed uint256,uint256,uint256[],address)
+          handler: handleDecorateBanny
       file: ./src/mappings/banny721TokenUriResolver.ts
   {{ /banny721TokenUriResolver }}

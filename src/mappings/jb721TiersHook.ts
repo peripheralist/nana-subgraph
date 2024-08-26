@@ -48,7 +48,7 @@ export function handleTransfer(event: Transfer): void {
     // Tier data
     if (!address_jb721TiersHookStore) {
       log.error(
-        "[jb721_3_3:handleTransfer] missing address_jb721TiersHookStore",
+        "[jb721TiersHook:handleTransfer] missing address_jb721TiersHookStore",
         []
       );
       return;

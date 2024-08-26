@@ -11,6 +11,31 @@
         "name": "trustedForwarder",
         "type": "address",
         "internalType": "address"
+      },
+      {
+        "name": "nakedBanny",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "defaultNecklace",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "defaultMouth",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "defaultStandardEyes",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "defaultAlienEyes",
+        "type": "string",
+        "internalType": "string"
       }
     ],
     "stateMutability": "nonpayable"
@@ -93,6 +118,29 @@
   },
   {
     "type": "function",
+    "name": "lockOutfitChangesFor",
+    "inputs": [
+      {
+        "name": "hook",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "nakedBannyId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "duration",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "namesOf",
     "inputs": [
       {
@@ -121,6 +169,69 @@
         "name": "",
         "type": "string",
         "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "onERC721Received",
+    "inputs": [
+      {
+        "name": "operator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "outfitLockedUntil",
+    "inputs": [
+      {
+        "name": "hook",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "upc",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
     "stateMutability": "view"
@@ -528,6 +639,11 @@
   },
   {
     "type": "error",
+    "name": "CANT_ACCELERATE_THE_LOCK",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "CONTENTS_ALREADY_STORED",
     "inputs": []
   },
@@ -549,6 +665,16 @@
   {
     "type": "error",
     "name": "HEAD_ALREADY_ADDED",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "LOCKED_NAKED_BANNY",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OUTFIT_CHANGES_LOCKED",
     "inputs": []
   },
   {

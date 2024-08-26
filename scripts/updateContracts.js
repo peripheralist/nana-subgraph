@@ -14,17 +14,17 @@ async function main() {
 
   stdout.write(`Updating contracts for network: ${chalk.cyan.bold(network)}\n`);
 
+  const testnetSuffix = () => {
+    return ["sepolia"].includes(network) ? "-testnet" : "";
+  };
+
   const baseUrl = "https://raw.githubusercontent.com";
   const nanaCoreGithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core-testnet/${network}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core${testnetSuffix()}/${network}/${name}.json`;
   const nana721GithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook-testnet/${network}/${name}.json`;
-  const bannyVerseSubRoute = () => {
-    if (["sepolia"].includes(network)) return "bannyverse-core-testnet";
-    return "bannyverse-core";
-  };
+    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook${testnetSuffix()}/${network}/${name}.json`;
   const bannyverseGithubUrl = (name) =>
-    `${baseUrl}/mejango/bannyverse-core/main/deployments/${bannyVerseSubRoute()}/${network}/${name}.json`;
+    `${baseUrl}/mejango/bannyverse-core/main/deployments/bannyverse-core${testnetSuffix()}/${network}/${name}.json`;
 
   const configTemplate = JSON.parse(fs.readFileSync("config/template.json"));
 
@@ -53,6 +53,12 @@ async function main() {
       .then((res) => {
         const { address, receipt, abi, contractName } = res.data;
         const { blockNumber: startBlock } = receipt;
+
+        stdout.write(
+          `✅ ${chalk.bold(
+            chalk.greenBright(contractName)
+          )}\n  Address: ${address}\n  URL: ${url}\n`
+        );
 
         // update abi
         fs.writeFileSync(
