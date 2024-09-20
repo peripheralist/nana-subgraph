@@ -35,7 +35,7 @@ type Project @entity {
   projectId: Int!
   handle: String
   deployer: Bytes
-  metadata: String
+  metadataUri: String
   owner: Bytes!
   creator: Bytes!
   createdAt: Int!
@@ -220,9 +220,9 @@ type RedeemEvent @entity {
   # memo: String # only v2/v3
   holder: Bytes!
   beneficiary: Bytes!
-  amount: BigInt!
-  returnAmount: BigInt!
-  returnAmountUSD: BigInt
+  redeemCount: BigInt!
+  reclaimAmount: BigInt!
+  reclaimAmountUSD: BigInt
 }
 
 
@@ -474,7 +474,6 @@ type DistributePayoutsEvent @entity {
   from: Bytes!
   caller: Bytes!
 
-  beneficiary: Bytes!
   amount: BigInt!
   # amountUSD: BigInt
   amountPaidOut: BigInt!
@@ -483,8 +482,6 @@ type DistributePayoutsEvent @entity {
   rulesetId: BigInt!
   fee: BigInt!
   feeUSD: BigInt
-  beneficiaryDistributionAmount: BigInt!
-  beneficiaryDistributionAmountUSD: BigInt
   splitDistributions: [DistributeToPayoutSplitEvent!]!
     @derivedFrom(field: "distributePayoutsEvent")
 }
@@ -527,9 +524,7 @@ type DistributeReservedTokensEvent @entity {
   caller: Bytes!
 
   fundingCycleNumber: Int!
-  beneficiary: Bytes!
   tokenCount: BigInt!
-  beneficiaryTokenCount: BigInt!
   splitDistributions: [DistributeToReservedTokenSplitEvent!]!
     @derivedFrom(field: "distributeReservedTokensEvent")
 }

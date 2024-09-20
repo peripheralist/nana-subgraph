@@ -101,10 +101,6 @@ export function handleSendPayouts(event: SendPayouts): void {
   distributePayoutsEvent.amount = event.params.amount;
   distributePayoutsEvent.amountPaidOut = event.params.amountPaidOut;
   // distributePayoutsEvent.amountUSD = v3USDPriceForEth(event.params.amount);
-  distributePayoutsEvent.beneficiary = event.params.beneficiary;
-  distributePayoutsEvent.beneficiaryDistributionAmount =
-    event.params.beneficiaryDistributionAmount;
-  // distributePayoutsEvent.beneficiaryDistributionAmountUSD = beneficiaryDistributionAmountUSD;
   distributePayoutsEvent.caller = event.params.caller;
   distributePayoutsEvent.from = event.transaction.from;
   // distributePayoutsEvent.distributedAmount = distributedAmount;
@@ -314,9 +310,9 @@ export function handlePay(event: Pay): void {
 }
 
 export function handleRedeemTokens(event: RedeemTokens): void {
-  const reclaimedAmountUSD = usdPriceForEth(
+  const reclaimAmountUSD = usdPriceForEth(
     event.params.projectId,
-    event.params.reclaimedAmount
+    event.params.reclaimAmount
   );
 
   const idOfProject = event.params.projectId.toString();
@@ -326,13 +322,13 @@ export function handleRedeemTokens(event: RedeemTokens): void {
   );
 
   redeemEvent.projectId = event.params.projectId.toI32();
-  redeemEvent.amount = event.params.tokenCount;
+  redeemEvent.redeemCount = event.params.redeemCount;
   redeemEvent.beneficiary = event.params.beneficiary;
   redeemEvent.caller = event.params.caller;
   redeemEvent.from = event.transaction.from;
   redeemEvent.holder = event.params.holder;
-  redeemEvent.returnAmount = event.params.reclaimedAmount;
-  redeemEvent.returnAmountUSD = reclaimedAmountUSD;
+  redeemEvent.reclaimAmount = event.params.reclaimAmount;
+  redeemEvent.reclaimAmountUSD = reclaimAmountUSD;
   redeemEvent.project = idOfProject;
   redeemEvent.timestamp = event.block.timestamp.toI32();
   redeemEvent.txHash = event.transaction.hash;
@@ -352,14 +348,12 @@ export function handleRedeemTokens(event: RedeemTokens): void {
     log.error("[handleRedeemTokens] Missing project. ID:{}", [idOfProject]);
     return;
   }
-  project.redeemVolume = project.redeemVolume.plus(
-    event.params.reclaimedAmount
-  );
-  if (reclaimedAmountUSD) {
-    project.redeemVolumeUSD = project.redeemVolumeUSD.plus(reclaimedAmountUSD);
+  project.redeemVolume = project.redeemVolume.plus(event.params.reclaimAmount);
+  if (reclaimAmountUSD) {
+    project.redeemVolumeUSD = project.redeemVolumeUSD.plus(reclaimAmountUSD);
   }
   project.currentBalance = project.currentBalance.minus(
-    event.params.reclaimedAmount
+    event.params.reclaimAmount
   );
   project.redeemCount = project.redeemCount + 1;
   project.save();

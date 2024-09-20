@@ -253,7 +253,7 @@
     "name": "setTokenUriResolver",
     "inputs": [
       {
-        "name": "newResolver",
+        "name": "resolver",
         "type": "address",
         "internalType": "contract IJBTokenUriResolver"
       }

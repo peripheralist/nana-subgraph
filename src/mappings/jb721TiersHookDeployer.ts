@@ -1,24 +1,17 @@
-import {
-  Address,
-  BigInt,
-  Bytes,
-  DataSourceContext,
-  log,
-} from "@graphprotocol/graph-ts";
+import { Address, DataSourceContext, log } from "@graphprotocol/graph-ts";
 
 import { JB721TiersHook } from "../../generated/JB721TiersHookDeployer/JB721TiersHook";
 import { HookDeployed } from "../../generated/JB721TiersHookDeployer/JB721TiersHookDeployer";
-import { JB721TiersHookStore } from "../../generated/JB721TiersHookDeployer/JB721TiersHookStore";
 import { NFTCollection, NFTTier } from "../../generated/schema";
 import { JB721TiersHook as JB721TiersHookTemplate } from "../../generated/templates";
-import { address_jb721TiersHookStore } from "../contractAddresses";
 import { getSvgOf } from "../utils/banny721Resolver";
 import { idForNFTTier } from "../utils/ids";
+import { getAllTiers } from "../utils/jb721TiersHookStore";
 
 export function handleHookDeployed(event: HookDeployed): void {
   const logTag = "jb721TiersHookDeployer:handleHookDeployed";
 
-  const address = event.params.newHook;
+  const address = event.params.hook;
 
   /**
    * Create a new dataSource to track NFT mints & transfers
@@ -61,38 +54,10 @@ export function handleHookDeployed(event: HookDeployed): void {
   /**
    * Create entity for each tier in collection
    */
-  if (!address_jb721TiersHookStore) {
-    log.error(`[${logTag}] missing address_jb721TiersHookStore`, []);
-    return;
-  }
-  const jb721TiersHookStoreContract = JB721TiersHookStore.bind(
-    Address.fromBytes(Bytes.fromHexString(address_jb721TiersHookStore!))
-  );
+  const tiers = getAllTiers(address);
 
-  const maxTierCall = jb721TiersHookStoreContract.try_maxTierIdOf(address);
-  if (maxTierCall.reverted) {
-    // Will revert for non-tiered tokens, among maybe other reasons
-    log.error(`[${logTag}] maxTier() reverted for {}`, [address.toHexString()]);
-    return;
-  }
-
-  const tiersCall = jb721TiersHookStoreContract.try_tiersOf(
-    address,
-    [], // Empty array to get all categories
-    true,
-    BigInt.fromI32(1),
-    maxTierCall.value
-  );
-  if (tiersCall.reverted) {
-    // Will revert for non-tiered tokens, among maybe other reasons
-    log.error(`[${logTag}] tiers() reverted for address {}`, [
-      address.toHexString(),
-    ]);
-    return;
-  }
-
-  for (let i = 0; i < tiersCall.value.length; i++) {
-    const tier = tiersCall.value[i];
+  for (let i = 0; i < tiers.length; i++) {
+    const tier = tiers[i];
 
     const nftTier = new NFTTier(idForNFTTier(address, tier.id));
     nftTier.collection = address.toHexString();

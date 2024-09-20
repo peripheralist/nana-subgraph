@@ -27,7 +27,7 @@ export function handleMint(event: Mint): void {
    * We're only concerned with updating unclaimed token balance.
    * "Claimed" ERC20 tokens will be handled separately.
    */
-  if (event.params.tokensWereClaimed) return;
+  if (event.params.shouldClaimTokens) return;
 
   const projectId = event.params.projectId;
 
@@ -37,7 +37,7 @@ export function handleMint(event: Mint): void {
     receiver = newParticipant(projectId, event.params.holder);
   }
 
-  receiver.stakedBalance = receiver.stakedBalance.plus(event.params.amount);
+  receiver.stakedBalance = receiver.stakedBalance.plus(event.params.count);
 
   updateParticipantBalance(receiver);
 
@@ -45,7 +45,7 @@ export function handleMint(event: Mint): void {
 
   const project = Project.load(projectId.toString());
   if (project) {
-    project.tokenSupply = project.tokenSupply.plus(event.params.amount);
+    project.tokenSupply = project.tokenSupply.plus(event.params.count);
     project.save();
   }
 }
@@ -103,7 +103,7 @@ export function handleTransferCredits(event: TransferCredits): void {
     idForParticipant(projectId, event.params.holder)
   );
   if (sender) {
-    sender.stakedBalance = sender.stakedBalance.minus(event.params.amount);
+    sender.stakedBalance = sender.stakedBalance.minus(event.params.count);
 
     updateParticipantBalance(sender);
 
@@ -116,7 +116,7 @@ export function handleTransferCredits(event: TransferCredits): void {
     receiver = newParticipant(projectId, event.params.recipient);
   }
 
-  receiver.stakedBalance = receiver.stakedBalance.plus(event.params.amount);
+  receiver.stakedBalance = receiver.stakedBalance.plus(event.params.count);
 
   updateParticipantBalance(receiver);
 
@@ -136,13 +136,13 @@ export function handleBurn(event: Burn): void {
   let burnedStakedAmount = BIGINT_0;
 
   // Only update stakedBalance, since erc20Balance will be updated by erc20 handler
-  if (event.params.amount.gt(participant.stakedBalance)) {
+  if (event.params.count.gt(participant.stakedBalance)) {
     burnedStakedAmount = participant.stakedBalance;
     participant.stakedBalance = BIGINT_0;
   } else {
-    burnedStakedAmount = event.params.amount;
+    burnedStakedAmount = event.params.count;
     participant.stakedBalance = participant.stakedBalance.minus(
-      event.params.amount
+      event.params.count
     );
   }
   participant.save();
@@ -157,7 +157,7 @@ export function handleBurn(event: Burn): void {
   burnEvent.projectId = projectId.toI32();
   burnEvent.timestamp = event.block.timestamp.toI32();
   burnEvent.txHash = event.transaction.hash;
-  burnEvent.amount = event.params.amount;
+  burnEvent.amount = event.params.count;
   burnEvent.stakedAmount = burnedStakedAmount;
   burnEvent.erc20Amount = BIGINT_0;
   burnEvent.caller = event.params.caller;
@@ -172,7 +172,7 @@ export function handleBurn(event: Burn): void {
 
   const project = Project.load(projectId.toString());
   if (project) {
-    project.tokenSupply = project.tokenSupply.minus(event.params.amount);
+    project.tokenSupply = project.tokenSupply.minus(event.params.count);
     project.save();
   }
 }
@@ -190,7 +190,7 @@ export function handleClaimTokens(event: ClaimTokens): void {
   }
 
   participant.stakedBalance = participant.stakedBalance.minus(
-    event.params.amount
+    event.params.count
   );
 
   updateParticipantBalance(participant);

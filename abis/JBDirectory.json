@@ -341,7 +341,7 @@
         "internalType": "address"
       },
       {
-        "name": "flag",
+        "name": "isAllowed",
         "type": "bool",
         "indexed": true,
         "internalType": "bool"
@@ -413,13 +413,87 @@
   },
   {
     "type": "error",
-    "name": "DUPLICATE_TERMINALS",
+    "name": "JBDirectory_DuplicateTerminals",
+    "inputs": [
+      {
+        "name": "terminal",
+        "type": "address",
+        "internalType": "contract IJBTerminal"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBDirectory_InvalidProjectIdInDirectory",
+    "inputs": [
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBDirectory_SetControllerNotAllowed",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_PROJECT_ID_IN_DIRECTORY",
+    "name": "JBDirectory_SetTerminalsNotAllowed",
     "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "JBDirectory_TokenNotAccepted",
+    "inputs": [
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "terminal",
+        "type": "address",
+        "internalType": "contract IJBTerminal"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBPermissioned_Unauthorized",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "permissionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
   },
   {
     "type": "error",
@@ -442,25 +516,5 @@
         "internalType": "address"
       }
     ]
-  },
-  {
-    "type": "error",
-    "name": "SET_CONTROLLER_NOT_ALLOWED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "SET_TERMINALS_NOT_ALLOWED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "TOKEN_NOT_ACCEPTED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNAUTHORIZED",
-    "inputs": []
   }
 ]

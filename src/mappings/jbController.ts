@@ -4,7 +4,7 @@ import {
   MintTokens,
   SendReservedTokensToSplit,
   SendReservedTokensToSplits,
-  SetMetadata,
+  SetUri,
 } from "../../generated/JBController/JBController";
 import {
   DistributeReservedTokensEvent,
@@ -54,15 +54,15 @@ export function handleLaunchProject(event: LaunchProject): void {
   handleV2V3LaunchProject(event.params.projectId, event.params.caller);
 }
 
-export function handleSetMetadata(event: SetMetadata): void {
+export function handleSetUri(event: SetUri): void {
   const project = Project.load(event.params.projectId.toString());
   if (!project) {
-    log.error("[handleSetMetadata] Missing project. ID:{}", [
+    log.error("[handleSetUri] Missing project. ID:{}", [
       event.params.projectId.toString(),
     ]);
     return;
   }
-  project.metadata = event.params.metadata;
+  project.metadataUri = event.params.uri;
   project.save();
 }
 
@@ -82,10 +82,7 @@ export function handleSendReservedTokensToSplits(
   distributeReservedTokensEvent.fundingCycleNumber = event.params.rulesetCycleNumber.toI32();
   distributeReservedTokensEvent.caller = event.params.caller;
   distributeReservedTokensEvent.from = event.transaction.from;
-  distributeReservedTokensEvent.beneficiary = event.params.beneficiary;
   distributeReservedTokensEvent.tokenCount = event.params.tokenCount;
-  distributeReservedTokensEvent.beneficiaryTokenCount =
-    event.params.beneficiaryTokenCount;
   distributeReservedTokensEvent.save();
 
   saveNewProjectEvent(

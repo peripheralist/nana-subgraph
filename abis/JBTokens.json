@@ -56,7 +56,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -79,7 +79,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "internalType": "uint256"
       },
@@ -165,7 +165,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -311,7 +311,7 @@
         "internalType": "address"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -336,19 +336,19 @@
         "internalType": "uint256"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
       },
       {
-        "name": "initialCreditBalance",
+        "name": "creditBalance",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
       },
       {
-        "name": "initialTokenBalance",
+        "name": "tokenBalance",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -379,13 +379,13 @@
         "internalType": "uint256"
       },
       {
-        "name": "initialCreditBalance",
+        "name": "creditBalance",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -465,13 +465,13 @@
         "internalType": "uint256"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
       },
       {
-        "name": "tokensWereClaimed",
+        "name": "shouldClaimTokens",
         "type": "bool",
         "indexed": false,
         "internalType": "bool"
@@ -496,7 +496,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "newToken",
+        "name": "token",
         "type": "address",
         "indexed": true,
         "internalType": "contract IJBToken"
@@ -533,7 +533,7 @@
         "internalType": "address"
       },
       {
-        "name": "amount",
+        "name": "count",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -549,67 +549,124 @@
   },
   {
     "type": "error",
-    "name": "CONTROLLER_UNAUTHORIZED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "EMPTY_NAME",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "EMPTY_SYMBOL",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "EMPTY_TOKEN",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "ERC1167FailedCreateClone",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INSUFFICIENT_CREDITS",
+    "name": "JBControlled_ControllerUnauthorized",
+    "inputs": [
+      {
+        "name": "controller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTokens_EmptyName",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INSUFFICIENT_FUNDS",
+    "name": "JBTokens_EmptySymbol",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "OVERFLOW_ALERT",
+    "name": "JBTokens_EmptyToken",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "PROJECT_ALREADY_HAS_TOKEN",
+    "name": "JBTokens_InsufficientCredits",
+    "inputs": [
+      {
+        "name": "count",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "creditBalance",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTokens_InsufficientTokensToBurn",
+    "inputs": [
+      {
+        "name": "count",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "tokenBalance",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTokens_OverflowAlert",
+    "inputs": [
+      {
+        "name": "value",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTokens_ProjectAlreadyHasToken",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "contract IJBToken"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTokens_RecipientZeroAddress",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "RECIPIENT_ZERO_ADDRESS",
+    "name": "JBTokens_TokenAlreadyBeingUsed",
+    "inputs": [
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTokens_TokenNotFound",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "TOKENS_MUST_HAVE_18_DECIMALS",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "TOKEN_ALREADY_SET",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "TOKEN_NOT_FOUND",
-    "inputs": []
+    "name": "JBTokens_TokensMustHave18Decimals",
+    "inputs": [
+      {
+        "name": "decimals",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
   }
 ]

@@ -3,6 +3,11 @@
     "type": "constructor",
     "inputs": [
       {
+        "name": "directory",
+        "type": "address",
+        "internalType": "contract IJBDirectory"
+      },
+      {
         "name": "permissions",
         "type": "address",
         "internalType": "contract IJBPermissions"
@@ -11,11 +16,6 @@
         "name": "projects",
         "type": "address",
         "internalType": "contract IJBProjects"
-      },
-      {
-        "name": "directory",
-        "type": "address",
-        "internalType": "contract IJBDirectory"
       },
       {
         "name": "owner",
@@ -228,6 +228,12 @@
         "type": "address",
         "indexed": false,
         "internalType": "contract IJBPriceFeed"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
       }
     ],
     "anonymous": false
@@ -253,12 +259,65 @@
   },
   {
     "type": "error",
-    "name": "CONTROLLER_UNAUTHORIZED",
+    "name": "JBControlled_ControllerUnauthorized",
+    "inputs": [
+      {
+        "name": "controller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBPermissioned_Unauthorized",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "permissionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBPrices_PriceFeedAlreadyExists",
+    "inputs": [
+      {
+        "name": "feed",
+        "type": "address",
+        "internalType": "contract IJBPriceFeed"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBPrices_PriceFeedNotFound",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_CURRENCY",
+    "name": "JBPrices_ZeroPricingCurrency",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "JBPrices_ZeroUnitCurrency",
     "inputs": []
   },
   {
@@ -303,20 +362,5 @@
         "internalType": "uint256"
       }
     ]
-  },
-  {
-    "type": "error",
-    "name": "PRICE_FEED_ALREADY_EXISTS",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "PRICE_FEED_NOT_FOUND",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNAUTHORIZED",
-    "inputs": []
   }
 ]

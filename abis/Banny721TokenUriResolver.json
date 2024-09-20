@@ -3,16 +3,6 @@
     "type": "constructor",
     "inputs": [
       {
-        "name": "owner",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "trustedForwarder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
         "name": "nakedBanny",
         "type": "string",
         "internalType": "string"
@@ -36,9 +26,84 @@
         "name": "defaultAlienEyes",
         "type": "string",
         "internalType": "string"
+      },
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "trustedForwarder",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_ALIEN_EYES",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_MOUTH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_NECKLACE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_STANDARD_EYES",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "NAKED_BANNY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
   },
   {
     "type": "function",
@@ -183,7 +248,7 @@
         "internalType": "address"
       },
       {
-        "name": "",
+        "name": "from",
         "type": "address",
         "internalType": "address"
       },
@@ -193,7 +258,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "",
+        "name": "data",
         "type": "bytes",
         "internalType": "bytes"
       }
@@ -506,7 +571,7 @@
       {
         "name": "worldId",
         "type": "uint256",
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256"
       },
       {
@@ -639,47 +704,87 @@
   },
   {
     "type": "error",
-    "name": "CANT_ACCELERATE_THE_LOCK",
+    "name": "Banny721TokenUriResolver_CantAccelerateTheLock",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "CONTENTS_ALREADY_STORED",
+    "name": "Banny721TokenUriResolver_ContentsAlreadyStored",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "CONTENTS_MISMATCH",
+    "name": "Banny721TokenUriResolver_ContentsMismatch",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "HASH_ALREADY_STORED",
+    "name": "Banny721TokenUriResolver_HashAlreadyStored",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "HASH_NOT_FOUND",
+    "name": "Banny721TokenUriResolver_HashNotFound",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "HEAD_ALREADY_ADDED",
+    "name": "Banny721TokenUriResolver_HeadAlreadyAdded",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "LOCKED_NAKED_BANNY",
+    "name": "Banny721TokenUriResolver_LockedNakedBanny",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "OUTFIT_CHANGES_LOCKED",
+    "name": "Banny721TokenUriResolver_OutfitChangesLocked",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "OUTFIT_IS_ALREADY_BEING_WORN",
+    "name": "Banny721TokenUriResolver_SuitAlreadyAdded",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnauthorizedNakedBanny",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnauthorizedOutfit",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnauthorizedTransfer",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnauthorizedWorld",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnorderedCategories",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnrecognizedCategory",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnrecognizedProduct",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Banny721TokenUriResolver_UnrecognizedWorld",
     "inputs": []
   },
   {
@@ -703,55 +808,5 @@
         "internalType": "address"
       }
     ]
-  },
-  {
-    "type": "error",
-    "name": "SUIT_ALREADY_ADDED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNAUTHORIZED_NAKED_BANNY",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNAUTHORIZED_OUTFIT",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNAUTHORIZED_WORLD",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNORDERED_CATEGORIES",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNRECOGNIZED_CATEGORY",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNRECOGNIZED_OUTFIT",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNRECOGNIZED_PRODUCT",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNRECOGNIZED_WORLD",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "WORLD_IS_ALREADY_BEING_USED",
-    "inputs": []
   }
 ]

@@ -304,6 +304,11 @@
             "internalType": "uint24"
           },
           {
+            "name": "discountPercent",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
             "name": "allowOwnerMint",
             "type": "bool",
             "internalType": "bool"
@@ -325,6 +330,11 @@
           },
           {
             "name": "cannotBeRemoved",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "cannotIncreaseDiscountPercent",
             "type": "bool",
             "internalType": "bool"
           }
@@ -454,6 +464,24 @@
         "name": "tierIds",
         "type": "uint256[]",
         "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "recordSetDiscountPercentOf",
+    "inputs": [
+      {
+        "name": "tierId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "discountPercent",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
     "outputs": [],
@@ -681,6 +709,11 @@
             "internalType": "uint24"
           },
           {
+            "name": "discountPercent",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
             "name": "allowOwnerMint",
             "type": "bool",
             "internalType": "bool"
@@ -692,6 +725,11 @@
           },
           {
             "name": "cannotBeRemoved",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "cannotIncreaseDiscountPercent",
             "type": "bool",
             "internalType": "bool"
           },
@@ -777,6 +815,11 @@
             "internalType": "uint24"
           },
           {
+            "name": "discountPercent",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
             "name": "allowOwnerMint",
             "type": "bool",
             "internalType": "bool"
@@ -788,6 +831,11 @@
           },
           {
             "name": "cannotBeRemoved",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "cannotIncreaseDiscountPercent",
             "type": "bool",
             "internalType": "bool"
           },
@@ -912,6 +960,11 @@
             "internalType": "uint24"
           },
           {
+            "name": "discountPercent",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
             "name": "allowOwnerMint",
             "type": "bool",
             "internalType": "bool"
@@ -923,6 +976,11 @@
           },
           {
             "name": "cannotBeRemoved",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "cannotIncreaseDiscountPercent",
             "type": "bool",
             "internalType": "bool"
           },
@@ -1038,72 +1096,186 @@
   },
   {
     "type": "error",
-    "name": "CANT_MINT_MANUALLY",
+    "name": "JB721TiersHookStore_CantMintManually",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "CANT_REMOVE_TIER",
+    "name": "JB721TiersHookStore_CantRemoveTier",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INSUFFICIENT_PENDING_RESERVES",
+    "name": "JB721TiersHookStore_DiscountPercentExceedsBounds",
+    "inputs": [
+      {
+        "name": "percent",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_DiscountPercentIncreaseNotAllowed",
+    "inputs": [
+      {
+        "name": "percent",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "storedPercent",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_InsufficientPendingReserves",
+    "inputs": [
+      {
+        "name": "count",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "numberOfPendingReserves",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_InsufficientSupplyRemaining",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INSUFFICIENT_SUPPLY_REMAINING",
+    "name": "JB721TiersHookStore_InvalidCategorySortOrder",
+    "inputs": [
+      {
+        "name": "tierCategory",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "previousTierCategory",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_InvalidQuantity",
+    "inputs": [
+      {
+        "name": "quantity",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_ManualMintingNotAllowed",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_CATEGORY_SORT_ORDER",
+    "name": "JB721TiersHookStore_MaxTiersExceeded",
+    "inputs": [
+      {
+        "name": "numberOfTiers",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_PriceExceedsAmount",
+    "inputs": [
+      {
+        "name": "price",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "leftoverAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_ReserveFrequencyNotAllowed",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_QUANTITY",
+    "name": "JB721TiersHookStore_TierRemoved",
+    "inputs": [
+      {
+        "name": "tierId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JB721TiersHookStore_UnrecognizedTier",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_TIER",
+    "name": "JB721TiersHookStore_VotingUnitsNotAllowed",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "MANUAL_MINTING_NOT_ALLOWED",
+    "name": "JB721TiersHookStore_ZeroInitialSupply",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "MAX_TIERS_EXCEEDED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "NO_SUPPLY",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "PRICE_EXCEEDS_AMOUNT",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "RESERVE_FREQUENCY_NOT_ALLOWED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "TIER_REMOVED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "VOTING_UNITS_NOT_ALLOWED",
-    "inputs": []
+    "name": "PRBMath_MulDiv_Overflow",
+    "inputs": [
+      {
+        "name": "x",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "y",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "denominator",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
   }
 ]

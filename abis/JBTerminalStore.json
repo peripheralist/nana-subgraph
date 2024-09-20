@@ -8,14 +8,14 @@
         "internalType": "contract IJBDirectory"
       },
       {
-        "name": "rulesets",
-        "type": "address",
-        "internalType": "contract IJBRulesets"
-      },
-      {
         "name": "prices",
         "type": "address",
         "internalType": "contract IJBPrices"
+      },
+      {
+        "name": "rulesets",
+        "type": "address",
+        "internalType": "contract IJBRulesets"
       }
     ],
     "stateMutability": "nonpayable"
@@ -898,32 +898,97 @@
   },
   {
     "type": "error",
-    "name": "INADEQUATE_CONTROLLER_ALLOWANCE",
+    "name": "JBTerminalStore_InadequateControllerAllowance",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "allowance",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTerminalStore_InadequateControllerPayoutLimit",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTerminalStore_InadequateTerminalStoreBalance",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "balance",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTerminalStore_InsufficientTokens",
+    "inputs": [
+      {
+        "name": "count",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalSupply",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTerminalStore_InvalidAmountToForwardHook",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "paidAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBTerminalStore_RulesetNotFound",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INADEQUATE_TERMINAL_STORE_BALANCE",
+    "name": "JBTerminalStore_RulesetPaymentPaused",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INSUFFICIENT_TOKENS",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "INVALID_AMOUNT_TO_SEND_HOOK",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "INVALID_RULESET",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "PAYOUT_LIMIT_EXCEEDED",
+    "name": "JBTerminalStore_TerminalMigrationNotAllowed",
     "inputs": []
   },
   {
@@ -946,20 +1011,5 @@
         "internalType": "uint256"
       }
     ]
-  },
-  {
-    "type": "error",
-    "name": "RULESET_PAYMENT_PAUSED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "ReentrancyGuardReentrantCall",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "TERMINAL_MIGRATION_NOT_ALLOWED",
-    "inputs": []
   }
 ]

@@ -209,12 +209,18 @@
   },
   {
     "type": "error",
-    "name": "PERMISSION_ID_OUT_OF_BOUNDS",
-    "inputs": []
+    "name": "JBPermissions_PermissionIdOutOfBounds",
+    "inputs": [
+      {
+        "name": "permissionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
   },
   {
     "type": "error",
-    "name": "UNAUTHORIZED",
+    "name": "JBPermissions_Unauthorized",
     "inputs": []
   }
 ]

@@ -89,11 +89,6 @@
             "internalType": "string"
           },
           {
-            "name": "rulesets",
-            "type": "address",
-            "internalType": "contract IJBRulesets"
-          },
-          {
             "name": "baseUri",
             "type": "string",
             "internalType": "string"
@@ -154,6 +149,11 @@
                     "internalType": "uint24"
                   },
                   {
+                    "name": "discountPercent",
+                    "type": "uint8",
+                    "internalType": "uint8"
+                  },
+                  {
                     "name": "allowOwnerMint",
                     "type": "bool",
                     "internalType": "bool"
@@ -175,6 +175,11 @@
                   },
                   {
                     "name": "cannotBeRemoved",
+                    "type": "bool",
+                    "internalType": "bool"
+                  },
+                  {
+                    "name": "cannotIncreaseDiscountPercent",
                     "type": "bool",
                     "internalType": "bool"
                   }
@@ -284,10 +289,16 @@
         "internalType": "uint256"
       },
       {
-        "name": "newHook",
+        "name": "hook",
         "type": "address",
         "indexed": false,
         "internalType": "contract IJB721TiersHook"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
       }
     ],
     "anonymous": false

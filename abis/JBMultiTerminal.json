@@ -3,6 +3,11 @@
     "type": "constructor",
     "inputs": [
       {
+        "name": "feelessAddresses",
+        "type": "address",
+        "internalType": "contract IJBFeelessAddresses"
+      },
+      {
         "name": "permissions",
         "type": "address",
         "internalType": "contract IJBPermissions"
@@ -21,11 +26,6 @@
         "name": "store",
         "type": "address",
         "internalType": "contract IJBTerminalStore"
-      },
-      {
-        "name": "feelessAddresses",
-        "type": "address",
-        "internalType": "contract IJBFeelessAddresses"
       },
       {
         "name": "permit2",
@@ -751,6 +751,11 @@
         "internalType": "address payable"
       },
       {
+        "name": "feeBeneficiary",
+        "type": "address",
+        "internalType": "address payable"
+      },
+      {
         "name": "memo",
         "type": "string",
         "internalType": "string"
@@ -758,7 +763,7 @@
     ],
     "outputs": [
       {
-        "name": "amountPaidOut",
+        "name": "netAmountPaidOut",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -782,7 +787,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "unlockedFees",
+        "name": "returnedFees",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -1405,7 +1410,7 @@
         "internalType": "address"
       },
       {
-        "name": "tokenCount",
+        "name": "redeemCount",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -1417,7 +1422,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "reclaimedAmount",
+        "name": "reclaimAmount",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -1584,7 +1589,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "beneficiary",
+        "name": "projectOwner",
         "type": "address",
         "indexed": false,
         "internalType": "address"
@@ -1608,7 +1613,7 @@
         "internalType": "uint256"
       },
       {
-        "name": "beneficiaryDistributionAmount",
+        "name": "netLeftoverPayoutAmount",
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
@@ -1693,6 +1698,12 @@
         "internalType": "address"
       },
       {
+        "name": "feeBeneficiary",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
         "name": "amount",
         "type": "uint256",
         "indexed": false,
@@ -1727,16 +1738,6 @@
   },
   {
     "type": "error",
-    "name": "ACCOUNTING_CONTEXT_ALREADY_SET",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "ADDING_ACCOUNTING_CONTEXT_NOT_ALLOWED",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "AddressEmptyCode",
     "inputs": [
       {
@@ -1759,38 +1760,199 @@
   },
   {
     "type": "error",
-    "name": "FEE_TERMINAL_NOT_FOUND",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "FailedInnerCall",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_ACCOUNTING_CONTEXT_CURRENCY",
+    "name": "JBMultiTerminal_AccountingContextAlreadySet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_AddingAccountingContextNotAllowed",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "INVALID_ACCOUNTING_CONTEXT_DECIMALS",
+    "name": "JBMultiTerminal_FeeTerminalNotFound",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "NO_MSG_VALUE_ALLOWED",
+    "name": "JBMultiTerminal_NoMsgValueAllowed",
+    "inputs": [
+      {
+        "name": "value",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_OverflowAlert",
+    "inputs": [
+      {
+        "name": "value",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "limit",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_PermitAllowanceNotEnough",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "allowance",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_RecipientProjectTerminalNotFound",
+    "inputs": [
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_SplitHookInvalid",
+    "inputs": [
+      {
+        "name": "hook",
+        "type": "address",
+        "internalType": "contract IJBSplitHook"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_TerminalTokensIncompatible",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "OVERFLOW_ALERT",
+    "name": "JBMultiTerminal_TokenNotAccepted",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_UnderMinReturnedTokens",
+    "inputs": [
+      {
+        "name": "count",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "min",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_UnderMinTokensPaidOut",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "min",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_UnderMinTokensReclaimed",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "min",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBMultiTerminal_ZeroAccountingContextCurrency",
     "inputs": []
   },
   {
     "type": "error",
-    "name": "PERMIT_ALLOWANCE_NOT_ENOUGH",
+    "name": "JBMultiTerminal_ZeroAccountingContextDecimals",
     "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "JBPermissioned_Unauthorized",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "permissionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
   },
   {
     "type": "error",
@@ -1815,16 +1977,6 @@
   },
   {
     "type": "error",
-    "name": "RECIPIENT_PROJECT_TERMINAL_NOT_FOUND",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "SPLIT_HOOK_INVALID",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "SafeERC20FailedOperation",
     "inputs": [
       {
@@ -1833,35 +1985,5 @@
         "internalType": "address"
       }
     ]
-  },
-  {
-    "type": "error",
-    "name": "TERMINAL_TOKENS_INCOMPATIBLE",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "TOKEN_NOT_ACCEPTED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNAUTHORIZED",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNDER_MIN_RETURNED_TOKENS",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNDER_MIN_TOKENS_PAID_OUT",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "UNDER_MIN_TOKENS_RECLAIMED",
-    "inputs": []
   }
 ]

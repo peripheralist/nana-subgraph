@@ -53,7 +53,7 @@ templates:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-        - event: AddTier(indexed uint256,(uint104,uint32,uint32,uint16,address,bytes32,uint24,bool,bool,bool,bool,bool),address)
+        - event: AddTier(indexed uint256,(uint104,uint32,uint32,uint16,address,bytes32,uint24,uint8,bool,bool,bool,bool,bool,bool),address)
           handler: handleAddTier
         - event: RemoveTier(indexed uint256,address)
           handler: handleRemoveTier
@@ -117,8 +117,8 @@ dataSources:
           handler: handleSendReservedTokensToSplit
         # - event: LaunchRulesets(uint256,uint256,string,address)
         #   handler: handleLaunchRulesets
-        - event: SetMetadata(indexed uint256,string,address)
-          handler: handleSetMetadata
+        - event: SetUri(indexed uint256,string,address)
+          handler: handleSetUri
       file: ./src/mappings/jbController.ts
   {{ /jbController }}
   {{ #jbMultiTerminal }}
@@ -159,7 +159,7 @@ dataSources:
           handler: handleSendPayouts
         - event: SendPayoutToSplit(indexed uint256,indexed uint256,indexed uint256,(bool,uint32,uint56,address,uint48,address),uint256,uint256,address)
           handler: handleSendPayoutToSplit
-        - event: UseAllowance(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,string,address)
+        - event: UseAllowance(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,uint256,string,address)
           handler: handleUseAllowance
         - event: ProcessFee(indexed uint256,indexed address,indexed uint256,bool,address,address)
           handler: handleProcessFee
@@ -225,7 +225,7 @@ dataSources:
         - name: Banny721TokenUriResolver
           file: ./abis/Banny721TokenUriResolver.json
       eventHandlers:
-        - event: HookDeployed(indexed uint256,address)
+        - event: HookDeployed(indexed uint256,address,address)
           handler: handleHookDeployed
       file: ./src/mappings/jb721TiersHookDeployer.ts
   {{ /jb721TiersHookDeployer }}
@@ -266,14 +266,18 @@ dataSources:
       entities:
         - NFTTier
       abis:
-        - name: Banny721TokenUriResolver
-          file: ./abis/Banny721TokenUriResolver.json
+        - name: {{name}}
+          file: ./abis/{{name}}.json
         - name: JB721TiersHook
           file: ./abis/JB721TiersHook.json
+        - name: JB721TiersHookStore
+          file: ./abis/JB721TiersHookStore.json
       eventHandlers:
         - event: SetSvgContent(indexed uint256,string,address)
           handler: handleSetSvgContent
-        - event: DecorateBanny(indexed address,indexed uint256,uint256,uint256[],address)
+        - event: DecorateBanny(indexed address,indexed uint256,indexed uint256,uint256[],address)
           handler: handleDecorateBanny
+        - event: SetSvgBaseUri(string,address)
+          handler: handleSetSvgBaseUri
       file: ./src/mappings/banny721TokenUriResolver.ts
   {{ /banny721TokenUriResolver }}
