@@ -4,7 +4,8 @@ import { Project } from "../../../../generated/schema";
 
 export function handleV2V3LaunchProject(
   projectId: BigInt,
-  caller: Address
+  caller: Address,
+  projectUri: string // metadata cid
 ): void {
   const project = Project.load(projectId.toString());
 
@@ -17,6 +18,7 @@ export function handleV2V3LaunchProject(
 
   // If the controller emits a launchProject event, the project launch tx was called via the JBController, and we want to prefer its `caller` param over any existing value
   project.deployer = caller;
+  project.metadataUri = projectUri
 
   project.save();
 }
