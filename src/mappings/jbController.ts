@@ -51,7 +51,7 @@ export function handleMintTokens(event: MintTokens): void {
 }
 
 export function handleLaunchProject(event: LaunchProject): void {
-  handleV2V3LaunchProject(event.params.projectId, event.params.caller);
+  handleV2V3LaunchProject(event.params.projectId, event.params.caller, event.params.projectUri);
 }
 
 export function handleSetUri(event: SetUri): void {
