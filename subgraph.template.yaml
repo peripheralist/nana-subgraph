@@ -256,7 +256,7 @@ dataSources:
     name: Banny721TokenUriResolver
     network: {{network}}
     source:
-      abi: Banny721TokenUriResolver
+      abi: {{name}}
       address: '{{address}}'
       startBlock: {{startBlock}}
     mapping:
@@ -281,3 +281,25 @@ dataSources:
           handler: handleSetSvgBaseUri
       file: ./src/mappings/banny721TokenUriResolver.ts
   {{ /banny721TokenUriResolver }}
+  {{ #revDeployer }}
+  - kind: ethereum/contract
+    name: RevDeployer
+    network: {{network}}
+    source:
+      abi: {{name}}
+      address: '{{address}}'
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - StoreAutoMintAmountEvent
+      abis:
+        - name: {{name}}
+          file: ./abis/{{name}}.json
+      eventHandlers:
+        - event: StoreAutoMintAmount(indexed uint256,indexed uint256,indexed address,uint256,address)
+          handler: handleStoreAutoMintAmount
+      file: ./src/mappings/revDeployer.ts
+  {{ /revDeployer }}

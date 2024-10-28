@@ -25,6 +25,8 @@ async function main() {
     `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook${testnetSuffix()}/${network}/${name}.json`;
   const bannyverseGithubUrl = (name) =>
     `${baseUrl}/mejango/bannyverse-core/main/deployments/bannyverse-core${testnetSuffix()}/${network}/${name}.json`;
+  const revGithubUrl = (name) =>
+    `${baseUrl}/rev-net/revnet-core/main/deployments/revnet-core${testnetSuffix()}/${network}/${name}.json`;
 
   const configTemplate = JSON.parse(fs.readFileSync("config/template.json"));
 
@@ -37,13 +39,16 @@ async function main() {
   for (const name of configTemplate["contracts"].sort()) {
     let url;
 
+    // determine which url to use. crude but effective :cry:
     if (name.includes("banny")) {
       url = bannyverseGithubUrl(name.replace("b", "B"));
     } else if (name.includes("721")) {
       url = nana721GithubUrl(name.replace("jb", "JB"));
+    } else if (name.includes("rev")) {
+      url = revGithubUrl(name.replace("rev", "REV"));
     } else {
       url = nanaCoreGithubUrl(name.replace("jb", "JB"));
-    } // determine which url to use. crude but effective
+    }
 
     // read deployment file from github
     await axios

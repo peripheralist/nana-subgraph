@@ -179,7 +179,6 @@ type AddToBalanceEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  terminal: Bytes!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
@@ -740,4 +739,13 @@ type PermissionsHolder @entity {
   project: Project!
   permissions: [Int!]!
   operator: Bytes!
+}
+
+type StoreAutoMintAmountEvent @entity {
+  id: ID!
+  revnetId: BigInt!
+  stageId: BigInt!
+  beneficiary: Bytes!
+  count: BigInt!
+  caller: Bytes!
 }

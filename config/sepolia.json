@@ -2,8 +2,8 @@
   "network": "sepolia",
   "banny721TokenUriResolver": {
     "name": "Banny721TokenUriResolver",
-    "address": "0xe351AF531C17Cc2FD41552E263c6576F985Fe8bB",
-    "startBlock": 6711847
+    "address": "0x3e36590f4EEeF5b77285522E7B5A34F0D4c59Bab",
+    "startBlock": 6747765
   },
   "jb721TiersHookDeployer": {
     "name": "JB721TiersHookDeployer",
@@ -54,5 +54,10 @@
     "name": "JBTokens",
     "address": "0xfF5Dd171BdA8bC78915B9a58D907Df7c10CE4E5c",
     "startBlock": 6698826
+  },
+  "revDeployer": {
+    "name": "REVDeployer",
+    "address": "0x25bC5D5A708c2E426eF3a5196cc18dE6b2d5A3d1",
+    "startBlock": 6711563
   }
 }
