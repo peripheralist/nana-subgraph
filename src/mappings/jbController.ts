@@ -12,7 +12,7 @@ import {
   MintTokensEvent,
   Project,
 } from "../../generated/schema";
-import { handleV2V3LaunchProject } from "../utils/v2v3/controller/launchProject";
+import { handleV2V3LaunchProject } from "../utils/projects/launchProject";
 import { idForProjectTx } from "../utils/ids";
 import { saveNewProjectEvent } from "../utils/entities/projectEvent";
 import { ProjectEventKey } from "../enums";
@@ -79,7 +79,7 @@ export function handleSendReservedTokensToSplits(
   distributeReservedTokensEvent.projectId = projectId.toI32();
   distributeReservedTokensEvent.txHash = event.transaction.hash;
   distributeReservedTokensEvent.timestamp = event.block.timestamp.toI32();
-  distributeReservedTokensEvent.fundingCycleNumber = event.params.rulesetCycleNumber.toI32();
+  distributeReservedTokensEvent.rulesetCycleNumber = event.params.rulesetCycleNumber.toI32();
   distributeReservedTokensEvent.caller = event.params.caller;
   distributeReservedTokensEvent.from = event.transaction.from;
   distributeReservedTokensEvent.tokenCount = event.params.tokenCount;

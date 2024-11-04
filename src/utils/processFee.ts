@@ -1,7 +1,7 @@
 import { BigInt, log } from "@graphprotocol/graph-ts";
 
-import { PayEvent } from "../../../../generated/schema";
-import { idForPrevPayEvent } from "../../ids";
+import { PayEvent } from "../../generated/schema";
+import { idForPrevPayEvent } from "./ids";
 
 export function handleV2V3ProcessFee(projectId: BigInt): void {
   const id = idForPrevPayEvent();

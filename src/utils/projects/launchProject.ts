@@ -1,6 +1,6 @@
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 
-import { Project } from "../../../../generated/schema";
+import { Project } from "../../../generated/schema";
 
 export function handleV2V3LaunchProject(
   projectId: BigInt,

@@ -34,7 +34,7 @@ import {
 } from "../utils/ids";
 import { usdPriceForEth } from "../utils/prices/prices";
 import { handleTrendingPayment } from "../utils/trending";
-import { handleV2V3ProcessFee } from "../utils/v2v3/ethPaymentTerminal/processFee";
+import { handleV2V3ProcessFee } from "../utils/processFee";
 
 export function handleAddToBalance(event: AddToBalance): void {
   const projectId = event.params.projectId;
@@ -74,8 +74,6 @@ export function handleAddToBalance(event: AddToBalance): void {
       event.params.caller
     );
   }
-
-  // extrapolateLatestFC(projectId, event.block.timestamp);
 }
 
 export function handleSendPayouts(event: SendPayouts): void {
@@ -130,12 +128,6 @@ export function handleSendPayouts(event: SendPayouts): void {
     event.params.amountPaidOut
   );
   project.save();
-
-  // const latestFc = extrapolateLatestFC(projectId, event.block.timestamp);
-  // if (latestFc) {
-  //   latestFc.withdrawnAmount = latestFc.withdrawnAmount.plus(amount);
-  //   latestFc.save();
-  // }
 }
 
 export function handleSendPayoutToSplit(event: SendPayoutToSplit): void {
@@ -296,8 +288,6 @@ export function handlePay(event: Pay): void {
 
   project.save();
 
-  // extrapolateLatestFC(projectId, event.block.timestamp);
-
   const protocolLog = ProtocolLog.load(PROTOCOL_ID);
   if (protocolLog) {
     // if (amountUSD) {
@@ -306,7 +296,6 @@ export function handlePay(event: Pay): void {
     protocolLog.paymentsCount = protocolLog.paymentsCount + 1;
     protocolLog.save();
   }
-  // updateProtocolEntity();
 }
 
 export function handleRedeemTokens(event: RedeemTokens): void {

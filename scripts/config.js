@@ -12,7 +12,11 @@ async function main() {
     exit(1);
   }
 
-  stdout.write(`Updating contracts for network: ${chalk.cyan.bold(network)}\n`);
+  stdout.write(
+    `Updating contract addresses and start blocks for network: ${chalk.cyan.bold(
+      network
+    )}\n`
+  );
 
   const testnetSuffix = () => {
     return [

@@ -18,15 +18,17 @@ Subgraph data sources (contract definitions and event handlers) are defined in `
 
 `yarn global add @graphprotocol/graph-cli` (Only necessary for deploying)
 
-## Config
+## Generating network config
 
-`config/*.json` files define addresses and start blocks for contracts on specific networks. Usually, a contract's start block should be the block where that contract was deployed.
+`config/<network>.json` files define addresses and start blocks for contracts on specific networks. Usually, a contract's start block should be the block where that contract was deployed.
+
+Run `yarn config:<network>` to generate a config file for that network, with updated contract addresses and startBlocks.
 
 ## Generating subgraph.yaml
 
-Subgraphs are defined by a `subgraph.yaml` file, which is generated from `*.template.yaml` files. To make it easier to support multiple contract versions, there is a template file for each version as well as "shared".
+Subgraphs are defined by a `subgraph.yaml` file, which is generated from `*.template.yaml` files.
 
-Running `yarn prep <network>` will run `scripts/prepare.js` to construct a `subgraph.yaml` file for that network, using yaml template files and the contracts defined in `config/<network>.json`. 
+Running `yarn prep:<network>` will run `scripts/prepare.js` to construct a `subgraph.yaml` file for that network, using yaml template files and the contracts defined in `config/<network>.json`. 
 
 The `prepare.js` script also performs a safety check for mismatches between the generated `subgraph.yaml` and the mapping files. Warnings will be shown if:
 - a function is referenced in the `subgraph.yaml` that isn't defined in any mapping files
@@ -47,37 +49,10 @@ A grafting configuration can be optionally defined in `config/graft.json`, like:
 
 See `config/graft.example.json` as an example.
 
-> Note: Grafting is only supported on the hosted service and cannot be used in a subgraph deployed on the decentralized network
+> Note: Grafting compatibility may be dependent on the network or subgraph indexing client.
 
 ## Deploying
-
-To deploy a new subgraph version, first prepare the subgraph for the intended network. This will:
-- Run a sanity check beyond the integrated graph-cli checks that ensures there are no missing or extra mapping functions or dataSources
-- Generate files with network-dependent variables `src/startBlocks.ts` and `src/contractAddresses.ts`
-- Generate TS types for the schema defined in `schema.graphql`
-- Compiles new gitignored `subgraph.yaml`
-
-```bash
-yarn prep:goerli
-yarn prep:mainnet
 ```
+A subgraph can be deployed once a `subgraph.yaml` file is created. There may only be one `subgraph.yaml` at a time, so you'll need to re-generate the file for each network if deploying to multiple networks.
 
-Before deploying, you will need to authenticate with a deploy key for the given network (you'll only need to do this once).
-
-```bash
-graph auth --studio ${your-key}
-```
-Once authenticated:
-
-```bash
-graph deploy --studio <subgraph-name>
-```
-
-### Optional helper script:
-
-```bash
-yarn update:sepolia
-yarn update:mainnet
-```
-
-Updates contract abis, addresses, and startBlocks
+Check with the subgraph indexer service for instructions on deploying using your `subgraph.yaml`.

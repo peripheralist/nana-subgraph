@@ -14,13 +14,6 @@ export function idForProjectTx(
   }`;
 }
 
-export function idForConfigureEvent(
-  projectId: BigInt,
-  event: ethereum.Event
-): string {
-  return idForProjectTx(projectId, event); // do not use logIndex, because we load/save ConfigureEvent multiple times for a single transaction
-}
-
 export function idForProjectEvent(
   projectId: BigInt,
   txHash: Bytes,
@@ -71,17 +64,6 @@ export function idForNFTTier(address: Address, tierId: BigInt): string {
 
 export function idForSplitsPayer(projectId: BigInt, address: Bytes): string {
   return `${projectId.toString()}-${address.toHexString()}`;
-}
-
-export function idForMigrateEvent(
-  projectId: BigInt,
-  blockNumber: BigInt
-): string {
-  return `${projectId.toString()}-${blockNumber.toString()}`;
-}
-
-export function idForFundingCycle(projectId: BigInt, number: BigInt): string {
-  return `${projectId.toString()}-${number.toString()}`;
 }
 
 export function idForPermissionsHolder(

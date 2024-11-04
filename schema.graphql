@@ -52,17 +52,13 @@ type Project @entity {
   trendingVolume: BigInt!
   trendingPaymentsCount: Int!
   createdWithinTrendingWindow: Boolean
-  latestFundingCycle: Int!
 
   nftsMintedCount: Int! # only if project has jb721DelegateTokens
 
   # Derived event entities
   addToBalanceEvents: [AddToBalanceEvent!]! @derivedFrom(field: "project")
   burnEvents: [BurnEvent!]! @derivedFrom(field: "project")
-  configureEvents: [ConfigureEvent!]! @derivedFrom(field: "project")
   deployedERC20Events: [DeployedERC20Event!]! @derivedFrom(field: "project")
-  distributeToPayoutModEvents: [DistributeToPayoutModEvent!]!
-    @derivedFrom(field: "project")
   distributePayoutsEvents: [DistributePayoutsEvent!]!
     @derivedFrom(field: "project")
   distributeReservedTokensEvents: [DistributeReservedTokensEvent!]!
@@ -71,25 +67,14 @@ type Project @entity {
     @derivedFrom(field: "project")
   distributeToReservedTokenSplitEvents: [DistributeToReservedTokenSplitEvent!]!
     @derivedFrom(field: "project")
-  distributeToTicketModEvents: [DistributeToTicketModEvent!]!
-    @derivedFrom(field: "project")
-  initEvents: [InitEvent!]! @derivedFrom(field: "project")
   mintTokensEvents: [MintTokensEvent!]! @derivedFrom(field: "project")
   payEvents: [PayEvent!]! @derivedFrom(field: "project")
-  printReservesEvents: [PrintReservesEvent!]! @derivedFrom(field: "project")
   projectEvents: [ProjectEvent!]! @derivedFrom(field: "project")
   redeemEvents: [RedeemEvent!]! @derivedFrom(field: "project")
-  setFundAccessConstraintsEvents: [SetFundAccessConstraintsEvent!]!
-    @derivedFrom(field: "project")
-  tapEvents: [TapEvent!]! @derivedFrom(field: "project")
   useAllowanceEvents: [UseAllowanceEvent!]! @derivedFrom(field: "project")
-  v1ConfigureEvents: [V1ConfigureEvent!]! @derivedFrom(field: "project")
-  v1InitEvents: [V1InitEvent!]! @derivedFrom(field: "project")
-  ethErc20ProjectPayers: [ETHERC20ProjectPayer!]! @derivedFrom(field: "project")
   jb721DelegateTokens: [NFT!]! @derivedFrom(field: "project")
   nftCollections: [NFTCollection!]! @derivedFrom(field: "project")
   participants: [Participant!]! @derivedFrom(field: "project")
-  migrateEvents: [MigrateEvent!]! @derivedFrom(field: "project")
   permissionsHolders: [PermissionsHolder!]! @derivedFrom(field: "project")
 }
 
@@ -131,11 +116,7 @@ type ProjectEvent @entity {
   payEvent: PayEvent
   addToBalanceEvent: AddToBalanceEvent
   mintTokensEvent: MintTokensEvent
-  tapEvent: TapEvent
   redeemEvent: RedeemEvent
-  printReservesEvent: PrintReservesEvent
-  distributeToPayoutModEvent: DistributeToPayoutModEvent
-  distributeToTicketModEvent: DistributeToTicketModEvent
   deployedERC20Event: DeployedERC20Event
   projectCreateEvent: ProjectCreateEvent
   distributePayoutsEvent: DistributePayoutsEvent
@@ -143,14 +124,7 @@ type ProjectEvent @entity {
   distributeToReservedTokenSplitEvent: DistributeToReservedTokenSplitEvent
   distributeToPayoutSplitEvent: DistributeToPayoutSplitEvent
   useAllowanceEvent: UseAllowanceEvent
-  deployETHERC20ProjectPayerEvent: DeployETHERC20ProjectPayerEvent
-  configureEvent: ConfigureEvent
-  initEvent: InitEvent
-  v1ConfigureEvent: V1ConfigureEvent
-  v1InitEvent: V1InitEvent
   burnEvent: BurnEvent
-  setFundAccessConstraintsEvent: SetFundAccessConstraintsEvent
-  migrateEvent: MigrateEvent
 }
 
 
@@ -209,14 +183,12 @@ type RedeemEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
-  # terminal: Bytes!
   timestamp: Int!
   txHash: Bytes!
   from: Bytes!
   caller: Bytes!
 
   metadata: Bytes # only v2/v3
-  # memo: String # only v2/v3
   holder: Bytes!
   beneficiary: Bytes!
   redeemCount: BigInt!
@@ -310,166 +282,12 @@ type NFTTier @entity {
   nfts: [NFT!]! @derivedFrom(field: "tier")
 }
 
-#############################################################################
-############################### v1.x entities ###############################
-#############################################################################
-# v1, v1.1
-type PrintReservesEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  fundingCycleId: BigInt!
-  beneficiary: Bytes!
-  count: BigInt!
-  beneficiaryTicketAmount: BigInt!
-  distributions: [DistributeToTicketModEvent!]!
-    @derivedFrom(field: "printReservesEvent")
-}
-
-# v1, v1.1
-type DistributeToPayoutModEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  fundingCycleId: BigInt!
-  modProjectId: Int!
-  modAllocator: Bytes!
-  modBeneficiary: Bytes!
-  modPreferUnstaked: Boolean!
-  modCut: BigInt!
-  modCutUSD: BigInt
-  tapEvent: TapEvent!
-}
-
-# v1, v1.1
-type TapEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  fundingCycleId: BigInt!
-  beneficiary: Bytes!
-  amount: BigInt!
-  amountUSD: BigInt
-  currency: BigInt!
-  netTransferAmount: BigInt!
-  netTransferAmountUSD: BigInt
-  beneficiaryTransferAmount: BigInt!
-  beneficiaryTransferAmountUSD: BigInt
-  govFeeAmount: BigInt!
-  govFeeAmountUSD: BigInt
-  distributions: [DistributeToPayoutModEvent!]! @derivedFrom(field: "tapEvent")
-}
-
-# v1, v1.1
-type DistributeToTicketModEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  fundingCycleId: BigInt!
-  modBeneficiary: Bytes!
-  modPreferUnstaked: Boolean!
-  modCut: BigInt!
-  printReservesEvent: PrintReservesEvent!
-}
-
-# v1, v1.1
-type V1ConfigureEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  target: BigInt!
-  currency: Int!
-  duration: Int!
-  cycleLimit: Int!
-  discountRate: Int!
-  ballot: Bytes!
-
-  fundingCycleId: Int!
-  reconfigured: Int!
-  metadata: BigInt!
-
-  version: Int!
-  reservedRate: Int!
-  bondingCurveRate: Int!
-  reconfigurationBondingCurveRate: Int!
-
-  payIsPaused: Boolean
-  ticketPrintingIsAllowed: Boolean
-  extension: Bytes
-}
-
-# v1, v1.1
-type V1InitEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-
-  fundingCycleId: Int!
-  previous: Int!
-  start: Int!
-  weight: BigInt!
-  number: Int!
-}
-
-#############################################################################
-############################### v2/v3 entities ##############################
-#############################################################################
-# v2
-type SetFundAccessConstraintsEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  distributionLimit: BigInt!
-  distributionLimitCurrency: Int!
-  overflowAllowance: BigInt!
-  overflowAllowanceCurrency: Int!
-  # terminal: Bytes!
-  token: Bytes
-  fundingCycleConfiguration: BigInt!
-  fundingCycleNumber: Int
-}
-
-# v2
 type DistributePayoutsEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
   timestamp: Int!
   txHash: Bytes!
-  # terminal: Bytes!
   from: Bytes!
   caller: Bytes!
 
@@ -485,34 +303,27 @@ type DistributePayoutsEvent @entity {
     @derivedFrom(field: "distributePayoutsEvent")
 }
 
-# v2
 type DistributeToPayoutSplitEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
   timestamp: Int!
   txHash: Bytes!
-  # terminal: Bytes!
   from: Bytes!
   caller: Bytes!
 
-  # domain: BigInt!
-  # group: BigInt!
   amount: BigInt!
   # amountUSD: BigInt
   distributePayoutsEvent: DistributePayoutsEvent!
 
   # Split struct properties below
-  # preferClaimed: Boolean!
   preferAddToBalance: Boolean!
   percent: Int!
   splitProjectId: Int!
   beneficiary: Bytes!
   lockedUntil: Int!
-  # allocator: Bytes!
 }
 
-# v2
 type DistributeReservedTokensEvent @entity {
   id: ID!
   project: Project!
@@ -522,13 +333,12 @@ type DistributeReservedTokensEvent @entity {
   from: Bytes!
   caller: Bytes!
 
-  fundingCycleNumber: Int!
+  rulesetCycleNumber: Int!
   tokenCount: BigInt!
   splitDistributions: [DistributeToReservedTokenSplitEvent!]!
     @derivedFrom(field: "distributeReservedTokensEvent")
 }
 
-# v2
 type DistributeToReservedTokenSplitEvent @entity {
   id: ID!
   project: Project!
@@ -549,7 +359,6 @@ type DistributeToReservedTokenSplitEvent @entity {
   lockedUntil: Int!
 }
 
-# v2
 type UseAllowanceEvent @entity {
   id: ID!
   project: Project!
@@ -569,167 +378,6 @@ type UseAllowanceEvent @entity {
   netDistributedamount: BigInt!
   netDistributedamountUSD: BigInt
   memo: String!
-}
-
-# v2
-type DeployETHERC20ProjectPayerEvent @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  address: Bytes!
-  beneficiary: Bytes!
-  preferClaimedTokens: Boolean!
-  preferAddToBalance: Boolean!
-  directory: Bytes!
-  owner: Bytes!
-  memo: String
-  metadata: Bytes
-}
-
-# v2
-type ETHERC20ProjectPayer @entity {
-  id: ID!
-  project: Project!
-  projectId: Int!
-  address: Bytes!
-  beneficiary: Bytes!
-  preferClaimedTokens: Boolean!
-  preferAddToBalance: Boolean!
-  directory: Bytes!
-  owner: Bytes!
-  memo: String
-  metadata: Bytes
-}
-
-# v2, v3
-type ConfigureEvent @entity {
-  id: ID!
-  projectId: Int!
-  project: Project!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-  fundingCycle: FundingCycle @derivedFrom(field: "configureEvent")
-
-  duration: Int!
-  weight: BigInt!
-  discountRate: BigInt!
-  ballot: Bytes!
-  memo: String
-  mustStartAtOrAfter: Int!
-  configuration: BigInt!
-}
-
-# v2, v3
-type InitEvent @entity {
-  id: ID!
-  projectId: Int!
-  project: Project!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-
-  configuration: BigInt!
-  basedOn: Int!
-}
-
-# v2, v3
-type MigrateEvent @entity {
-  id: ID!
-  projectId: Int!
-  project: Project!
-  timestamp: Int!
-  txHash: Bytes!
-  from: Bytes!
-  caller: Bytes!
-
-  amount: BigInt!
-  to: Bytes!
-}
-
-# v2+
-type FundingCycle @entity {
-  id: ID!
-  projectId: Int!
-  project: Project!
-  configureEvent: ConfigureEvent
-  number: Int!
-  basedOn: Int!
-
-  startTimestamp: Int!
-  endTimestamp: Int
-  duration: Int!
-  weight: BigInt!
-  discountRate: BigInt!
-  ballot: Bytes!
-
-  mustStartAtOrAfter: Int
-  configuration: BigInt!
-  metadata: BigInt!
-
-  setTerminalsAllowed: Boolean!
-  setControllerAllowed: Boolean!
-  transfersPaused: Boolean!
-
-  reservedRate: Int!
-  redemptionRate: Int!
-  ballotRedemptionRate: Int!
-  pausePay: Boolean!
-  distributionsPaused: Boolean!
-  redeemPaused: Boolean!
-  burnPaused: Boolean!
-  mintingAllowed: Boolean!
-  terminalMigrationAllowed: Boolean!
-  controllerMigrationAllowed: Boolean!
-  shouldHoldFees: Boolean!
-  preferClaimedTokenOverride: Boolean!
-  useTotalOverflowForRedemptions: Boolean!
-  useDataSourceForPay: Boolean!
-  useDataSourceForRedeem: Boolean!
-
-  dataSource: Bytes
-  metametadata: Int!
-
-  withdrawnAmount: BigInt!
-}
-
-type ETHERC20SplitsPayer @entity {
-  id: ID!
-
-  defaultBeneficiary: Bytes!
-  defaultMemo: String!
-  defaultMetadata: Bytes!
-  defaultPreferClaimedTokens: Boolean!
-  defaultProjectId: Int!
-  defaultSplitsDomain: BigInt!
-  defaultSplitsGroup: BigInt!
-  defaultSplitsProjectId: Int!
-  owner: Bytes!
-  preferAddToBalance: Boolean!
-  splitsPayer: Bytes!
-}
-
-type DeployETHERC20SplitsPayerEvent @entity {
-  id: ID!
-  caller: Bytes!
-
-  defaultBeneficiary: Bytes!
-  defaultMemo: String!
-  defaultMetadata: Bytes!
-  defaultPreferClaimedTokens: Boolean!
-  defaultProjectId: Int!
-  defaultSplitsDomain: BigInt!
-  defaultSplitsGroup: BigInt!
-  defaultSplitsProjectId: Int!
-  owner: Bytes!
-  preferAddToBalance: Boolean!
-  splitsPayer: Bytes!
 }
 
 type PermissionsHolder @entity {

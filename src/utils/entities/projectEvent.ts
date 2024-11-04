@@ -47,14 +47,8 @@ export function saveNewProjectEvent(
     case ProjectEventKey.burnEvent:
       projectEvent.burnEvent = id;
       break;
-    case ProjectEventKey.configureEvent:
-      projectEvent.configureEvent = id;
-      break;
     case ProjectEventKey.deployedERC20Event:
       projectEvent.deployedERC20Event = id;
-      break;
-    case ProjectEventKey.deployETHERC20ProjectPayerEvent:
-      projectEvent.deployETHERC20ProjectPayerEvent = id;
       break;
     case ProjectEventKey.distributePayoutsEvent:
       projectEvent.distributePayoutsEvent = id;
@@ -62,53 +56,26 @@ export function saveNewProjectEvent(
     case ProjectEventKey.distributeReservedTokensEvent:
       projectEvent.distributeReservedTokensEvent = id;
       break;
-    case ProjectEventKey.distributeToPayoutModEvent:
-      projectEvent.distributeToPayoutModEvent = id;
-      break;
     case ProjectEventKey.distributeToPayoutSplitEvent:
       projectEvent.distributeToPayoutSplitEvent = id;
       break;
     case ProjectEventKey.distributeToReservedTokenSplitEvent:
       projectEvent.distributeToReservedTokenSplitEvent = id;
       break;
-    case ProjectEventKey.distributeToTicketModEvent:
-      projectEvent.distributeToTicketModEvent = id;
-      break;
-    case ProjectEventKey.initEvent:
-      projectEvent.initEvent = id;
-      break;
     case ProjectEventKey.mintTokensEvent:
       projectEvent.mintTokensEvent = id;
-      break;
-    case ProjectEventKey.migrate:
-      projectEvent.migrateEvent = id;
       break;
     case ProjectEventKey.payEvent:
       projectEvent.payEvent = id;
       break;
-    case ProjectEventKey.printReservesEvent:
-      projectEvent.printReservesEvent = id;
-      break;
     case ProjectEventKey.projectCreateEvent:
       projectEvent.projectCreateEvent = id;
-      break;
-    case ProjectEventKey.setFundAccessConstraintsEvent:
-      projectEvent.setFundAccessConstraintsEvent = id;
       break;
     case ProjectEventKey.redeemEvent:
       projectEvent.redeemEvent = id;
       break;
-    case ProjectEventKey.tapEvent:
-      projectEvent.tapEvent = id;
-      break;
     case ProjectEventKey.useAllowanceEvent:
       projectEvent.useAllowanceEvent = id;
-      break;
-    case ProjectEventKey.v1ConfigureEvent:
-      projectEvent.v1ConfigureEvent = id;
-      break;
-    case ProjectEventKey.v1InitEvent:
-      projectEvent.v1InitEvent = id;
       break;
   }
 

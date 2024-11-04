@@ -20,7 +20,6 @@ export function handleProjectCreate(
   const project = new Project(projectId.toString());
   if (!project) return;
 
-  project.latestFundingCycle = BIGINT_0.toI32();
   project.projectId = projectId.toI32();
   project.trendingScore = BIGINT_0;
   project.trendingVolume = BIGINT_0;
