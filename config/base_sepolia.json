@@ -1,0 +1,63 @@
+{
+  "network": "base-sepolia",
+  "banny721TokenUriResolver": {
+    "name": "Banny721TokenUriResolver",
+    "address": "0x3e36590f4EEeF5b77285522E7B5A34F0D4c59Bab",
+    "startBlock": 15682474
+  },
+  "jb721TiersHookDeployer": {
+    "name": "JB721TiersHookDeployer",
+    "address": "0x2BAd941E6c2f9CdBbfc9C25F804f060ffEA1d7bE",
+    "startBlock": 15374813
+  },
+  "jb721TiersHookStore": {
+    "name": "JB721TiersHookStore",
+    "address": "0x7b1F4Ba6312A104E645B06Ab97e4CaA1ef0F773f",
+    "startBlock": 15374813
+  },
+  "jbController": {
+    "name": "JBController",
+    "address": "0x219A5cE6d1c512D5b050ad2E3d380b8746BE0Cb8",
+    "startBlock": 15334181
+  },
+  "jbDirectory": {
+    "name": "JBDirectory",
+    "address": "0xE0B2860344bA476e12eD1d559656dA9D04F1AD22",
+    "startBlock": 15334181
+  },
+  "jbMultiTerminal": {
+    "name": "JBMultiTerminal",
+    "address": "0x4DeF0AA5B9CA095d11705284221b2878731ab4EF",
+    "startBlock": 15334193
+  },
+  "jbPermissions": {
+    "name": "JBPermissions",
+    "address": "0x4CDb4200e4E65a277676Cd5E8d3c7C7C4dA7fBe5",
+    "startBlock": 15334181
+  },
+  "jbPrices": {
+    "name": "JBPrices",
+    "address": "0x7769087dcaB8C6124a4305511b90582431F10e53",
+    "startBlock": 15334181
+  },
+  "jbProjects": {
+    "name": "JBProjects",
+    "address": "0xEcB62030E30Bb027F672F24692111492Ba2Bbc84",
+    "startBlock": 15334181
+  },
+  "jbTerminalStore": {
+    "name": "JBTerminalStore",
+    "address": "0xf36a63951A49a9708f007F23B077751be80fFE11",
+    "startBlock": 15334193
+  },
+  "jbTokens": {
+    "name": "JBTokens",
+    "address": "0xfF5Dd171BdA8bC78915B9a58D907Df7c10CE4E5c",
+    "startBlock": 15334181
+  },
+  "revDeployer": {
+    "name": "REVDeployer",
+    "address": "0x25bC5D5A708c2E426eF3a5196cc18dE6b2d5A3d1",
+    "startBlock": 15420851
+  }
+}

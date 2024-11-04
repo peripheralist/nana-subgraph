@@ -19,12 +19,9 @@ const configTemplate = JSON.parse(fs.readFileSync(configTemplatePath));
 
 const graftConfigPath = `config/graft.${network}.json`;
 
-const config = JSON.parse(fs.readFileSync(`config/${network}.json`));
-
-if (!config) {
-  stdout.write(chalk.red("Missing config file\n"));
-  exit(1);
-}
+const configPath = `config/${network}.json`;
+if (!fs.existsSync(configPath)) fs.writeFileSync(configPath, `{}`);
+const config = JSON.parse(fs.readFileSync(configPath));
 
 // Clear /generated and /build folder
 fs.rm("build", { force: true, recursive: true }, () => null);

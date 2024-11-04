@@ -15,7 +15,14 @@ async function main() {
   stdout.write(`Updating contracts for network: ${chalk.cyan.bold(network)}\n`);
 
   const testnetSuffix = () => {
-    return ["sepolia"].includes(network) ? "-testnet" : "";
+    return [
+      "sepolia",
+      "arbitrum_sepolia",
+      "base_sepolia",
+      "optimism_sepolia",
+    ].includes(network)
+      ? "-testnet"
+      : "";
   };
 
   const baseUrl = "https://raw.githubusercontent.com";
@@ -32,7 +39,7 @@ async function main() {
 
   // init updated config object
   const config = {
-    network,
+    network: network.replace("_", "-"), // abide by alchemy subgraphs naming convention. we should prolly use only hyphens, but underscores are used in github directories, so here we are.
   };
 
   // Sequential promises to maintain sort

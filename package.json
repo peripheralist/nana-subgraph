@@ -5,8 +5,13 @@
   "scripts": {
     "codegen": "graph codegen",
     "update:sepolia": "node scripts/updateContracts.js sepolia",
+    "update:arbitrum_sepolia": "node scripts/updateContracts.js arbitrum_sepolia",
+    "update:base_sepolia": "node scripts/updateContracts.js base_sepolia",
+    "update:optimism_sepolia": "node scripts/updateContracts.js optimism_sepolia",
     "prep:sepolia": "node scripts/prepare.js sepolia && yarn codegen",
-    "prep:optimism-sepolia": "node scripts/prepare.js optimism-sepolia && yarn codegen",
+    "prep:arbitrum_sepolia": "node scripts/prepare.js arbitrum_sepolia && yarn codegen",
+    "prep:base_sepolia": "node scripts/prepare.js base_sepolia && yarn codegen",
+    "prep:optimism_sepolia": "node scripts/prepare.js optimism_sepolia && yarn codegen",
     "lint": "eslint --ext .ts ./",
     "lint-staged": "lint-staged",
     "lint:fix": "yarn lint --fix"
