@@ -2,7 +2,7 @@ import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 
 import { Project } from "../../../generated/schema";
 
-export function handleV2V3LaunchProject(
+export function handleLaunchProject(
   projectId: BigInt,
   caller: Address,
   projectUri: string // metadata cid
@@ -10,7 +10,7 @@ export function handleV2V3LaunchProject(
   const project = Project.load(projectId.toString());
 
   if (!project) {
-    log.error("[handleV2V3LaunchProject] Missing project. ID: {}", [
+    log.error("[handleLaunchProject] Missing project. ID: {}", [
       projectId.toString(),
     ]);
     return;

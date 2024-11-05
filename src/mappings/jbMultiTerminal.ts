@@ -32,9 +32,9 @@ import {
   idForPrevPayEvent,
   idForProjectTx,
 } from "../utils/ids";
-import { usdPriceForEth } from "../utils/prices/prices";
+import { usdPriceForEth } from "../utils/prices";
 import { handleTrendingPayment } from "../utils/trending";
-import { handleV2V3ProcessFee } from "../utils/processFee";
+import { handleProcessFee as _handleProcessFee } from "../utils/processFee";
 
 export function handleAddToBalance(event: AddToBalance): void {
   const projectId = event.params.projectId;
@@ -45,7 +45,7 @@ export function handleAddToBalance(event: AddToBalance): void {
   const project = Project.load(projectId.toString());
 
   if (!project) {
-    log.error("[handleV2V3AddToBalance] Missing project. ID:{}", [
+    log.error("[handleAddToBalance] Missing project. ID:{}", [
       projectId.toString(),
     ]);
     return;
@@ -57,7 +57,7 @@ export function handleAddToBalance(event: AddToBalance): void {
   if (addToBalance) {
     addToBalance.projectId = projectId.toI32();
     addToBalance.amount = event.params.amount;
-    // addToBalance.amountUSD = v3USDPriceForEth(event.params.amount);
+    addToBalance.amountUSD = usdPriceForEth(projectId, event.params.amount);
     addToBalance.caller = event.params.caller;
     addToBalance.from = event.transaction.from;
     addToBalance.project = project.id;
@@ -86,7 +86,7 @@ export function handleSendPayouts(event: SendPayouts): void {
 
   if (!distributePayoutsEvent) {
     log.error(
-      "[handleV2V3DistributePayouts] Missing distributePayoutsEvent. ID:{}",
+      "[handleDistributePayouts] Missing distributePayoutsEvent. ID:{}",
       [distributePayoutsEventId]
     );
     return;
@@ -98,13 +98,19 @@ export function handleSendPayouts(event: SendPayouts): void {
   distributePayoutsEvent.txHash = event.transaction.hash;
   distributePayoutsEvent.amount = event.params.amount;
   distributePayoutsEvent.amountPaidOut = event.params.amountPaidOut;
-  // distributePayoutsEvent.amountUSD = v3USDPriceForEth(event.params.amount);
+  distributePayoutsEvent.amountUSD = usdPriceForEth(
+    projectId,
+    event.params.amount
+  );
   distributePayoutsEvent.caller = event.params.caller;
   distributePayoutsEvent.from = event.transaction.from;
-  // distributePayoutsEvent.distributedAmount = distributedAmount;
-  // distributePayoutsEvent.distributedAmountUSD = distributedAmountUSD;
+  distributePayoutsEvent.amountPaidOut = event.params.amountPaidOut;
+  distributePayoutsEvent.amountPaidOutUSD = usdPriceForEth(
+    projectId,
+    event.params.amountPaidOut
+  );
   distributePayoutsEvent.fee = event.params.fee;
-  // distributePayoutsEvent.feeUSD = v3USDPriceForEth(fee);
+  distributePayoutsEvent.feeUSD = usdPriceForEth(projectId, event.params.fee);
   distributePayoutsEvent.rulesetId = event.params.rulesetId;
   distributePayoutsEvent.rulesetCycleNumber = event.params.rulesetCycleNumber;
   distributePayoutsEvent.save();
@@ -119,7 +125,7 @@ export function handleSendPayouts(event: SendPayouts): void {
 
   const project = Project.load(projectId.toString());
   if (!project) {
-    log.error("[handleV2V3DistributePayouts] Missing project. ID:{}", [
+    log.error("[handleDistributePayouts] Missing project. ID:{}", [
       projectId.toString(),
     ]);
     return;
@@ -139,7 +145,7 @@ export function handleSendPayoutToSplit(event: SendPayoutToSplit): void {
 
   if (!distributePayoutSplitEvent) {
     log.error(
-      "[handleV2V3DistributeToPayoutSplit] Missing distributePayoutSplitEvent. ID:{}",
+      "[handleDistributeToPayoutSplit] Missing distributePayoutSplitEvent. ID:{}",
       [distributePayoutSplitEventId]
     );
     return;
@@ -149,22 +155,20 @@ export function handleSendPayoutToSplit(event: SendPayoutToSplit): void {
     event
   );
   distributePayoutSplitEvent.project = projectId.toString();
-  // distributePayoutSplitEvent.terminal = terminal;
   distributePayoutSplitEvent.txHash = event.transaction.hash;
   distributePayoutSplitEvent.timestamp = event.block.timestamp.toI32();
   distributePayoutSplitEvent.amount = event.params.amount;
-  // distributePayoutSplitEvent.amountUSD = amountUSD;
+  distributePayoutSplitEvent.amountUSD = usdPriceForEth(
+    projectId,
+    event.params.amount
+  );
   distributePayoutSplitEvent.caller = event.params.caller;
   distributePayoutSplitEvent.from = event.transaction.from;
-  // distributePayoutSplitEvent.domain = domain;
-  // distributePayoutSplitEvent.group = group;
   distributePayoutSplitEvent.projectId = projectId.toI32();
   distributePayoutSplitEvent.splitProjectId = event.params.split.projectId.toI32();
-  // distributePayoutSplitEvent.allocator = splitAllocator;
   distributePayoutSplitEvent.beneficiary = event.params.split.beneficiary;
   distributePayoutSplitEvent.lockedUntil = event.params.split.lockedUntil.toI32();
   distributePayoutSplitEvent.percent = event.params.split.percent.toI32();
-  // distributePayoutSplitEvent.preferClaimed = event.params.split.preferAddToBalance;
   distributePayoutSplitEvent.preferAddToBalance =
     event.params.split.preferAddToBalance;
   distributePayoutSplitEvent.save();
@@ -186,7 +190,7 @@ export function handleSendPayoutToSplit(event: SendPayoutToSplit): void {
       payEvent.projectId != event.params.split.projectId.toI32()
     ) {
       log.warning(
-        "[handleV2V3DistributeToPayoutSplit] Missing or mismatched pay event. splitProjectId: {}, payEvent projectId: {}",
+        "[handleDistributeToPayoutSplit] Missing or mismatched pay event. splitProjectId: {}, payEvent projectId: {}",
         [
           event.params.split.projectId.toString(),
           payEvent ? payEvent.projectId.toString() : "missing",
@@ -201,30 +205,25 @@ export function handleSendPayoutToSplit(event: SendPayoutToSplit): void {
 }
 
 export function handlePay(event: Pay): void {
-  // const amountUSD = v3USDPriceForEth(event.params.amount);
-
   const amount = event.params.amount;
   const projectId = event.params.projectId;
+  const amountUSD = usdPriceForEth(projectId, event.params.amount);
   const project = Project.load(projectId.toString());
 
   if (!project) {
-    log.error("[handleV2V3Pay] Missing project. ID:{}", [projectId.toString()]);
+    log.error("[handlePay] Missing project. ID:{}", [projectId.toString()]);
     return;
   }
 
   project.volume = project.volume.plus(amount);
-  // if (amountUSD) project.volumeUSD = project.volumeUSD.plus(amountUSD);
+  if (amountUSD) project.volumeUSD = project.volumeUSD.plus(amountUSD);
   project.currentBalance = project.currentBalance.plus(amount);
   project.paymentsCount = project.paymentsCount + 1;
 
-  // // For distribute events, caller will be a terminal
-  // const isDistribution = isTerminalAddress(caller);
-
   const pay = new PayEvent(idForPayEvent());
-  // pay.terminal = terminal;
   pay.projectId = projectId.toI32();
   pay.amount = amount;
-  // pay.amountUSD = amountUSD;
+  pay.amountUSD = amountUSD;
   pay.beneficiary = event.params.beneficiary;
   pay.caller = event.params.caller;
   pay.from = event.transaction.from;
@@ -233,6 +232,9 @@ export function handlePay(event: Pay): void {
   pay.timestamp = event.block.timestamp.toI32();
   pay.txHash = event.transaction.hash;
   pay.beneficiaryTokenCount = event.params.beneficiaryTokenCount;
+  // NOTE this logic is deprecated but may be required
+  // // For distribute events, caller will be a terminal
+  // const isDistribution = isTerminalAddress(caller);
   // pay.isDistribution = isDistribution;
   pay.save();
 
@@ -265,9 +267,9 @@ export function handlePay(event: Pay): void {
   }
 
   participant.volume = participant.volume.plus(amount);
-  // if (amountUSD) {
-  //   participant.volumeUSD = participant.volumeUSD.plus(amountUSD);
-  // }
+  if (amountUSD) {
+    participant.volumeUSD = participant.volumeUSD.plus(amountUSD);
+  }
   participant.lastPaidTimestamp = lastPaidTimestamp;
   participant.paymentsCount = participant.paymentsCount + 1;
   participant.save();
@@ -279,9 +281,9 @@ export function handlePay(event: Pay): void {
     wallet = newWallet(walletId);
   }
   wallet.volume = wallet.volume.plus(amount);
-  // if (amountUSD) {
-  //   wallet.volumeUSD = wallet.volumeUSD.plus(amountUSD);
-  // }
+  if (amountUSD) {
+    wallet.volumeUSD = wallet.volumeUSD.plus(amountUSD);
+  }
   wallet.lastPaidTimestamp = lastPaidTimestamp;
   wallet.save();
   // }
@@ -290,9 +292,9 @@ export function handlePay(event: Pay): void {
 
   const protocolLog = ProtocolLog.load(PROTOCOL_ID);
   if (protocolLog) {
-    // if (amountUSD) {
-    //   protocolV3Log.volumeUSD = protocolV3Log.volumeUSD.plus(amountUSD);
-    // }
+    if (amountUSD) {
+      protocolLog.volumeUSD = protocolLog.volumeUSD.plus(amountUSD);
+    }
     protocolLog.paymentsCount = protocolLog.paymentsCount + 1;
     protocolLog.save();
   }
@@ -392,5 +394,5 @@ export function handleUseAllowance(event: UseAllowance): void {
 }
 
 export function handleProcessFee(event: ProcessFee): void {
-  handleV2V3ProcessFee(event.params.projectId);
+  _handleProcessFee(event.params.projectId);
 }

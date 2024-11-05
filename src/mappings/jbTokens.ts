@@ -183,7 +183,7 @@ export function handleClaimTokens(event: ClaimTokens): void {
   const participant = Participant.load(idOfParticipant);
 
   if (!participant) {
-    log.error("[handleV2V3Claim] Missing participant. ID:{}", [
+    log.error("[handleClaim] Missing participant. ID:{}", [
       idOfParticipant,
     ]);
     return;

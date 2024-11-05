@@ -17,9 +17,8 @@ export const BEGIN_TRENDING_TIMESTAMP = 1652328000;
 
 export const BIGINT_WAD = BigInt.fromString("1000000000000000000");
 
-export const V1_CURRENCY_USD = BigInt.fromI32(1);
-export const V2V3_CURRENCY_ETH = BigInt.fromI32(1);
-export const V2V3_CURRENCY_USD = BigInt.fromI32(2);
+export const CURRENCY_ETH = BigInt.fromI32(1);
+export const CURRENCY_USD = BigInt.fromI32(2);
 
 // latest hook address can be found in HookDeployed events emitted by jb721TiersHookDeployer
 // e.g. https://etherscan.io/address/<deployer-address>#events

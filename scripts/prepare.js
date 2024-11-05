@@ -29,14 +29,11 @@ fs.rm("generated", { force: true, recursive: true }, () => null);
 
 function writeFilesFromTemplate() {
   const addressesPath = "src/contractAddresses.ts";
-  const startBlocksPath = "src/startBlocks.ts";
 
   // Delete files if exists
   fs.rmSync(addressesPath, { force: true });
-  fs.rmSync(startBlocksPath, { force: true });
 
   let addressesFileContents = "";
-  let startBlocksFileContents = "";
 
   let templateContractsCount = 0;
   let configContractsCount = 0;
@@ -61,13 +58,8 @@ function writeFilesFromTemplate() {
 
     const address =
       contract && contract.address ? `"${contract.address}"` : null;
-    const startBlock =
-      contract && contract.startBlock
-        ? contract.startBlock
-        : config["startBlock"] || 0;
 
     addressesFileContents += `export const address_${c}: string | null = ${address};\n`;
-    startBlocksFileContents += `export const startBlock_${c}: number = ${startBlock};\n`;
   });
 
   stdout.write(
@@ -82,14 +74,6 @@ function writeFilesFromTemplate() {
     stdout.write(chalk.green("✔") + ` Wrote ${addressesPath}\n`);
   } catch (e) {
     stdout.write("Error writing" + addressesPath, e);
-  }
-
-  // Write startBlocksFileContents to file
-  try {
-    fs.writeFileSync(startBlocksPath, startBlocksFileContents);
-    stdout.write(chalk.green("✔") + ` Wrote ${startBlocksPath}\n`);
-  } catch (e) {
-    stdout.write("Error writing" + startBlocksPath, e);
   }
 }
 

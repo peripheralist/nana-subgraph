@@ -144,7 +144,7 @@ type PayEvent @entity {
   amount: BigInt!
   amountUSD: BigInt
   note: String!
-  feeFromV2Project: Int # Indicates payment is a fee from project with this ID
+  feeFromProject: Int # Indicates payment is a fee from project with this ID
   beneficiaryTokenCount: BigInt!
 }
 
@@ -188,7 +188,7 @@ type RedeemEvent @entity {
   from: Bytes!
   caller: Bytes!
 
-  metadata: Bytes # only v2/v3
+  metadata: Bytes
   holder: Bytes!
   beneficiary: Bytes!
   redeemCount: BigInt!
@@ -292,9 +292,9 @@ type DistributePayoutsEvent @entity {
   caller: Bytes!
 
   amount: BigInt!
-  # amountUSD: BigInt
+  amountUSD: BigInt
   amountPaidOut: BigInt!
-  # distributedAmountUSD: BigInt
+  amountPaidOutUSD: BigInt
   rulesetCycleNumber: BigInt!
   rulesetId: BigInt!
   fee: BigInt!
@@ -313,7 +313,7 @@ type DistributeToPayoutSplitEvent @entity {
   caller: Bytes!
 
   amount: BigInt!
-  # amountUSD: BigInt
+  amountUSD: BigInt
   distributePayoutsEvent: DistributePayoutsEvent!
 
   # Split struct properties below

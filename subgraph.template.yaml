@@ -137,7 +137,7 @@ dataSources:
         - Participant
         - PayEvent
         - Project
-        - ProtocolV3Log
+        - ProtocolLog
         - RedeemEvent
         - UseAllowanceEvent
         - Wallet

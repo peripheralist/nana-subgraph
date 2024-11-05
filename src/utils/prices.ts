@@ -1,12 +1,12 @@
 import { Address, BigInt, Bytes, log } from "@graphprotocol/graph-ts";
 
-import { JBPrices } from "../../../generated/JBMultiTerminal/JBPrices";
+import { JBPrices } from "../../generated/JBMultiTerminal/JBPrices";
 import {
   BIGINT_WAD,
-  V2V3_CURRENCY_ETH,
-  V2V3_CURRENCY_USD,
-} from "../../constants";
-import { address_jbPrices } from "../../contractAddresses";
+  CURRENCY_ETH,
+  CURRENCY_USD,
+} from "../constants";
+import { address_jbPrices } from "../contractAddresses";
 
 export function usdPriceForEth(
   projectId: BigInt,
@@ -20,8 +20,8 @@ export function usdPriceForEth(
 
   const call = pricesContract.try_pricePerUnitOf(
     projectId,
-    V2V3_CURRENCY_USD,
-    V2V3_CURRENCY_ETH,
+    CURRENCY_USD,
+    CURRENCY_ETH,
     BigInt.fromI32(18)
   );
   if (call.reverted) {

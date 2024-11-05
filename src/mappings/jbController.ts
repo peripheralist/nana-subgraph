@@ -12,7 +12,7 @@ import {
   MintTokensEvent,
   Project,
 } from "../../generated/schema";
-import { handleV2V3LaunchProject } from "../utils/projects/launchProject";
+import { handleLaunchProject as _handleLaunchProject } from "../utils/projects/launchProject";
 import { idForProjectTx } from "../utils/ids";
 import { saveNewProjectEvent } from "../utils/entities/projectEvent";
 import { ProjectEventKey } from "../enums";
@@ -51,7 +51,11 @@ export function handleMintTokens(event: MintTokens): void {
 }
 
 export function handleLaunchProject(event: LaunchProject): void {
-  handleV2V3LaunchProject(event.params.projectId, event.params.caller, event.params.projectUri);
+  _handleLaunchProject(
+    event.params.projectId,
+    event.params.caller,
+    event.params.projectUri
+  );
 }
 
 export function handleSetUri(event: SetUri): void {

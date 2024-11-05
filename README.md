@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Nana subgraph indexes events from Juicebox nana fork contracts.
+The Nana subgraph indexes events from Juicebox nana fork, and Bannyverse, contracts.
 
 Contract names are defined in `config/template.json`
 
