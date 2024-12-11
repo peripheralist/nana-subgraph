@@ -72,3 +72,10 @@ export function idForPermissionsHolder(
 ): string {
   return `${projectId.toString()}-${operator.toHexString()}`;
 }
+
+export function idForDecorateBannyEvent(
+  txHash: Bytes,
+  logIndex: BigInt
+): string {
+  return `${txHash.toHexString()}-${logIndex.toString()}`;
+}

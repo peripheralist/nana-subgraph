@@ -5,10 +5,10 @@ import {
   SetSvgContent,
 } from "../../generated/Banny721TokenUriResolver/Banny721TokenUriResolver";
 import { JB721TiersHook } from "../../generated/JB721TiersHookDeployer/JB721TiersHook";
-import { NFT, NFTTier } from "../../generated/schema";
+import { DecorateBannyEvent, NFT, NFTTier } from "../../generated/schema";
 import { bannyNftHookAddress } from "../constants";
 import { getSvgOf } from "../utils/banny721Resolver";
-import { idForNFT, idForNFTTier } from "../utils/ids";
+import { idForDecorateBannyEvent, idForNFT, idForNFTTier } from "../utils/ids";
 import { getAllTiers } from "../utils/jb721TiersHookStore";
 
 export function handleSetSvgBaseUri(event: SetSvgBaseUri): void {
@@ -80,4 +80,15 @@ export function handleDecorateBanny(event: DecorateBanny): void {
   bannyToken.tokenUri = tokenUriCall.value;
 
   bannyToken.save();
+
+  const decorateEvent = new DecorateBannyEvent(
+    idForDecorateBannyEvent(event.transaction.hash, event.transactionLogIndex)
+  );
+  decorateEvent.timestamp = event.block.timestamp.toI32();
+  decorateEvent.txHash = event.transaction.hash;
+  decorateEvent.caller = event.params.caller;
+  decorateEvent.nakedBannyId = event.params.nakedBannyId;
+  decorateEvent.outfitIds = event.params.outfitIds;
+  decorateEvent.worldId = event.params.worldId;
+  decorateEvent.save();
 }

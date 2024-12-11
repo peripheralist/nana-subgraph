@@ -397,3 +397,14 @@ type StoreAutoMintAmountEvent @entity {
   count: BigInt!
   caller: Bytes!
 }
+
+type DecorateBannyEvent @entity {
+  id: ID!
+  timestamp: Int!
+  txHash: Bytes!
+  caller: Bytes!
+
+  nakedBannyId: BigInt!
+  outfitIds: [BigInt!]!
+  worldId: BigInt!
+}
