@@ -282,11 +282,6 @@
         "internalType": "address"
       },
       {
-        "name": "owner",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
         "name": "upc",
         "type": "uint256",
         "internalType": "uint256"

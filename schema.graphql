@@ -70,7 +70,7 @@ type Project @entity {
   mintTokensEvents: [MintTokensEvent!]! @derivedFrom(field: "project")
   payEvents: [PayEvent!]! @derivedFrom(field: "project")
   projectEvents: [ProjectEvent!]! @derivedFrom(field: "project")
-  redeemEvents: [RedeemEvent!]! @derivedFrom(field: "project")
+  cashOutEvents: [CashOutEvent!]! @derivedFrom(field: "project")
   useAllowanceEvents: [UseAllowanceEvent!]! @derivedFrom(field: "project")
   jb721DelegateTokens: [NFT!]! @derivedFrom(field: "project")
   nftCollections: [NFTCollection!]! @derivedFrom(field: "project")
@@ -116,7 +116,7 @@ type ProjectEvent @entity {
   payEvent: PayEvent
   addToBalanceEvent: AddToBalanceEvent
   mintTokensEvent: MintTokensEvent
-  redeemEvent: RedeemEvent
+  cashOutEvent: CashOutEvent
   deployedERC20Event: DeployedERC20Event
   projectCreateEvent: ProjectCreateEvent
   distributePayoutsEvent: DistributePayoutsEvent
@@ -179,7 +179,7 @@ type MintTokensEvent @entity {
 }
 
 
-type RedeemEvent @entity {
+type CashOutEvent @entity {
   id: ID!
   project: Project!
   projectId: Int!
@@ -191,7 +191,7 @@ type RedeemEvent @entity {
   metadata: Bytes
   holder: Bytes!
   beneficiary: Bytes!
-  redeemCount: BigInt!
+  cashOutCount: BigInt!
   reclaimAmount: BigInt!
   reclaimAmountUSD: BigInt
 }
@@ -389,7 +389,7 @@ type PermissionsHolder @entity {
   operator: Bytes!
 }
 
-type StoreAutoMintAmountEvent @entity {
+type StoreAutoIssuanceAmountEvent @entity {
   id: ID!
   revnetId: BigInt!
   stageId: BigInt!

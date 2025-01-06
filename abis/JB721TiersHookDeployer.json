@@ -235,6 +235,11 @@
             ]
           }
         ]
+      },
+      {
+        "name": "salt",
+        "type": "bytes32",
+        "internalType": "bytes32"
       }
     ],
     "outputs": [
@@ -302,10 +307,5 @@
       }
     ],
     "anonymous": false
-  },
-  {
-    "type": "error",
-    "name": "ERC1167FailedCreateClone",
-    "inputs": []
   }
 ]

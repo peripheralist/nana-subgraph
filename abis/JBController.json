@@ -244,7 +244,7 @@
                 "internalType": "uint112"
               },
               {
-                "name": "decayPercent",
+                "name": "weightCutPercent",
                 "type": "uint32",
                 "internalType": "uint32"
               },
@@ -271,7 +271,7 @@
                 "internalType": "uint16"
               },
               {
-                "name": "redemptionRate",
+                "name": "cashOutTaxRate",
                 "type": "uint16",
                 "internalType": "uint16"
               },
@@ -326,11 +326,6 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowCrosschainSuckerExtension",
-                "type": "bool",
-                "internalType": "bool"
-              },
-              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -341,7 +336,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useTotalSurplusForRedemptions",
+                "name": "useTotalSurplusForCashOuts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -351,7 +346,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useDataHookForRedeem",
+                "name": "useDataHookForCashOut",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -475,7 +470,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -502,7 +497,7 @@
             "internalType": "uint16"
           },
           {
-            "name": "redemptionRate",
+            "name": "cashOutTaxRate",
             "type": "uint16",
             "internalType": "uint16"
           },
@@ -557,11 +552,6 @@
             "internalType": "bool"
           },
           {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -572,7 +562,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useTotalSurplusForRedemptions",
+            "name": "useTotalSurplusForCashOuts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -582,7 +572,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useDataHookForRedeem",
+            "name": "useDataHookForCashOut",
             "type": "bool",
             "internalType": "bool"
           },
@@ -725,7 +715,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -752,7 +742,7 @@
             "internalType": "uint16"
           },
           {
-            "name": "redemptionRate",
+            "name": "cashOutTaxRate",
             "type": "uint16",
             "internalType": "uint16"
           },
@@ -807,11 +797,6 @@
             "internalType": "bool"
           },
           {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -822,7 +807,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useTotalSurplusForRedemptions",
+            "name": "useTotalSurplusForCashOuts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -832,7 +817,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useDataHookForRedeem",
+            "name": "useDataHookForCashOut",
             "type": "bool",
             "internalType": "bool"
           },
@@ -917,7 +902,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -944,7 +929,7 @@
             "internalType": "uint16"
           },
           {
-            "name": "redemptionRate",
+            "name": "cashOutTaxRate",
             "type": "uint16",
             "internalType": "uint16"
           },
@@ -999,11 +984,6 @@
             "internalType": "bool"
           },
           {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -1014,7 +994,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useTotalSurplusForRedemptions",
+            "name": "useTotalSurplusForCashOuts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -1024,7 +1004,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useDataHookForRedeem",
+            "name": "useDataHookForCashOut",
             "type": "bool",
             "internalType": "bool"
           },
@@ -1083,7 +1063,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -1103,7 +1083,7 @@
                 "internalType": "uint16"
               },
               {
-                "name": "redemptionRate",
+                "name": "cashOutTaxRate",
                 "type": "uint16",
                 "internalType": "uint16"
               },
@@ -1158,11 +1138,6 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowCrosschainSuckerExtension",
-                "type": "bool",
-                "internalType": "bool"
-              },
-              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -1173,7 +1148,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useTotalSurplusForRedemptions",
+                "name": "useTotalSurplusForCashOuts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1183,7 +1158,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useDataHookForRedeem",
+                "name": "useDataHookForCashOut",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1380,7 +1355,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -1400,7 +1375,7 @@
                 "internalType": "uint16"
               },
               {
-                "name": "redemptionRate",
+                "name": "cashOutTaxRate",
                 "type": "uint16",
                 "internalType": "uint16"
               },
@@ -1455,11 +1430,6 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowCrosschainSuckerExtension",
-                "type": "bool",
-                "internalType": "bool"
-              },
-              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -1470,7 +1440,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useTotalSurplusForRedemptions",
+                "name": "useTotalSurplusForCashOuts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1480,7 +1450,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useDataHookForRedeem",
+                "name": "useDataHookForCashOut",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1753,7 +1723,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -1773,7 +1743,7 @@
                 "internalType": "uint16"
               },
               {
-                "name": "redemptionRate",
+                "name": "cashOutTaxRate",
                 "type": "uint16",
                 "internalType": "uint16"
               },
@@ -1828,11 +1798,6 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowCrosschainSuckerExtension",
-                "type": "bool",
-                "internalType": "bool"
-              },
-              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -1843,7 +1808,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useTotalSurplusForRedemptions",
+                "name": "useTotalSurplusForCashOuts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -1853,7 +1818,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useDataHookForRedeem",
+                "name": "useDataHookForCashOut",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -2290,7 +2255,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -2317,7 +2282,7 @@
             "internalType": "uint16"
           },
           {
-            "name": "redemptionRate",
+            "name": "cashOutTaxRate",
             "type": "uint16",
             "internalType": "uint16"
           },
@@ -2372,11 +2337,6 @@
             "internalType": "bool"
           },
           {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
             "name": "ownerMustSendPayouts",
             "type": "bool",
             "internalType": "bool"
@@ -2387,7 +2347,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useTotalSurplusForRedemptions",
+            "name": "useTotalSurplusForCashOuts",
             "type": "bool",
             "internalType": "bool"
           },
@@ -2397,7 +2357,7 @@
             "internalType": "bool"
           },
           {
-            "name": "useDataHookForRedeem",
+            "name": "useDataHookForCashOut",
             "type": "bool",
             "internalType": "bool"
           },
@@ -2890,33 +2850,6 @@
   },
   {
     "type": "error",
-    "name": "AddressEmptyCode",
-    "inputs": [
-      {
-        "name": "target",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "AddressInsufficientBalance",
-    "inputs": [
-      {
-        "name": "account",
-        "type": "address",
-        "internalType": "address"
-      }
-    ]
-  },
-  {
-    "type": "error",
-    "name": "FailedInnerCall",
-    "inputs": []
-  },
-  {
-    "type": "error",
     "name": "JBController_AddingPriceFeedNotAllowed",
     "inputs": []
   },
@@ -2927,7 +2860,7 @@
   },
   {
     "type": "error",
-    "name": "JBController_InvalidRedemptionRate",
+    "name": "JBController_InvalidCashOutTaxRate",
     "inputs": [
       {
         "name": "rate",
@@ -2980,6 +2913,22 @@
         "name": "directory",
         "type": "address",
         "internalType": "contract IJBDirectory"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "JBController_OnlyFromTargetTerminal",
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "targetTerminal",
+        "type": "address",
+        "internalType": "address"
       }
     ]
   },

@@ -9,6 +9,6 @@ export enum ProjectEventKey {
   mintTokensEvent,
   payEvent,
   projectCreateEvent,
-  redeemEvent,
+  cashOutEvent,
   useAllowanceEvent,
 }

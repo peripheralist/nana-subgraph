@@ -71,8 +71,8 @@ export function saveNewProjectEvent(
     case ProjectEventKey.projectCreateEvent:
       projectEvent.projectCreateEvent = id;
       break;
-    case ProjectEventKey.redeemEvent:
-      projectEvent.redeemEvent = id;
+    case ProjectEventKey.cashOutEvent:
+      projectEvent.cashOutEvent = id;
       break;
     case ProjectEventKey.useAllowanceEvent:
       projectEvent.useAllowanceEvent = id;

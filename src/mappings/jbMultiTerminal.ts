@@ -2,22 +2,22 @@ import { log } from "@graphprotocol/graph-ts";
 
 import {
   AddToBalance,
+  CashOutTokens,
   Pay,
   ProcessFee,
-  RedeemTokens,
   SendPayoutToSplit,
   SendPayouts,
   UseAllowance,
 } from "../../generated/JBMultiTerminal/JBMultiTerminal";
 import {
   AddToBalanceEvent,
+  CashOutEvent,
   DistributePayoutsEvent,
   DistributeToPayoutSplitEvent,
   Participant,
   PayEvent,
   Project,
   ProtocolLog,
-  RedeemEvent,
   UseAllowanceEvent,
   Wallet,
 } from "../../generated/schema";
@@ -33,8 +33,8 @@ import {
   idForProjectTx,
 } from "../utils/ids";
 import { usdPriceForEth } from "../utils/prices";
-import { handleTrendingPayment } from "../utils/trending";
 import { handleProcessFee as _handleProcessFee } from "../utils/processFee";
+import { handleTrendingPayment } from "../utils/trending";
 
 export function handleAddToBalance(event: AddToBalance): void {
   const projectId = event.params.projectId;
@@ -231,7 +231,7 @@ export function handlePay(event: Pay): void {
   pay.note = event.params.memo;
   pay.timestamp = event.block.timestamp.toI32();
   pay.txHash = event.transaction.hash;
-  pay.beneficiaryTokenCount = event.params.beneficiaryTokenCount;
+  pay.beneficiaryTokenCount = event.params.newlyIssuedTokenCount;
   // NOTE this logic is deprecated but may be required
   // // For distribute events, caller will be a terminal
   // const isDistribution = isTerminalAddress(caller);
@@ -300,7 +300,7 @@ export function handlePay(event: Pay): void {
   }
 }
 
-export function handleRedeemTokens(event: RedeemTokens): void {
+export function handleCashOutTokens(event: CashOutTokens): void {
   const reclaimAmountUSD = usdPriceForEth(
     event.params.projectId,
     event.params.reclaimAmount
@@ -308,35 +308,35 @@ export function handleRedeemTokens(event: RedeemTokens): void {
 
   const idOfProject = event.params.projectId.toString();
 
-  const redeemEvent = new RedeemEvent(
+  const cashOutEvent = new CashOutEvent(
     idForProjectTx(event.params.projectId, event, true)
   );
 
-  redeemEvent.projectId = event.params.projectId.toI32();
-  redeemEvent.redeemCount = event.params.redeemCount;
-  redeemEvent.beneficiary = event.params.beneficiary;
-  redeemEvent.caller = event.params.caller;
-  redeemEvent.from = event.transaction.from;
-  redeemEvent.holder = event.params.holder;
-  redeemEvent.reclaimAmount = event.params.reclaimAmount;
-  redeemEvent.reclaimAmountUSD = reclaimAmountUSD;
-  redeemEvent.project = idOfProject;
-  redeemEvent.timestamp = event.block.timestamp.toI32();
-  redeemEvent.txHash = event.transaction.hash;
-  redeemEvent.metadata = event.params.metadata;
-  redeemEvent.save();
+  cashOutEvent.projectId = event.params.projectId.toI32();
+  cashOutEvent.cashOutCount = event.params.cashOutCount;
+  cashOutEvent.beneficiary = event.params.beneficiary;
+  cashOutEvent.caller = event.params.caller;
+  cashOutEvent.from = event.transaction.from;
+  cashOutEvent.holder = event.params.holder;
+  cashOutEvent.reclaimAmount = event.params.reclaimAmount;
+  cashOutEvent.reclaimAmountUSD = reclaimAmountUSD;
+  cashOutEvent.project = idOfProject;
+  cashOutEvent.timestamp = event.block.timestamp.toI32();
+  cashOutEvent.txHash = event.transaction.hash;
+  cashOutEvent.metadata = event.params.metadata;
+  cashOutEvent.save();
 
   saveNewProjectEvent(
     event,
     event.params.projectId,
-    redeemEvent.id,
-    ProjectEventKey.redeemEvent,
+    cashOutEvent.id,
+    ProjectEventKey.cashOutEvent,
     event.params.caller
   );
 
   const project = Project.load(idOfProject);
   if (!project) {
-    log.error("[handleRedeemTokens] Missing project. ID:{}", [idOfProject]);
+    log.error("[handleCashOutTokens] Missing project. ID:{}", [idOfProject]);
     return;
   }
   project.redeemVolume = project.redeemVolume.plus(event.params.reclaimAmount);

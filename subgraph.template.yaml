@@ -138,7 +138,7 @@ dataSources:
         - PayEvent
         - Project
         - ProtocolLog
-        - RedeemEvent
+        - CashOutEvent
         - UseAllowanceEvent
         - Wallet
       abis:
@@ -149,8 +149,8 @@ dataSources:
       eventHandlers:
         - event: Pay(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,string,bytes,address)
           handler: handlePay
-        - event: RedeemTokens(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,uint256,bytes,address)
-          handler: handleRedeemTokens
+        - event: CashOutTokens(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,uint256,bytes,address)
+          handler: handleCashOutTokens
         - event: AddToBalance(indexed uint256,uint256,uint256,string,bytes,address)
           handler: handleAddToBalance
         - event: SendPayouts(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,uint256,address)
@@ -292,12 +292,12 @@ dataSources:
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - StoreAutoMintAmountEvent
+        - StoreAutoIssuanceAmountEvent
       abis:
         - name: {{name}}
           file: ./abis/{{name}}.json
       eventHandlers:
-        - event: StoreAutoMintAmount(indexed uint256,indexed uint256,indexed address,uint256,address)
-          handler: handleStoreAutoMintAmount
+        - event: StoreAutoIssuanceAmount(indexed uint256,indexed uint256,indexed address,uint256,address)
+          handler: handleStoreAutoIssuanceAmount
       file: ./src/mappings/revDeployer.ts
   {{ /revDeployer }}

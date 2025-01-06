@@ -26,6 +26,11 @@
         "name": "publisher",
         "type": "address",
         "internalType": "contract CTPublisher"
+      },
+      {
+        "name": "trustedForwarder",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "stateMutability": "nonpayable"
@@ -162,12 +167,12 @@
   },
   {
     "type": "function",
-    "name": "afterRedeemRecordedWith",
+    "name": "afterCashOutRecordedWith",
     "inputs": [
       {
         "name": "context",
         "type": "tuple",
-        "internalType": "struct JBAfterRedeemRecordedContext",
+        "internalType": "struct JBAfterCashOutRecordedContext",
         "components": [
           {
             "name": "holder",
@@ -185,7 +190,7 @@
             "internalType": "uint256"
           },
           {
-            "name": "redeemCount",
+            "name": "cashOutCount",
             "type": "uint256",
             "internalType": "uint256"
           },
@@ -244,7 +249,7 @@
             ]
           },
           {
-            "name": "redemptionRate",
+            "name": "cashOutTaxRate",
             "type": "uint256",
             "internalType": "uint256"
           },
@@ -259,7 +264,7 @@
             "internalType": "bytes"
           },
           {
-            "name": "redeemerMetadata",
+            "name": "cashOutMetadata",
             "type": "bytes",
             "internalType": "bytes"
           }
@@ -271,7 +276,26 @@
   },
   {
     "type": "function",
-    "name": "amountToAutoMint",
+    "name": "allowsDeployingSuckersInCurrentRulesetOf",
+    "inputs": [
+      {
+        "name": "revnetId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "amountToAutoIssue",
     "inputs": [
       {
         "name": "revnetId",
@@ -300,7 +324,7 @@
   },
   {
     "type": "function",
-    "name": "autoMintFor",
+    "name": "autoIssueFor",
     "inputs": [
       {
         "name": "revnetId",
@@ -320,6 +344,131 @@
     ],
     "outputs": [],
     "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "beforeCashOutRecordedWith",
+    "inputs": [
+      {
+        "name": "context",
+        "type": "tuple",
+        "internalType": "struct JBBeforeCashOutRecordedContext",
+        "components": [
+          {
+            "name": "terminal",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "holder",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "projectId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rulesetId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "cashOutCount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "totalSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "surplus",
+            "type": "tuple",
+            "internalType": "struct JBTokenAmount",
+            "components": [
+              {
+                "name": "token",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "decimals",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "currency",
+                "type": "uint32",
+                "internalType": "uint32"
+              },
+              {
+                "name": "value",
+                "type": "uint256",
+                "internalType": "uint256"
+              }
+            ]
+          },
+          {
+            "name": "useTotalSurplus",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "cashOutTaxRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "metadata",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cashOutTaxRate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cashOutCount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalSupply",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "hookSpecifications",
+        "type": "tuple[]",
+        "internalType": "struct JBCashOutHookSpecification[]",
+        "components": [
+          {
+            "name": "hook",
+            "type": "address",
+            "internalType": "contract IJBCashOutHook"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "metadata",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
   },
   {
     "type": "function",
@@ -415,131 +564,6 @@
             "name": "hook",
             "type": "address",
             "internalType": "contract IJBPayHook"
-          },
-          {
-            "name": "amount",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "metadata",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ]
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "beforeRedeemRecordedWith",
-    "inputs": [
-      {
-        "name": "context",
-        "type": "tuple",
-        "internalType": "struct JBBeforeRedeemRecordedContext",
-        "components": [
-          {
-            "name": "terminal",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "holder",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "projectId",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "rulesetId",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "redeemCount",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "totalSupply",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "surplus",
-            "type": "tuple",
-            "internalType": "struct JBTokenAmount",
-            "components": [
-              {
-                "name": "token",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "decimals",
-                "type": "uint8",
-                "internalType": "uint8"
-              },
-              {
-                "name": "currency",
-                "type": "uint32",
-                "internalType": "uint32"
-              },
-              {
-                "name": "value",
-                "type": "uint256",
-                "internalType": "uint256"
-              }
-            ]
-          },
-          {
-            "name": "useTotalSurplus",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
-            "name": "redemptionRate",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "metadata",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ]
-      }
-    ],
-    "outputs": [
-      {
-        "name": "redemptionRate",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "redeemCount",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "totalSupply",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "hookSpecifications",
-        "type": "tuple[]",
-        "internalType": "struct JBRedeemHookSpecification[]",
-        "components": [
-          {
-            "name": "hook",
-            "type": "address",
-            "internalType": "contract IJBRedeemHook"
           },
           {
             "name": "amount",
@@ -656,9 +680,9 @@
                 "internalType": "uint40"
               },
               {
-                "name": "autoMints",
+                "name": "autoIssuances",
                 "type": "tuple[]",
-                "internalType": "struct REVAutoMint[]",
+                "internalType": "struct REVAutoIssuance[]",
                 "components": [
                   {
                     "name": "chainId",
@@ -688,12 +712,12 @@
                 "internalType": "uint112"
               },
               {
-                "name": "issuanceDecayFrequency",
+                "name": "issuanceCutFrequency",
                 "type": "uint32",
                 "internalType": "uint32"
               },
               {
-                "name": "issuanceDecayPercent",
+                "name": "issuanceCutPercent",
                 "type": "uint32",
                 "internalType": "uint32"
               },
@@ -730,11 +754,6 @@
             "name": "loans",
             "type": "address",
             "internalType": "address"
-          },
-          {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
           }
         ]
       },
@@ -1009,9 +1028,9 @@
                 "internalType": "uint40"
               },
               {
-                "name": "autoMints",
+                "name": "autoIssuances",
                 "type": "tuple[]",
-                "internalType": "struct REVAutoMint[]",
+                "internalType": "struct REVAutoIssuance[]",
                 "components": [
                   {
                     "name": "chainId",
@@ -1041,12 +1060,12 @@
                 "internalType": "uint112"
               },
               {
-                "name": "issuanceDecayFrequency",
+                "name": "issuanceCutFrequency",
                 "type": "uint32",
                 "internalType": "uint32"
               },
               {
-                "name": "issuanceDecayPercent",
+                "name": "issuanceCutPercent",
                 "type": "uint32",
                 "internalType": "uint32"
               },
@@ -1083,11 +1102,6 @@
             "name": "loans",
             "type": "address",
             "internalType": "address"
-          },
-          {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
           }
         ]
       },
@@ -1384,6 +1398,11 @@
             ]
           },
           {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
             "name": "splitOperatorCanAdjustTiers",
             "type": "bool",
             "internalType": "bool"
@@ -1487,6 +1506,25 @@
       },
       {
         "name": "addr",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isTrustedForwarder",
+    "inputs": [
+      {
+        "name": "forwarder",
         "type": "address",
         "internalType": "address"
       }
@@ -1611,7 +1649,20 @@
   },
   {
     "type": "function",
-    "name": "unrealizedAutoMintAmountOf",
+    "name": "trustedForwarder",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unrealizedAutoIssuanceAmountOf",
     "inputs": [
       {
         "name": "revnetId",
@@ -1627,6 +1678,43 @@
       }
     ],
     "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "AutoIssue",
+    "inputs": [
+      {
+        "name": "revnetId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stageId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "count",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "caller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
   },
   {
     "type": "event",
@@ -1692,9 +1780,9 @@
                 "internalType": "uint40"
               },
               {
-                "name": "autoMints",
+                "name": "autoIssuances",
                 "type": "tuple[]",
-                "internalType": "struct REVAutoMint[]",
+                "internalType": "struct REVAutoIssuance[]",
                 "components": [
                   {
                     "name": "chainId",
@@ -1724,12 +1812,12 @@
                 "internalType": "uint112"
               },
               {
-                "name": "issuanceDecayFrequency",
+                "name": "issuanceCutFrequency",
                 "type": "uint32",
                 "internalType": "uint32"
               },
               {
-                "name": "issuanceDecayPercent",
+                "name": "issuanceCutPercent",
                 "type": "uint32",
                 "internalType": "uint32"
               },
@@ -1766,11 +1854,6 @@
             "name": "loans",
             "type": "address",
             "internalType": "address"
-          },
-          {
-            "name": "allowCrosschainSuckerExtension",
-            "type": "bool",
-            "internalType": "bool"
           }
         ]
       },
@@ -1923,7 +2006,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -1943,7 +2026,7 @@
                 "internalType": "uint16"
               },
               {
-                "name": "redemptionRate",
+                "name": "cashOutTaxRate",
                 "type": "uint16",
                 "internalType": "uint16"
               },
@@ -1998,11 +2081,6 @@
                 "internalType": "bool"
               },
               {
-                "name": "allowCrosschainSuckerExtension",
-                "type": "bool",
-                "internalType": "bool"
-              },
-              {
                 "name": "ownerMustSendPayouts",
                 "type": "bool",
                 "internalType": "bool"
@@ -2013,7 +2091,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useTotalSurplusForRedemptions",
+                "name": "useTotalSurplusForCashOuts",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -2023,7 +2101,7 @@
                 "internalType": "bool"
               },
               {
-                "name": "useDataHookForRedeem",
+                "name": "useDataHookForCashOut",
                 "type": "bool",
                 "internalType": "bool"
               },
@@ -2167,12 +2245,6 @@
         "internalType": "uint256"
       },
       {
-        "name": "operator",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
         "name": "salt",
         "type": "bytes32",
         "indexed": true,
@@ -2235,43 +2307,6 @@
             "internalType": "bytes32"
           }
         ]
-      },
-      {
-        "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Mint",
-    "inputs": [
-      {
-        "name": "revnetId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "stageId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "beneficiary",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
       },
       {
         "name": "caller",
@@ -2365,7 +2400,7 @@
   },
   {
     "type": "event",
-    "name": "StoreAutoMintAmount",
+    "name": "StoreAutoIssuanceAmount",
     "inputs": [
       {
         "name": "revnetId",
@@ -2429,6 +2464,11 @@
   {
     "type": "error",
     "name": "REVDeployer_CashOutsCantBeTurnedOffCompletely",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "REVDeployer_RulesetDoesNotAllowDeployingSuckers",
     "inputs": []
   },
   {

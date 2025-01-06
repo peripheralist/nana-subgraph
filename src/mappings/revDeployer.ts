@@ -1,9 +1,11 @@
-import { StoreAutoMintAmount } from "../../generated/RevDeployer/REVDeployer";
-import { StoreAutoMintAmountEvent } from "../../generated/schema";
+import { StoreAutoIssuanceAmount } from "../../generated/RevDeployer/REVDeployer";
+import { StoreAutoIssuanceAmountEvent } from "../../generated/schema";
 import { idForProjectEvent } from "../utils/ids";
 
-export function handleStoreAutoMintAmount(event: StoreAutoMintAmount): void {
-  const ev = new StoreAutoMintAmountEvent(
+export function handleStoreAutoIssuanceAmount(
+  event: StoreAutoIssuanceAmount
+): void {
+  const ev = new StoreAutoIssuanceAmountEvent(
     idForProjectEvent(
       event.params.revnetId,
       event.transaction.hash,

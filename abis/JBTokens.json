@@ -549,8 +549,24 @@
   },
   {
     "type": "error",
-    "name": "ERC1167FailedCreateClone",
+    "name": "FailedDeployment",
     "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InsufficientBalance",
+    "inputs": [
+      {
+        "name": "balance",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "needed",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
   },
   {
     "type": "error",

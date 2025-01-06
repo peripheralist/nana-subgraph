@@ -93,14 +93,53 @@
     "name": "currentReclaimableSurplusOf",
     "inputs": [
       {
-        "name": "terminal",
-        "type": "address",
-        "internalType": "address"
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
       },
+      {
+        "name": "cashOutCount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalSupply",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "surplus",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "currentReclaimableSurplusOf",
+    "inputs": [
       {
         "name": "projectId",
         "type": "uint256",
         "internalType": "uint256"
+      },
+      {
+        "name": "cashOutCount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "terminals",
+        "type": "address[]",
+        "internalType": "contract IJBTerminal[]"
       },
       {
         "name": "accountingContexts",
@@ -131,50 +170,6 @@
       },
       {
         "name": "currency",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "tokensRedeemed",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "useTotalSurplus",
-        "type": "bool",
-        "internalType": "bool"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "currentReclaimableSurplusOf",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "tokensRedeemed",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "totalSupply",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "surplus",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -298,6 +293,163 @@
   },
   {
     "type": "function",
+    "name": "recordCashOutFor",
+    "inputs": [
+      {
+        "name": "holder",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "projectId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cashOutCount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "accountingContext",
+        "type": "tuple",
+        "internalType": "struct JBAccountingContext",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "decimals",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "currency",
+            "type": "uint32",
+            "internalType": "uint32"
+          }
+        ]
+      },
+      {
+        "name": "balanceAccountingContexts",
+        "type": "tuple[]",
+        "internalType": "struct JBAccountingContext[]",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "decimals",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "currency",
+            "type": "uint32",
+            "internalType": "uint32"
+          }
+        ]
+      },
+      {
+        "name": "metadata",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "ruleset",
+        "type": "tuple",
+        "internalType": "struct JBRuleset",
+        "components": [
+          {
+            "name": "cycleNumber",
+            "type": "uint48",
+            "internalType": "uint48"
+          },
+          {
+            "name": "id",
+            "type": "uint48",
+            "internalType": "uint48"
+          },
+          {
+            "name": "basedOnId",
+            "type": "uint48",
+            "internalType": "uint48"
+          },
+          {
+            "name": "start",
+            "type": "uint48",
+            "internalType": "uint48"
+          },
+          {
+            "name": "duration",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "weight",
+            "type": "uint112",
+            "internalType": "uint112"
+          },
+          {
+            "name": "weightCutPercent",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "approvalHook",
+            "type": "address",
+            "internalType": "contract IJBRulesetApprovalHook"
+          },
+          {
+            "name": "metadata",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      },
+      {
+        "name": "reclaimAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cashOutTaxRate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "hookSpecifications",
+        "type": "tuple[]",
+        "internalType": "struct JBCashOutHookSpecification[]",
+        "components": [
+          {
+            "name": "hook",
+            "type": "address",
+            "internalType": "contract IJBCashOutHook"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "metadata",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "recordPaymentFrom",
     "inputs": [
       {
@@ -385,7 +537,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -510,7 +662,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
@@ -530,163 +682,6 @@
         "name": "amountPaidOut",
         "type": "uint256",
         "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "recordRedemptionFor",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "redeemCount",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "accountingContext",
-        "type": "tuple",
-        "internalType": "struct JBAccountingContext",
-        "components": [
-          {
-            "name": "token",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "decimals",
-            "type": "uint8",
-            "internalType": "uint8"
-          },
-          {
-            "name": "currency",
-            "type": "uint32",
-            "internalType": "uint32"
-          }
-        ]
-      },
-      {
-        "name": "balanceAccountingContexts",
-        "type": "tuple[]",
-        "internalType": "struct JBAccountingContext[]",
-        "components": [
-          {
-            "name": "token",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "decimals",
-            "type": "uint8",
-            "internalType": "uint8"
-          },
-          {
-            "name": "currency",
-            "type": "uint32",
-            "internalType": "uint32"
-          }
-        ]
-      },
-      {
-        "name": "metadata",
-        "type": "bytes",
-        "internalType": "bytes"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "ruleset",
-        "type": "tuple",
-        "internalType": "struct JBRuleset",
-        "components": [
-          {
-            "name": "cycleNumber",
-            "type": "uint48",
-            "internalType": "uint48"
-          },
-          {
-            "name": "id",
-            "type": "uint48",
-            "internalType": "uint48"
-          },
-          {
-            "name": "basedOnId",
-            "type": "uint48",
-            "internalType": "uint48"
-          },
-          {
-            "name": "start",
-            "type": "uint48",
-            "internalType": "uint48"
-          },
-          {
-            "name": "duration",
-            "type": "uint32",
-            "internalType": "uint32"
-          },
-          {
-            "name": "weight",
-            "type": "uint112",
-            "internalType": "uint112"
-          },
-          {
-            "name": "decayPercent",
-            "type": "uint32",
-            "internalType": "uint32"
-          },
-          {
-            "name": "approvalHook",
-            "type": "address",
-            "internalType": "contract IJBRulesetApprovalHook"
-          },
-          {
-            "name": "metadata",
-            "type": "uint256",
-            "internalType": "uint256"
-          }
-        ]
-      },
-      {
-        "name": "reclaimAmount",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "redemptionRate",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "hookSpecifications",
-        "type": "tuple[]",
-        "internalType": "struct JBRedeemHookSpecification[]",
-        "components": [
-          {
-            "name": "hook",
-            "type": "address",
-            "internalType": "contract IJBRedeemHook"
-          },
-          {
-            "name": "amount",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "metadata",
-            "type": "bytes",
-            "internalType": "bytes"
-          }
-        ]
       }
     ],
     "stateMutability": "nonpayable"
@@ -794,7 +789,7 @@
             "internalType": "uint112"
           },
           {
-            "name": "decayPercent",
+            "name": "weightCutPercent",
             "type": "uint32",
             "internalType": "uint32"
           },
