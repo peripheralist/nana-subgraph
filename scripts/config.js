@@ -35,7 +35,7 @@ async function main() {
   const nana721GithubUrl = (name) =>
     `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook${testnetSuffix()}/${network}/${name}.json`;
   const bannyverseGithubUrl = (name) =>
-    `${baseUrl}/mejango/bannyverse-core/main/deployments/bannyverse-core${testnetSuffix()}/${network}/${name}.json`;
+    `${baseUrl}/mejango/banny-looks/main/deployments/bannyverse-core${testnetSuffix()}/${network}/${name}.json`;
   const revGithubUrl = (name) =>
     `${baseUrl}/rev-net/revnet-core/main/deployments/revnet-core${testnetSuffix()}/${network}/${name}.json`;
 
@@ -68,7 +68,7 @@ async function main() {
       })
       .then((res) => {
         const { address, receipt, abi, contractName } = res.data;
-        const { blockNumber: startBlock } = receipt;
+        const { blockNumber: startBlock } = receipt; // TODO receipt gone from data
 
         stdout.write(
           `✅ ${chalk.bold(
@@ -90,7 +90,7 @@ async function main() {
         };
       })
       .catch((e) => {
-        stdout.write(`Update failed for ${name}\n Using url: ${url}\n`);
+        stdout.write(`Update failed for ${name}\n Using url: "${url}"\n`);
         stdout.write(e);
         exit(1);
       });

@@ -1,366 +1,366 @@
 [
   {
-    "type": "constructor",
     "inputs": [
       {
+        "internalType": "contract IJBDirectory",
         "name": "directory",
-        "type": "address",
-        "internalType": "contract IJBDirectory"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBPermissions",
         "name": "permissions",
-        "type": "address",
-        "internalType": "contract IJBPermissions"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBProjects",
         "name": "projects",
-        "type": "address",
-        "internalType": "contract IJBProjects"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "owner",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "DEFAULT_PROJECT_ID",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "DIRECTORY",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBDirectory",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBDirectory"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "PERMISSIONS",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBPermissions",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBPermissions"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "PROJECTS",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBProjects",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBProjects"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pricingCurrency",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "unitCurrency",
+        "type": "uint256"
+      },
+      {
+        "internalType": "contract IJBPriceFeed",
+        "name": "feed",
+        "type": "address"
+      }
+    ],
     "name": "addPriceFeedFor",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "pricingCurrency",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "unitCurrency",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "feed",
-        "type": "address",
-        "internalType": "contract IJBPriceFeed"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "owner",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "address",
         "name": "",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pricingCurrency",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "unitCurrency",
+        "type": "uint256"
+      }
+    ],
     "name": "priceFeedFor",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "pricingCurrency",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "unitCurrency",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "contract IJBPriceFeed",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBPriceFeed"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "pricePerUnitOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "pricingCurrency",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "unitCurrency",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "decimals",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "pricePerUnitOf",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "renounceOwnership",
     "inputs": [],
+    "name": "renounceOwnership",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
     "name": "transferOwnership",
-    "inputs": [
-      {
-        "name": "newOwner",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "event",
-    "name": "AddPriceFeed",
+    "anonymous": false,
     "inputs": [
       {
-        "name": "projectId",
-        "type": "uint256",
         "indexed": true,
-        "internalType": "uint256"
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "uint256",
         "name": "pricingCurrency",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "uint256",
         "name": "unitCurrency",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
-        "name": "feed",
-        "type": "address",
         "indexed": false,
-        "internalType": "contract IJBPriceFeed"
+        "internalType": "contract IJBPriceFeed",
+        "name": "feed",
+        "type": "address"
       },
       {
+        "indexed": false,
+        "internalType": "address",
         "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "AddPriceFeed",
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "OwnershipTransferred",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "previousOwner",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
-        "name": "newOwner",
-        "type": "address",
         "indexed": true,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "OwnershipTransferred",
+    "type": "event"
   },
   {
-    "type": "error",
-    "name": "JBControlled_ControllerUnauthorized",
     "inputs": [
       {
+        "internalType": "address",
         "name": "controller",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "JBControlled_ControllerUnauthorized",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBPermissioned_Unauthorized",
     "inputs": [
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "sender",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "permissionId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBPermissioned_Unauthorized",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBPrices_PriceFeedAlreadyExists",
     "inputs": [
       {
+        "internalType": "contract IJBPriceFeed",
         "name": "feed",
-        "type": "address",
-        "internalType": "contract IJBPriceFeed"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "JBPrices_PriceFeedAlreadyExists",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBPrices_PriceFeedNotFound",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBPrices_ZeroPricingCurrency",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBPrices_ZeroUnitCurrency",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "OwnableInvalidOwner",
     "inputs": [
       {
+        "internalType": "address",
         "name": "owner",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "OwnableUnauthorizedAccount",
     "inputs": [
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "PRBMath_MulDiv_Overflow",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "x",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "y",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "denominator",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "PRBMath_MulDiv_Overflow",
+    "type": "error"
   }
 ]

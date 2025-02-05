@@ -1,1281 +1,1281 @@
 [
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
     "name": "balanceOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "owner",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "balance",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "tokenIds",
+        "type": "uint256[]"
+      }
+    ],
     "name": "cashOutWeightOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tokenIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "weight",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "cleanTiers",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "defaultReserveBeneficiaryOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "address",
         "name": "",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "encodedIPFSUriOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "bytes32",
         "name": "",
-        "type": "bytes32",
-        "internalType": "bytes32"
+        "type": "bytes32"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
     "name": "encodedTierIPFSUriOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "bytes32",
         "name": "",
-        "type": "bytes32",
-        "internalType": "bytes32"
+        "type": "bytes32"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "flagsOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
-        "name": "",
-        "type": "tuple",
-        "internalType": "struct JB721TiersHookFlags",
         "components": [
           {
+            "internalType": "bool",
             "name": "noNewTiersWithReserves",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "noNewTiersWithVotes",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "noNewTiersWithOwnerMinting",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "preventOverspending",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           }
-        ]
+        ],
+        "internalType": "struct JB721TiersHookFlags",
+        "name": "",
+        "type": "tuple"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "isTierRemoved",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "maxTierIdOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "numberOfBurnedFor",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "numberOfPendingReservesFor",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "numberOfReservesMintedFor",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordAddTiers",
     "inputs": [
       {
-        "name": "tiersToAdd",
-        "type": "tuple[]",
-        "internalType": "struct JB721TierConfig[]",
         "components": [
           {
+            "internalType": "uint104",
             "name": "price",
-            "type": "uint104",
-            "internalType": "uint104"
+            "type": "uint104"
           },
           {
+            "internalType": "uint32",
             "name": "initialSupply",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint32",
             "name": "votingUnits",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint16",
             "name": "reserveFrequency",
-            "type": "uint16",
-            "internalType": "uint16"
+            "type": "uint16"
           },
           {
+            "internalType": "address",
             "name": "reserveBeneficiary",
-            "type": "address",
-            "internalType": "address"
+            "type": "address"
           },
           {
+            "internalType": "bytes32",
             "name": "encodedIPFSUri",
-            "type": "bytes32",
-            "internalType": "bytes32"
+            "type": "bytes32"
           },
           {
+            "internalType": "uint24",
             "name": "category",
-            "type": "uint24",
-            "internalType": "uint24"
+            "type": "uint24"
           },
           {
+            "internalType": "uint8",
             "name": "discountPercent",
-            "type": "uint8",
-            "internalType": "uint8"
+            "type": "uint8"
           },
           {
+            "internalType": "bool",
             "name": "allowOwnerMint",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "useReserveBeneficiaryAsDefault",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "transfersPausable",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "useVotingUnits",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "cannotBeRemoved",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "cannotIncreaseDiscountPercent",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           }
-        ]
+        ],
+        "internalType": "struct JB721TierConfig[]",
+        "name": "tiersToAdd",
+        "type": "tuple[]"
       }
     ],
+    "name": "recordAddTiers",
     "outputs": [
       {
+        "internalType": "uint256[]",
         "name": "tierIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
+        "type": "uint256[]"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "tokenIds",
+        "type": "uint256[]"
+      }
+    ],
     "name": "recordBurn",
-    "inputs": [
-      {
-        "name": "tokenIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordFlags",
     "inputs": [
       {
-        "name": "flags",
-        "type": "tuple",
-        "internalType": "struct JB721TiersHookFlags",
         "components": [
           {
+            "internalType": "bool",
             "name": "noNewTiersWithReserves",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "noNewTiersWithVotes",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "noNewTiersWithOwnerMinting",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "preventOverspending",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           }
-        ]
+        ],
+        "internalType": "struct JB721TiersHookFlags",
+        "name": "flags",
+        "type": "tuple"
       }
     ],
+    "name": "recordFlags",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordMint",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "amount",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint16[]",
         "name": "tierIds",
-        "type": "uint16[]",
-        "internalType": "uint16[]"
+        "type": "uint16[]"
       },
       {
+        "internalType": "bool",
         "name": "isOwnerMint",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
+    "name": "recordMint",
     "outputs": [
       {
+        "internalType": "uint256[]",
         "name": "tokenIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
+        "type": "uint256[]"
       },
       {
+        "internalType": "uint256",
         "name": "leftoverAmount",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
     "name": "recordMintReservesFor",
-    "inputs": [
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256[]",
         "name": "tokenIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
+        "type": "uint256[]"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordRemoveTierIds",
     "inputs": [
       {
+        "internalType": "uint256[]",
         "name": "tierIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
+        "type": "uint256[]"
       }
     ],
+    "name": "recordRemoveTierIds",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordSetDiscountPercentOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "discountPercent",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "recordSetDiscountPercentOf",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordSetEncodedIPFSUriOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "bytes32",
         "name": "encodedIPFSUri",
-        "type": "bytes32",
-        "internalType": "bytes32"
+        "type": "bytes32"
       }
     ],
+    "name": "recordSetEncodedIPFSUriOf",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordSetTokenUriResolver",
     "inputs": [
       {
+        "internalType": "contract IJB721TokenUriResolver",
         "name": "resolver",
-        "type": "address",
-        "internalType": "contract IJB721TokenUriResolver"
+        "type": "address"
       }
     ],
+    "name": "recordSetTokenUriResolver",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "recordTransferForTier",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "address",
         "name": "from",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "to",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
+    "name": "recordTransferForTier",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "reserveBeneficiaryOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "address",
         "name": "",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "tierBalanceOf",
     "inputs": [
       {
+        "internalType": "address",
         "name": "hook",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "owner",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "tierBalanceOf",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
     "name": "tierIdOfToken",
-    "inputs": [
-      {
-        "name": "tokenId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "pure"
+    "stateMutability": "pure",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "tierOf",
     "inputs": [
       {
+        "internalType": "address",
         "name": "hook",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "id",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "bool",
         "name": "includeResolvedUri",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
+    "name": "tierOf",
     "outputs": [
       {
-        "name": "",
-        "type": "tuple",
-        "internalType": "struct JB721Tier",
         "components": [
           {
+            "internalType": "uint32",
             "name": "id",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint104",
             "name": "price",
-            "type": "uint104",
-            "internalType": "uint104"
+            "type": "uint104"
           },
           {
+            "internalType": "uint32",
             "name": "remainingSupply",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint32",
             "name": "initialSupply",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint104",
             "name": "votingUnits",
-            "type": "uint104",
-            "internalType": "uint104"
+            "type": "uint104"
           },
           {
+            "internalType": "uint16",
             "name": "reserveFrequency",
-            "type": "uint16",
-            "internalType": "uint16"
+            "type": "uint16"
           },
           {
+            "internalType": "address",
             "name": "reserveBeneficiary",
-            "type": "address",
-            "internalType": "address"
+            "type": "address"
           },
           {
+            "internalType": "bytes32",
             "name": "encodedIPFSUri",
-            "type": "bytes32",
-            "internalType": "bytes32"
+            "type": "bytes32"
           },
           {
+            "internalType": "uint24",
             "name": "category",
-            "type": "uint24",
-            "internalType": "uint24"
+            "type": "uint24"
           },
           {
+            "internalType": "uint8",
             "name": "discountPercent",
-            "type": "uint8",
-            "internalType": "uint8"
+            "type": "uint8"
           },
           {
+            "internalType": "bool",
             "name": "allowOwnerMint",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "transfersPausable",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "cannotBeRemoved",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "cannotIncreaseDiscountPercent",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "string",
             "name": "resolvedUri",
-            "type": "string",
-            "internalType": "string"
+            "type": "string"
           }
-        ]
+        ],
+        "internalType": "struct JB721Tier",
+        "name": "",
+        "type": "tuple"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "tierOfTokenId",
     "inputs": [
       {
+        "internalType": "address",
         "name": "hook",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "tokenId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "bool",
         "name": "includeResolvedUri",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
+    "name": "tierOfTokenId",
     "outputs": [
       {
-        "name": "",
-        "type": "tuple",
+        "components": [
+          {
+            "internalType": "uint32",
+            "name": "id",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint104",
+            "name": "price",
+            "type": "uint104"
+          },
+          {
+            "internalType": "uint32",
+            "name": "remainingSupply",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "initialSupply",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint104",
+            "name": "votingUnits",
+            "type": "uint104"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reserveFrequency",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address",
+            "name": "reserveBeneficiary",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "encodedIPFSUri",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint24",
+            "name": "category",
+            "type": "uint24"
+          },
+          {
+            "internalType": "uint8",
+            "name": "discountPercent",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "allowOwnerMint",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "transfersPausable",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "cannotBeRemoved",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "cannotIncreaseDiscountPercent",
+            "type": "bool"
+          },
+          {
+            "internalType": "string",
+            "name": "resolvedUri",
+            "type": "string"
+          }
+        ],
         "internalType": "struct JB721Tier",
-        "components": [
-          {
-            "name": "id",
-            "type": "uint32",
-            "internalType": "uint32"
-          },
-          {
-            "name": "price",
-            "type": "uint104",
-            "internalType": "uint104"
-          },
-          {
-            "name": "remainingSupply",
-            "type": "uint32",
-            "internalType": "uint32"
-          },
-          {
-            "name": "initialSupply",
-            "type": "uint32",
-            "internalType": "uint32"
-          },
-          {
-            "name": "votingUnits",
-            "type": "uint104",
-            "internalType": "uint104"
-          },
-          {
-            "name": "reserveFrequency",
-            "type": "uint16",
-            "internalType": "uint16"
-          },
-          {
-            "name": "reserveBeneficiary",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "encodedIPFSUri",
-            "type": "bytes32",
-            "internalType": "bytes32"
-          },
-          {
-            "name": "category",
-            "type": "uint24",
-            "internalType": "uint24"
-          },
-          {
-            "name": "discountPercent",
-            "type": "uint8",
-            "internalType": "uint8"
-          },
-          {
-            "name": "allowOwnerMint",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
-            "name": "transfersPausable",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
-            "name": "cannotBeRemoved",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
-            "name": "cannotIncreaseDiscountPercent",
-            "type": "bool",
-            "internalType": "bool"
-          },
-          {
-            "name": "resolvedUri",
-            "type": "string",
-            "internalType": "string"
-          }
-        ]
+        "name": "",
+        "type": "tuple"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tierId",
+        "type": "uint256"
+      }
+    ],
     "name": "tierVotingUnitsOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "account",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "tiersOf",
     "inputs": [
       {
+        "internalType": "address",
         "name": "hook",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256[]",
         "name": "categories",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
+        "type": "uint256[]"
       },
       {
+        "internalType": "bool",
         "name": "includeResolvedUri",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       },
       {
+        "internalType": "uint256",
         "name": "startingId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "size",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "tiersOf",
     "outputs": [
       {
-        "name": "tiers",
-        "type": "tuple[]",
-        "internalType": "struct JB721Tier[]",
         "components": [
           {
+            "internalType": "uint32",
             "name": "id",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint104",
             "name": "price",
-            "type": "uint104",
-            "internalType": "uint104"
+            "type": "uint104"
           },
           {
+            "internalType": "uint32",
             "name": "remainingSupply",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint32",
             "name": "initialSupply",
-            "type": "uint32",
-            "internalType": "uint32"
+            "type": "uint32"
           },
           {
+            "internalType": "uint104",
             "name": "votingUnits",
-            "type": "uint104",
-            "internalType": "uint104"
+            "type": "uint104"
           },
           {
+            "internalType": "uint16",
             "name": "reserveFrequency",
-            "type": "uint16",
-            "internalType": "uint16"
+            "type": "uint16"
           },
           {
+            "internalType": "address",
             "name": "reserveBeneficiary",
-            "type": "address",
-            "internalType": "address"
+            "type": "address"
           },
           {
+            "internalType": "bytes32",
             "name": "encodedIPFSUri",
-            "type": "bytes32",
-            "internalType": "bytes32"
+            "type": "bytes32"
           },
           {
+            "internalType": "uint24",
             "name": "category",
-            "type": "uint24",
-            "internalType": "uint24"
+            "type": "uint24"
           },
           {
+            "internalType": "uint8",
             "name": "discountPercent",
-            "type": "uint8",
-            "internalType": "uint8"
+            "type": "uint8"
           },
           {
+            "internalType": "bool",
             "name": "allowOwnerMint",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "transfersPausable",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "cannotBeRemoved",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "bool",
             "name": "cannotIncreaseDiscountPercent",
-            "type": "bool",
-            "internalType": "bool"
+            "type": "bool"
           },
           {
+            "internalType": "string",
             "name": "resolvedUri",
-            "type": "string",
-            "internalType": "string"
+            "type": "string"
           }
-        ]
+        ],
+        "internalType": "struct JB721Tier[]",
+        "name": "tiers",
+        "type": "tuple[]"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "tokenUriResolverOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "contract IJB721TokenUriResolver",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJB721TokenUriResolver"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "totalCashOutWeight",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "weight",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
+      }
+    ],
     "name": "totalSupplyOf",
-    "inputs": [
-      {
-        "name": "hook",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "supply",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "votingUnitsOf",
     "inputs": [
       {
+        "internalType": "address",
         "name": "hook",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
+    "name": "votingUnitsOf",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "units",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "event",
-    "name": "CleanTiers",
+    "anonymous": false,
     "inputs": [
       {
-        "name": "hook",
-        "type": "address",
         "indexed": true,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "hook",
+        "type": "address"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "CleanTiers",
+    "type": "event"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_CantMintManually",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_CantRemoveTier",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "percent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      }
+    ],
     "name": "JB721TiersHookStore_DiscountPercentExceedsBounds",
-    "inputs": [
-      {
-        "name": "percent",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "limit",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ]
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_DiscountPercentIncreaseNotAllowed",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "percent",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "storedPercent",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_DiscountPercentIncreaseNotAllowed",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_InsufficientPendingReserves",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "numberOfPendingReserves",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_InsufficientPendingReserves",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_InsufficientSupplyRemaining",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_InvalidCategorySortOrder",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "tierCategory",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "previousTierCategory",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_InvalidCategorySortOrder",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_InvalidQuantity",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "quantity",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "limit",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_InvalidQuantity",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_ManualMintingNotAllowed",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_MaxTiersExceeded",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "numberOfTiers",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "limit",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_MaxTiersExceeded",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_PriceExceedsAmount",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "price",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "leftoverAmount",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_PriceExceedsAmount",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_ReserveFrequencyNotAllowed",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JB721TiersHookStore_TierRemoved",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "tierId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JB721TiersHookStore_TierRemoved",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_UnrecognizedTier",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_VotingUnitsNotAllowed",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JB721TiersHookStore_ZeroInitialSupply",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "PRBMath_MulDiv_Overflow",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "x",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "y",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "denominator",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "PRBMath_MulDiv_Overflow",
+    "type": "error"
   }
 ]

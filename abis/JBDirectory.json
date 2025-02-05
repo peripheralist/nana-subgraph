@@ -1,520 +1,520 @@
 [
   {
-    "type": "constructor",
     "inputs": [
       {
+        "internalType": "contract IJBPermissions",
         "name": "permissions",
-        "type": "address",
-        "internalType": "contract IJBPermissions"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBProjects",
         "name": "projects",
-        "type": "address",
-        "internalType": "contract IJBProjects"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "owner",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "PERMISSIONS",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBPermissions",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBPermissions"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "PROJECTS",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBProjects",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBProjects"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      }
+    ],
     "name": "controllerOf",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "contract IERC165",
         "name": "",
-        "type": "address",
-        "internalType": "contract IERC165"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "addr",
+        "type": "address"
+      }
+    ],
     "name": "isAllowedToSetFirstController",
-    "inputs": [
-      {
-        "name": "addr",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "contract IJBTerminal",
+        "name": "terminal",
+        "type": "address"
+      }
+    ],
     "name": "isTerminalOf",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "terminal",
-        "type": "address",
-        "internalType": "contract IJBTerminal"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "owner",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "address",
         "name": "",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
     "name": "primaryTerminalOf",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "token",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "contract IJBTerminal",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBTerminal"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "renounceOwnership",
     "inputs": [],
+    "name": "renounceOwnership",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "setControllerOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "contract IERC165",
         "name": "controller",
-        "type": "address",
-        "internalType": "contract IERC165"
+        "type": "address"
       }
     ],
+    "name": "setControllerOf",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "setIsAllowedToSetFirstController",
     "inputs": [
       {
+        "internalType": "address",
         "name": "addr",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "bool",
         "name": "flag",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
+    "name": "setIsAllowedToSetFirstController",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "setPrimaryTerminalOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "address",
         "name": "token",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBTerminal",
         "name": "terminal",
-        "type": "address",
-        "internalType": "contract IJBTerminal"
+        "type": "address"
       }
     ],
+    "name": "setPrimaryTerminalOf",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "setTerminalsOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "contract IJBTerminal[]",
         "name": "terminals",
-        "type": "address[]",
-        "internalType": "contract IJBTerminal[]"
+        "type": "address[]"
       }
     ],
+    "name": "setTerminalsOf",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "terminalsOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "terminalsOf",
     "outputs": [
       {
+        "internalType": "contract IJBTerminal[]",
         "name": "",
-        "type": "address[]",
-        "internalType": "contract IJBTerminal[]"
+        "type": "address[]"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
     "name": "transferOwnership",
-    "inputs": [
-      {
-        "name": "newOwner",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IJBTerminal",
+        "name": "terminal",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
     "name": "AddTerminal",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "terminal",
-        "type": "address",
-        "indexed": true,
-        "internalType": "contract IJBTerminal"
-      },
-      {
-        "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "OwnershipTransferred",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "previousOwner",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "newOwner",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "OwnershipTransferred",
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "SetController",
+    "anonymous": false,
     "inputs": [
       {
-        "name": "projectId",
-        "type": "uint256",
         "indexed": true,
-        "internalType": "uint256"
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "contract IERC165",
         "name": "controller",
-        "type": "address",
-        "indexed": true,
-        "internalType": "contract IERC165"
+        "type": "address"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "SetController",
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "SetIsAllowedToSetFirstController",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "addr",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "bool",
         "name": "isAllowed",
-        "type": "bool",
-        "indexed": true,
-        "internalType": "bool"
+        "type": "bool"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "SetIsAllowedToSetFirstController",
+    "type": "event"
   },
   {
-    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IJBTerminal",
+        "name": "terminal",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
     "name": "SetPrimaryTerminal",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "token",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "terminal",
-        "type": "address",
-        "indexed": true,
-        "internalType": "contract IJBTerminal"
-      },
-      {
-        "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "SetTerminals",
+    "anonymous": false,
     "inputs": [
       {
-        "name": "projectId",
-        "type": "uint256",
         "indexed": true,
-        "internalType": "uint256"
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "contract IJBTerminal[]",
         "name": "terminals",
-        "type": "address[]",
-        "indexed": false,
-        "internalType": "contract IJBTerminal[]"
+        "type": "address[]"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "SetTerminals",
+    "type": "event"
   },
   {
-    "type": "error",
+    "inputs": [
+      {
+        "internalType": "contract IJBTerminal",
+        "name": "terminal",
+        "type": "address"
+      }
+    ],
     "name": "JBDirectory_DuplicateTerminals",
-    "inputs": [
-      {
-        "name": "terminal",
-        "type": "address",
-        "internalType": "contract IJBTerminal"
-      }
-    ]
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBDirectory_InvalidProjectIdInDirectory",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "limit",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBDirectory_InvalidProjectIdInDirectory",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBDirectory_SetControllerNotAllowed",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBDirectory_SetTerminalsNotAllowed",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBDirectory_TokenNotAccepted",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "address",
         "name": "token",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBTerminal",
         "name": "terminal",
-        "type": "address",
-        "internalType": "contract IJBTerminal"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "JBDirectory_TokenNotAccepted",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBPermissioned_Unauthorized",
     "inputs": [
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "sender",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "permissionId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBPermissioned_Unauthorized",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "OwnableInvalidOwner",
     "inputs": [
       {
+        "internalType": "address",
         "name": "owner",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "OwnableUnauthorizedAccount",
     "inputs": [
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
   }
 ]

@@ -2,62 +2,62 @@
   "network": "sepolia",
   "banny721TokenUriResolver": {
     "name": "Banny721TokenUriResolver",
-    "address": "0x238C0c8B475fEAB628875408d7CEfBd9a7f0c3C3",
-    "startBlock": 7245528
+    "address": "0x01a5a99fc8aaf370bd11467b4dffac7e5f80f890",
+    "startBlock": 7607756
   },
   "jb721TiersHookDeployer": {
     "name": "JB721TiersHookDeployer",
-    "address": "0x739AFa8B58CcEc832aCFf7465f6F640199cF4D35",
-    "startBlock": 7243473
+    "address": "0xec402e3fbf59ec7a2a7248be8e2220a9caa32ee3",
+    "startBlock": 7584367
   },
   "jb721TiersHookStore": {
     "name": "JB721TiersHookStore",
-    "address": "0x1704CFc2f93bf49e54a9939e14A471749B12Eee8",
-    "startBlock": 7243473
+    "address": "0xdc162a8a6decc7f27fd4cff58d69b9cc0c7c2ea1",
+    "startBlock": 7584355
   },
   "jbController": {
     "name": "JBController",
-    "address": "0x74fc0e2cB3Eb5A2742f8B9F0D6F1263dD3664b5D",
-    "startBlock": 7238956
+    "address": "0xda3734c8c0d5a2cf39eb6d0eef19c70bafd1cf1b",
+    "startBlock": 7583878
   },
   "jbDirectory": {
     "name": "JBDirectory",
-    "address": "0x5ADb234602D074064C216C1fDB23c6c2031F0C75",
-    "startBlock": 7238953
+    "address": "0xdb95e692bbedf806e3008a3bdf9a5393fdd06cd5",
+    "startBlock": 7583828
   },
   "jbMultiTerminal": {
     "name": "JBMultiTerminal",
-    "address": "0x1052d3669fb28E9e6738E399c40468e733eD3a8d",
-    "startBlock": 7238957
+    "address": "0x71f224d3349d725b19ea010d3d8a09d6598a8f32",
+    "startBlock": 7583902
   },
   "jbPermissions": {
     "name": "JBPermissions",
-    "address": "0x4886C30C81a17a3A1084fd1812008fA0f71a20B9",
-    "startBlock": 7238953
+    "address": "0x7d2eb6d899036336f5b2c94522837ecb3aaa2bda",
+    "startBlock": 7583816
   },
   "jbPrices": {
     "name": "JBPrices",
-    "address": "0x8c88469cA3aA9dE6Ab22c5113Ae2A8E20329fd8c",
-    "startBlock": 7238953
+    "address": "0x7c837d726723f2eac291734b8568a77ef7468592",
+    "startBlock": 7583853
   },
   "jbProjects": {
     "name": "JBProjects",
-    "address": "0x9B52A59F108e36cE0a8Eba595Eca22DbadbE655F",
-    "startBlock": 7238953
+    "address": "0xe886ec47fc531748c691a4db9d6cda83469e1215",
+    "startBlock": 7583822
   },
   "jbTerminalStore": {
     "name": "JBTerminalStore",
-    "address": "0x270eC8711dCa04cf5f3FdF10141428065e07194F",
-    "startBlock": 7238956
+    "address": "0xfb6ff9a9d72026f334d4262cf52bcc59f8123946",
+    "startBlock": 7583896
   },
   "jbTokens": {
     "name": "JBTokens",
-    "address": "0x94Db7C71D9E4bcDE99686bE9570C68BF12708D3e",
-    "startBlock": 7238953
+    "address": "0xc984721d8b4d7e577a1ef2b5df2651b3edfb6cee",
+    "startBlock": 7583865
   },
   "revDeployer": {
     "name": "REVDeployer",
-    "address": "0xA3bD067C7D76Cc2620783aFebD40e3bBE496783D",
-    "startBlock": 7243972
+    "address": "0xf2c46429b656a4da4f079754d149eefb52051dcc",
+    "startBlock": 7584649
   }
 }

@@ -1,311 +1,311 @@
 [
   {
-    "type": "constructor",
     "inputs": [
       {
+        "internalType": "contract JB721TiersHook",
         "name": "hook",
-        "type": "address",
-        "internalType": "contract JB721TiersHook"
+        "type": "address"
       },
       {
+        "internalType": "contract IJB721TiersHookStore",
         "name": "store",
-        "type": "address",
-        "internalType": "contract IJB721TiersHookStore"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBAddressRegistry",
         "name": "addressRegistry",
-        "type": "address",
-        "internalType": "contract IJBAddressRegistry"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "trustedForwarder",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "ADDRESS_REGISTRY",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBAddressRegistry",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBAddressRegistry"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "HOOK",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract JB721TiersHook",
         "name": "",
-        "type": "address",
-        "internalType": "contract JB721TiersHook"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "STORE",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJB721TiersHookStore",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJB721TiersHookStore"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "deployHookFor",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
-        "name": "deployTiersHookConfig",
-        "type": "tuple",
-        "internalType": "struct JBDeploy721TiersHookConfig",
         "components": [
           {
+            "internalType": "string",
             "name": "name",
-            "type": "string",
-            "internalType": "string"
+            "type": "string"
           },
           {
+            "internalType": "string",
             "name": "symbol",
-            "type": "string",
-            "internalType": "string"
+            "type": "string"
           },
           {
+            "internalType": "string",
             "name": "baseUri",
-            "type": "string",
-            "internalType": "string"
+            "type": "string"
           },
           {
+            "internalType": "contract IJB721TokenUriResolver",
             "name": "tokenUriResolver",
-            "type": "address",
-            "internalType": "contract IJB721TokenUriResolver"
+            "type": "address"
           },
           {
+            "internalType": "string",
             "name": "contractUri",
-            "type": "string",
-            "internalType": "string"
+            "type": "string"
           },
           {
-            "name": "tiersConfig",
-            "type": "tuple",
-            "internalType": "struct JB721InitTiersConfig",
             "components": [
               {
-                "name": "tiers",
-                "type": "tuple[]",
-                "internalType": "struct JB721TierConfig[]",
                 "components": [
                   {
+                    "internalType": "uint104",
                     "name": "price",
-                    "type": "uint104",
-                    "internalType": "uint104"
+                    "type": "uint104"
                   },
                   {
+                    "internalType": "uint32",
                     "name": "initialSupply",
-                    "type": "uint32",
-                    "internalType": "uint32"
+                    "type": "uint32"
                   },
                   {
+                    "internalType": "uint32",
                     "name": "votingUnits",
-                    "type": "uint32",
-                    "internalType": "uint32"
+                    "type": "uint32"
                   },
                   {
+                    "internalType": "uint16",
                     "name": "reserveFrequency",
-                    "type": "uint16",
-                    "internalType": "uint16"
+                    "type": "uint16"
                   },
                   {
+                    "internalType": "address",
                     "name": "reserveBeneficiary",
-                    "type": "address",
-                    "internalType": "address"
+                    "type": "address"
                   },
                   {
+                    "internalType": "bytes32",
                     "name": "encodedIPFSUri",
-                    "type": "bytes32",
-                    "internalType": "bytes32"
+                    "type": "bytes32"
                   },
                   {
+                    "internalType": "uint24",
                     "name": "category",
-                    "type": "uint24",
-                    "internalType": "uint24"
+                    "type": "uint24"
                   },
                   {
+                    "internalType": "uint8",
                     "name": "discountPercent",
-                    "type": "uint8",
-                    "internalType": "uint8"
+                    "type": "uint8"
                   },
                   {
+                    "internalType": "bool",
                     "name": "allowOwnerMint",
-                    "type": "bool",
-                    "internalType": "bool"
+                    "type": "bool"
                   },
                   {
+                    "internalType": "bool",
                     "name": "useReserveBeneficiaryAsDefault",
-                    "type": "bool",
-                    "internalType": "bool"
+                    "type": "bool"
                   },
                   {
+                    "internalType": "bool",
                     "name": "transfersPausable",
-                    "type": "bool",
-                    "internalType": "bool"
+                    "type": "bool"
                   },
                   {
+                    "internalType": "bool",
                     "name": "useVotingUnits",
-                    "type": "bool",
-                    "internalType": "bool"
+                    "type": "bool"
                   },
                   {
+                    "internalType": "bool",
                     "name": "cannotBeRemoved",
-                    "type": "bool",
-                    "internalType": "bool"
+                    "type": "bool"
                   },
                   {
+                    "internalType": "bool",
                     "name": "cannotIncreaseDiscountPercent",
-                    "type": "bool",
-                    "internalType": "bool"
+                    "type": "bool"
                   }
-                ]
+                ],
+                "internalType": "struct JB721TierConfig[]",
+                "name": "tiers",
+                "type": "tuple[]"
               },
               {
+                "internalType": "uint32",
                 "name": "currency",
-                "type": "uint32",
-                "internalType": "uint32"
+                "type": "uint32"
               },
               {
+                "internalType": "uint8",
                 "name": "decimals",
-                "type": "uint8",
-                "internalType": "uint8"
+                "type": "uint8"
               },
               {
+                "internalType": "contract IJBPrices",
                 "name": "prices",
-                "type": "address",
-                "internalType": "contract IJBPrices"
+                "type": "address"
               }
-            ]
+            ],
+            "internalType": "struct JB721InitTiersConfig",
+            "name": "tiersConfig",
+            "type": "tuple"
           },
           {
+            "internalType": "address",
             "name": "reserveBeneficiary",
-            "type": "address",
-            "internalType": "address"
+            "type": "address"
           },
           {
-            "name": "flags",
-            "type": "tuple",
-            "internalType": "struct JB721TiersHookFlags",
             "components": [
               {
+                "internalType": "bool",
                 "name": "noNewTiersWithReserves",
-                "type": "bool",
-                "internalType": "bool"
+                "type": "bool"
               },
               {
+                "internalType": "bool",
                 "name": "noNewTiersWithVotes",
-                "type": "bool",
-                "internalType": "bool"
+                "type": "bool"
               },
               {
+                "internalType": "bool",
                 "name": "noNewTiersWithOwnerMinting",
-                "type": "bool",
-                "internalType": "bool"
+                "type": "bool"
               },
               {
+                "internalType": "bool",
                 "name": "preventOverspending",
-                "type": "bool",
-                "internalType": "bool"
+                "type": "bool"
               }
-            ]
+            ],
+            "internalType": "struct JB721TiersHookFlags",
+            "name": "flags",
+            "type": "tuple"
           }
-        ]
+        ],
+        "internalType": "struct JBDeploy721TiersHookConfig",
+        "name": "deployTiersHookConfig",
+        "type": "tuple"
       },
       {
+        "internalType": "bytes32",
         "name": "salt",
-        "type": "bytes32",
-        "internalType": "bytes32"
+        "type": "bytes32"
       }
     ],
+    "name": "deployHookFor",
     "outputs": [
       {
+        "internalType": "contract IJB721TiersHook",
         "name": "newHook",
-        "type": "address",
-        "internalType": "contract IJB721TiersHook"
+        "type": "address"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "isTrustedForwarder",
     "inputs": [
       {
+        "internalType": "address",
         "name": "forwarder",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
+    "name": "isTrustedForwarder",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "trustedForwarder",
     "inputs": [],
+    "name": "trustedForwarder",
     "outputs": [
       {
+        "internalType": "address",
         "name": "",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "event",
-    "name": "HookDeployed",
+    "anonymous": false,
     "inputs": [
       {
-        "name": "projectId",
-        "type": "uint256",
         "indexed": true,
-        "internalType": "uint256"
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "contract IJB721TiersHook",
         "name": "hook",
-        "type": "address",
-        "indexed": false,
-        "internalType": "contract IJB721TiersHook"
+        "type": "address"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "HookDeployed",
+    "type": "event"
   }
 ]

@@ -1,688 +1,700 @@
 [
   {
-    "type": "constructor",
     "inputs": [
       {
+        "internalType": "contract IJBDirectory",
         "name": "directory",
-        "type": "address",
-        "internalType": "contract IJBDirectory"
+        "type": "address"
       },
       {
+        "internalType": "contract IJBToken",
         "name": "token",
-        "type": "address",
-        "internalType": "contract IJBToken"
+        "type": "address"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "DIRECTORY",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBDirectory",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBDirectory"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [],
     "name": "TOKEN",
-    "inputs": [],
     "outputs": [
       {
+        "internalType": "contract IJBToken",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBToken"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
     "name": "burnFrom",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "beneficiary",
+        "type": "address"
+      }
+    ],
     "name": "claimTokensFor",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "beneficiary",
-        "type": "address",
-        "internalType": "address"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      }
+    ],
     "name": "creditBalanceOf",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "symbol",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "salt",
+        "type": "bytes32"
+      }
+    ],
     "name": "deployERC20For",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "name",
-        "type": "string",
-        "internalType": "string"
-      },
-      {
-        "name": "symbol",
-        "type": "string",
-        "internalType": "string"
-      },
-      {
-        "name": "salt",
-        "type": "bytes32",
-        "internalType": "bytes32"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "contract IJBToken",
         "name": "token",
-        "type": "address",
-        "internalType": "contract IJBToken"
+        "type": "address"
       }
     ],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
     "name": "mintFor",
-    "inputs": [
+    "outputs": [
       {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
+        "internalType": "contract IJBToken",
+        "name": "token",
+        "type": "address"
       }
     ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "contract IJBToken",
+        "name": "token",
+        "type": "address"
+      }
+    ],
     "name": "projectIdOf",
-    "inputs": [
-      {
-        "name": "token",
-        "type": "address",
-        "internalType": "contract IJBToken"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "contract IJBToken",
+        "name": "token",
+        "type": "address"
+      }
+    ],
     "name": "setTokenFor",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "token",
-        "type": "address",
-        "internalType": "contract IJBToken"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      }
+    ],
     "name": "tokenOf",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "contract IJBToken",
         "name": "",
-        "type": "address",
-        "internalType": "contract IJBToken"
+        "type": "address"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      }
+    ],
     "name": "totalBalanceOf",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "balance",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      }
+    ],
     "name": "totalCreditSupplyOf",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "totalSupplyOf",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "totalSupplyOf",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "totalSupply",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      }
+    ],
     "name": "transferCreditsFrom",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "recipient",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "creditBalance",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenBalance",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
     "name": "Burn",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      },
-      {
-        "name": "creditBalance",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      },
-      {
-        "name": "tokenBalance",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      },
-      {
-        "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "ClaimTokens",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "holder",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "creditBalance",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "count",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "address",
         "name": "beneficiary",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
+        "type": "address"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "ClaimTokens",
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "DeployERC20",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "contract IJBToken",
         "name": "token",
-        "type": "address",
-        "indexed": true,
-        "internalType": "contract IJBToken"
+        "type": "address"
       },
       {
+        "indexed": false,
+        "internalType": "string",
         "name": "name",
-        "type": "string",
-        "indexed": false,
-        "internalType": "string"
+        "type": "string"
       },
       {
+        "indexed": false,
+        "internalType": "string",
         "name": "symbol",
-        "type": "string",
-        "indexed": false,
-        "internalType": "string"
+        "type": "string"
       },
       {
+        "indexed": false,
+        "internalType": "bytes32",
         "name": "salt",
-        "type": "bytes32",
-        "indexed": false,
-        "internalType": "bytes32"
+        "type": "bytes32"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "DeployERC20",
+    "type": "event"
   },
   {
-    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "holder",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "tokensWereClaimed",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
     "name": "Mint",
-    "inputs": [
-      {
-        "name": "holder",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
-      },
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "count",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
-      },
-      {
-        "name": "shouldClaimTokens",
-        "type": "bool",
-        "indexed": false,
-        "internalType": "bool"
-      },
-      {
-        "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
+    "type": "event"
   },
   {
-    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "contract IJBToken",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
     "name": "SetToken",
-    "inputs": [
-      {
-        "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
-      },
-      {
-        "name": "token",
-        "type": "address",
-        "indexed": true,
-        "internalType": "contract IJBToken"
-      },
-      {
-        "name": "caller",
-        "type": "address",
-        "indexed": false,
-        "internalType": "address"
-      }
-    ],
-    "anonymous": false
+    "type": "event"
   },
   {
-    "type": "event",
-    "name": "TransferCredits",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "holder",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "recipient",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "count",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "TransferCredits",
+    "type": "event"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "FailedDeployment",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "InsufficientBalance",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "balance",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "needed",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "InsufficientBalance",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBControlled_ControllerUnauthorized",
     "inputs": [
       {
+        "internalType": "address",
         "name": "controller",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "JBControlled_ControllerUnauthorized",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBTokens_EmptyName",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBTokens_EmptySymbol",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBTokens_EmptyToken",
-    "inputs": []
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBTokens_InsufficientCredits",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "creditBalance",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBTokens_InsufficientCredits",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBTokens_InsufficientTokensToBurn",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "count",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "tokenBalance",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBTokens_InsufficientTokensToBurn",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBTokens_OverflowAlert",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "value",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "limit",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBTokens_OverflowAlert",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBTokens_ProjectAlreadyHasToken",
     "inputs": [
       {
+        "internalType": "contract IJBToken",
         "name": "token",
-        "type": "address",
-        "internalType": "contract IJBToken"
+        "type": "address"
       }
-    ]
+    ],
+    "name": "JBTokens_ProjectAlreadyHasToken",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBTokens_RecipientZeroAddress",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "JBTokens_TokenAlreadyBeingUsed",
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBTokens_TokenAlreadyBeingUsed",
+    "type": "error"
   },
   {
-    "type": "error",
-    "name": "JBTokens_TokenNotFound",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "JBTokens_TokensMustHave18Decimals",
     "inputs": [
       {
-        "name": "decimals",
-        "type": "uint256",
-        "internalType": "uint256"
+        "internalType": "uint256",
+        "name": "projectId",
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBTokens_TokenCantBeAdded",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "JBTokens_TokenNotFound",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "decimals",
+        "type": "uint256"
+      }
+    ],
+    "name": "JBTokens_TokensMustHave18Decimals",
+    "type": "error"
   }
 ]

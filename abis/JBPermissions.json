@@ -1,226 +1,236 @@
 [
   {
-    "type": "function",
-    "name": "WILDCARD_PROJECT_ID",
     "inputs": [],
+    "name": "WILDCARD_PROJECT_ID",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "hasPermission",
     "inputs": [
       {
+        "internalType": "address",
         "name": "operator",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "permissionId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "bool",
         "name": "includeRoot",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       },
       {
+        "internalType": "bool",
         "name": "includeWildcardProjectId",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
+    "name": "hasPermission",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "hasPermissions",
     "inputs": [
       {
+        "internalType": "address",
         "name": "operator",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "internalType": "uint256[]",
         "name": "permissionIds",
-        "type": "uint256[]",
-        "internalType": "uint256[]"
+        "type": "uint256[]"
       },
       {
+        "internalType": "bool",
         "name": "includeRoot",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       },
       {
+        "internalType": "bool",
         "name": "includeWildcardProjectId",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
+    "name": "hasPermissions",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "bool",
-        "internalType": "bool"
+        "type": "bool"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "permissionsOf",
     "inputs": [
       {
+        "internalType": "address",
         "name": "operator",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
+    "name": "permissionsOf",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type": "function",
-    "name": "setPermissionsFor",
     "inputs": [
       {
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "internalType": "address"
+        "type": "address"
       },
       {
-        "name": "permissionsData",
-        "type": "tuple",
-        "internalType": "struct JBPermissionsData",
         "components": [
           {
+            "internalType": "address",
             "name": "operator",
-            "type": "address",
-            "internalType": "address"
+            "type": "address"
           },
           {
+            "internalType": "uint64",
             "name": "projectId",
-            "type": "uint56",
-            "internalType": "uint56"
+            "type": "uint64"
           },
           {
+            "internalType": "uint8[]",
             "name": "permissionIds",
-            "type": "uint8[]",
-            "internalType": "uint8[]"
+            "type": "uint8[]"
           }
-        ]
+        ],
+        "internalType": "struct JBPermissionsData",
+        "name": "permissionsData",
+        "type": "tuple"
       }
     ],
+    "name": "setPermissionsFor",
     "outputs": [],
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type": "event",
-    "name": "OperatorPermissionsSet",
+    "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "operator",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "address",
         "name": "account",
-        "type": "address",
-        "indexed": true,
-        "internalType": "address"
+        "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "uint256",
         "name": "projectId",
-        "type": "uint256",
-        "indexed": true,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
+        "indexed": false,
+        "internalType": "uint8[]",
         "name": "permissionIds",
-        "type": "uint8[]",
-        "indexed": false,
-        "internalType": "uint8[]"
+        "type": "uint8[]"
       },
       {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "packed",
-        "type": "uint256",
-        "indexed": false,
-        "internalType": "uint256"
+        "type": "uint256"
       },
       {
-        "name": "caller",
-        "type": "address",
         "indexed": false,
-        "internalType": "address"
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
       }
     ],
-    "anonymous": false
+    "name": "OperatorPermissionsSet",
+    "type": "event"
   },
   {
-    "type": "error",
-    "name": "JBPermissions_PermissionIdOutOfBounds",
+    "inputs": [],
+    "name": "JBPermissions_CantSetRootPermissionForWildcardProject",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "JBPermissions_NoZeroPermission",
+    "type": "error"
+  },
+  {
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "permissionId",
-        "type": "uint256",
-        "internalType": "uint256"
+        "type": "uint256"
       }
-    ]
+    ],
+    "name": "JBPermissions_PermissionIdOutOfBounds",
+    "type": "error"
   },
   {
-    "type": "error",
+    "inputs": [],
     "name": "JBPermissions_Unauthorized",
-    "inputs": []
+    "type": "error"
   }
 ]

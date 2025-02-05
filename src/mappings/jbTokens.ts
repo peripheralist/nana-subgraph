@@ -27,7 +27,7 @@ export function handleMint(event: Mint): void {
    * We're only concerned with updating unclaimed token balance.
    * "Claimed" ERC20 tokens will be handled separately.
    */
-  if (event.params.shouldClaimTokens) return;
+  if (event.params.tokensWereClaimed) return;
 
   const projectId = event.params.projectId;
 

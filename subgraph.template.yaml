@@ -111,7 +111,7 @@ dataSources:
           handler: handleMintTokens
         - event: SendReservedTokensToSplits(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,address)
           handler: handleSendReservedTokensToSplits
-        - event: SendReservedTokensToSplit(indexed uint256,indexed uint256,indexed uint256,(bool,uint32,uint56,address,uint48,address),uint256,address)
+        - event: SendReservedTokensToSplit(indexed uint256,indexed uint256,indexed uint256,(uint32,uint64,address,bool,uint48,address),uint256,address)
           handler: handleSendReservedTokensToSplit
         # - event: LaunchRulesets(uint256,uint256,string,address)
         #   handler: handleLaunchRulesets
@@ -155,7 +155,7 @@ dataSources:
           handler: handleAddToBalance
         - event: SendPayouts(indexed uint256,indexed uint256,indexed uint256,address,uint256,uint256,uint256,uint256,address)
           handler: handleSendPayouts
-        - event: SendPayoutToSplit(indexed uint256,indexed uint256,indexed uint256,(bool,uint32,uint56,address,uint48,address),uint256,uint256,address)
+        - event: SendPayoutToSplit(indexed uint256,indexed uint256,indexed uint256,(uint32,uint64,address,bool,uint48,address),uint256,uint256,address)
           handler: handleSendPayoutToSplit
         - event: UseAllowance(indexed uint256,indexed uint256,indexed uint256,address,address,uint256,uint256,uint256,string,address)
           handler: handleUseAllowance
@@ -277,6 +277,8 @@ dataSources:
           handler: handleDecorateBanny
         - event: SetSvgBaseUri(string,address)
           handler: handleSetSvgBaseUri
+        - event: SetProductName(indexed uint256,string,address)
+          handler: handleSetProductName
       file: ./src/mappings/banny721TokenUriResolver.ts
   {{ /banny721TokenUriResolver }}
   {{ #revDeployer }}
