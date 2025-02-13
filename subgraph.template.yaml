@@ -301,5 +301,7 @@ dataSources:
       eventHandlers:
         - event: StoreAutoIssuanceAmount(indexed uint256,indexed uint256,indexed address,uint256,address)
           handler: handleStoreAutoIssuanceAmount
+        - event: AutoIssue(indexed uint256,indexed uint256,indexed address,uint256,address)
+          handler: handleAutoIssue
       file: ./src/mappings/revDeployer.ts
   {{ /revDeployer }}

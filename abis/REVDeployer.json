@@ -648,9 +648,9 @@
           {
             "components": [
               {
-                "internalType": "uint40",
+                "internalType": "uint48",
                 "name": "startsAtOrAfter",
-                "type": "uint40"
+                "type": "uint48"
               },
               {
                 "components": [
@@ -1028,9 +1028,9 @@
           {
             "components": [
               {
-                "internalType": "uint40",
+                "internalType": "uint48",
                 "name": "startsAtOrAfter",
-                "type": "uint40"
+                "type": "uint48"
               },
               {
                 "components": [
@@ -1730,25 +1730,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "revnetId",
-        "type": "uint256"
-      }
-    ],
-    "name": "unrealizedAutoIssuanceAmountOf",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
@@ -1836,9 +1817,9 @@
           {
             "components": [
               {
-                "internalType": "uint40",
+                "internalType": "uint48",
                 "name": "startsAtOrAfter",
-                "type": "uint40"
+                "type": "uint48"
               },
               {
                 "components": [

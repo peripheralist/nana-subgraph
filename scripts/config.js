@@ -67,8 +67,8 @@ async function main() {
         headers: { Accept: "application/vnd.github.object+json" },
       })
       .then((res) => {
-        const { address, receipt, abi, contractName } = res.data;
-        const { blockNumber: startBlock } = receipt; // TODO receipt gone from data
+        const { address, abi, contractName } = res.data;
+        // const { blockNumber: startBlock } = receipt; // TODO receipt gone from data
 
         stdout.write(
           `✅ ${chalk.bold(
@@ -86,7 +86,7 @@ async function main() {
         config[name] = {
           name: contractName,
           address,
-          startBlock,
+          startBlock: res.data.receipt?.blockNumber ?? 0,
         };
       })
       .catch((e) => {

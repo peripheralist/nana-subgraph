@@ -2,13 +2,13 @@
   "network": "sepolia",
   "banny721TokenUriResolver": {
     "name": "Banny721TokenUriResolver",
-    "address": "0x01a5a99fc8aaf370bd11467b4dffac7e5f80f890",
-    "startBlock": 7607756
+    "address": "0xd8345ce13f113aeff06450e9a636a7df8d1ecd17",
+    "startBlock": 7647567
   },
   "jb721TiersHookDeployer": {
     "name": "JB721TiersHookDeployer",
-    "address": "0xec402e3fbf59ec7a2a7248be8e2220a9caa32ee3",
-    "startBlock": 7584367
+    "address": "0x9549a7b078a31f3ed8b418797c330cf9015dbe18",
+    "startBlock": 7646866
   },
   "jb721TiersHookStore": {
     "name": "JB721TiersHookStore",
@@ -17,47 +17,47 @@
   },
   "jbController": {
     "name": "JBController",
-    "address": "0xda3734c8c0d5a2cf39eb6d0eef19c70bafd1cf1b",
-    "startBlock": 7583878
+    "address": "0xd1f037efebf187a59520bcce9d1dabe5ccfab2c3",
+    "startBlock": 7645527
   },
   "jbDirectory": {
     "name": "JBDirectory",
-    "address": "0xdb95e692bbedf806e3008a3bdf9a5393fdd06cd5",
-    "startBlock": 7583828
+    "address": "0x9b3f76db6d7b3e6b286a3c176ba084ea3e8afd16",
+    "startBlock": 7645477
   },
   "jbMultiTerminal": {
     "name": "JBMultiTerminal",
-    "address": "0x71f224d3349d725b19ea010d3d8a09d6598a8f32",
-    "startBlock": 7583902
+    "address": "0x50fe7b6720901b74026ad714d9b393eda7e39974",
+    "startBlock": 7645551
   },
   "jbPermissions": {
     "name": "JBPermissions",
-    "address": "0x7d2eb6d899036336f5b2c94522837ecb3aaa2bda",
-    "startBlock": 7583816
+    "address": "0xdfab6eb3af1ef8a938e45309a2e8a5ed8b1dc01d",
+    "startBlock": 7645465
   },
   "jbPrices": {
     "name": "JBPrices",
-    "address": "0x7c837d726723f2eac291734b8568a77ef7468592",
-    "startBlock": 7583853
+    "address": "0x5e2c77b57fa4206be44cd9e7933aaebfe2b3fa8d",
+    "startBlock": 7645503
   },
   "jbProjects": {
     "name": "JBProjects",
-    "address": "0xe886ec47fc531748c691a4db9d6cda83469e1215",
-    "startBlock": 7583822
+    "address": "0x38ecaaec685c21f77712f569b071309a2143ff58",
+    "startBlock": 7645471
   },
   "jbTerminalStore": {
     "name": "JBTerminalStore",
-    "address": "0xfb6ff9a9d72026f334d4262cf52bcc59f8123946",
-    "startBlock": 7583896
+    "address": "0xd7dd3e68479bc3e287f96e6ec9f0d4ef95db2166",
+    "startBlock": 7645545
   },
   "jbTokens": {
     "name": "JBTokens",
-    "address": "0xc984721d8b4d7e577a1ef2b5df2651b3edfb6cee",
-    "startBlock": 7583865
+    "address": "0xb4a4d8ad7636e36d6ff3c7c664f9f797a532bbb2",
+    "startBlock": 7645515
   },
   "revDeployer": {
     "name": "REVDeployer",
-    "address": "0xf2c46429b656a4da4f079754d149eefb52051dcc",
-    "startBlock": 7584649
+    "address": "0x7156009bfcd164799f79a581066c09f27346d8a3",
+    "startBlock": 7647398
   }
 }

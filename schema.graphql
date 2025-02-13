@@ -398,6 +398,15 @@ type StoreAutoIssuanceAmountEvent @entity {
   caller: Bytes!
 }
 
+type AutoIssueEvent @entity {
+  id: ID!
+  revnetId: BigInt!
+  stageId: BigInt!
+  beneficiary: Bytes!
+  count: BigInt!
+  caller: Bytes!
+}
+
 type DecorateBannyEvent @entity {
   id: ID!
   timestamp: Int!
