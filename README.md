@@ -1,4 +1,4 @@
-# Juicebox Nana Subgraph
+# Juicebox V4 Subgraph
 
 ## Overview
 
@@ -11,6 +11,8 @@ Contract addresses and startBlocks are defined in `config/<network>.json`
 Subgraph data sources (contract definitions and event handlers) are defined in `subgraph.template.yaml`
 
 `subgraph.yaml` is generated and should not be edited.
+
+> Note: In addition to the core Juicebox protocol contracts, this subgraph includes support for JB721 and the Banny721TokenURIResolver contract.
 
 ## Getting started
 
@@ -28,9 +30,9 @@ Run `yarn configure <network>` to generate a config file for that network, with 
 
 Subgraphs are defined by a `subgraph.yaml` file, which is generated from `*.template.yaml` files.
 
-Running `yarn generate <network>` will run `scripts/generate.js` to construct a `subgraph.yaml` file for that network, using yaml template files and the contracts defined in `config/<network>.json`. 
+Running `yarn generate <network>` will construct a `subgraph.yaml` file for that network, using yaml template files and the contracts defined in `config/<network>.json`. 
 
-The `generate.js` script also performs a safety check for mismatches between the generated `subgraph.yaml` and the mapping files. Warnings will be shown if:
+This also performs a safety check for mismatches between the generated `subgraph.yaml` and the mapping files. Warnings will be shown if:
 - a function is referenced in the `subgraph.yaml` that isn't defined in any mapping files
 - a function defined in a mapping file isn't referenced in the `subgraph.yaml`
 
@@ -59,7 +61,7 @@ Check with your subgraph indexer service for instructions on deploying using you
 
 ### Deploying to multiple networks
 
-You can quickly deploy subgraphs for multiple networks at one time with `scripts/deploy.js`, which uses `graph-cli`.
+You can quickly deploy subgraphs for multiple networks at one time with `yarn deploy <args>`, which uses `graph-cli`.
 
 1. Ensure that all configs are up to date for the desired networks.
 2. Run `yarn deploy <url> <api-key> <version> network1 network2 network3...`

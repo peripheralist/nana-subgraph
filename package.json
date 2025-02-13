@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
-    "configure": "node scripts/config.js",
+    "configure": "node scripts/configure.js",
     "generate": "node scripts/generate.js",
     "deploy": "node scripts/deploy.js",
     "lint": "eslint --ext .ts ./",
