@@ -2,6 +2,7 @@ const chalk = require("chalk");
 const fs = require("fs");
 const jsyaml = require("js-yaml");
 const mustache = require("mustache");
+const { runYarnScript } = require("./util");
 
 const network = process.argv.slice(2)[0];
 
@@ -42,7 +43,7 @@ function writeFilesFromTemplate() {
 
   // Iterate over all contract names declared in config template
   // Add to fileContents using values from actual config
-  configTemplate["contracts"].forEach((c) => {
+  configTemplate.forEach((c) => {
     const contract = config[c];
 
     stdout.write(chalk.gray(`  ${c}...`));
@@ -248,8 +249,22 @@ function checkHandlers() {
   }
 }
 
+async function runCodegen() {
+  stdout.write("Running codegen...");
+
+  try {
+    await runYarnScript("codegen");
+
+    stdout.write(chalk.green("All done!\n\n"));
+  } catch (e) {
+    stdout.write(chalk.red(`Error running codegen: ${e}\n`));
+  }
+}
+
 writeFilesFromTemplate();
 
 writeSubgraph();
 
 checkHandlers();
+
+runCodegen();

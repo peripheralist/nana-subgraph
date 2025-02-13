@@ -21,33 +21,35 @@ async function main() {
   const testnetSuffix = () => {
     return [
       "sepolia",
-      "arbitrum_sepolia",
-      "base_sepolia",
-      "optimism_sepolia",
+      "arbitrum-sepolia",
+      "base-sepolia",
+      "optimism-sepolia",
     ].includes(network)
       ? "-testnet"
       : "";
   };
 
+  const urlNetwork = network.replace("-", "_");
+
   const baseUrl = "https://raw.githubusercontent.com";
   const nanaCoreGithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core${testnetSuffix()}/${network}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core${testnetSuffix()}/${urlNetwork}/${name}.json`;
   const nana721GithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook${testnetSuffix()}/${network}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook${testnetSuffix()}/${urlNetwork}/${name}.json`;
   const bannyverseGithubUrl = (name) =>
-    `${baseUrl}/mejango/banny-looks/main/deployments/bannyverse-core${testnetSuffix()}/${network}/${name}.json`;
+    `${baseUrl}/mejango/banny-looks/main/deployments/bannyverse-core${testnetSuffix()}/${urlNetwork}/${name}.json`;
   const revGithubUrl = (name) =>
-    `${baseUrl}/rev-net/revnet-core/main/deployments/revnet-core${testnetSuffix()}/${network}/${name}.json`;
+    `${baseUrl}/rev-net/revnet-core/main/deployments/revnet-core${testnetSuffix()}/${urlNetwork}/${name}.json`;
 
   const configTemplate = JSON.parse(fs.readFileSync("config/template.json"));
 
   // init updated config object
   const config = {
-    network: network.replace("_", "-"), // abide by alchemy subgraphs naming convention. we should prolly use only hyphens, but underscores are used in github directories, so here we are.
+    network,
   };
 
   // Sequential promises to maintain sort
-  for (const name of configTemplate["contracts"].sort()) {
+  for (const name of configTemplate.sort()) {
     let url;
 
     // determine which url to use. crude but effective :cry:

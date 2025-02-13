@@ -1,16 +1,14 @@
-{
-  "contracts": [
-    "jbProjects",
-    "jbTerminalStore",
-    "jbMultiTerminal",
-    "jbController",
-    "jbTokens",
-    "jbPrices",
-    "jbDirectory",
-    "jb721TiersHookDeployer",
-    "jb721TiersHookStore",
-    "jbPermissions",
-    "banny721TokenUriResolver",
-    "revDeployer"
-  ]
-}
+[
+  "jbProjects",
+  "jbTerminalStore",
+  "jbMultiTerminal",
+  "jbController",
+  "jbTokens",
+  "jbPrices",
+  "jbDirectory",
+  "jb721TiersHookDeployer",
+  "jb721TiersHookStore",
+  "jbPermissions",
+  "banny721TokenUriResolver",
+  "revDeployer"
+]
