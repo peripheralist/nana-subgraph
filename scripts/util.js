@@ -2,20 +2,22 @@ const { spawn } = require("child_process");
 const { stdout } = process;
 const chalk = require("chalk");
 
-function runYarnScript(scriptName, args = []) {
+function runYarnScript(scriptName, args = [], verbose) {
   return new Promise((resolve, reject) => {
     const yarn = spawn("yarn", ["run", scriptName, ...args]);
 
-    yarn.stdout.on("data", (data) => {
-      stdout.write(data);
-    });
+    if (verbose) {
+      yarn.stdout.on("data", (data) => {
+        stdout.write(data);
+      });
 
-    yarn.stderr.on("data", (data) => {
-      stdout.write(data);
-    });
+      yarn.stderr.on("data", (data) => {
+        stdout.write(data);
+      });
+    }
 
     yarn.stderr.on("error", (data) => {
-      stdout.write(`${chalk.red("Error:")} ${data}`);
+      stdout.write(`${chalk.red("Yarn script error:")} ${data}`);
     });
 
     yarn.on("close", (code) => {

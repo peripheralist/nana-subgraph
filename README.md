@@ -64,8 +64,9 @@ Check with your subgraph indexer service for instructions on deploying using you
 You can quickly deploy subgraphs for multiple networks at one time with `yarn deploy <args>`, which uses `graph-cli`.
 
 1. Ensure that all configs are up to date for the desired networks.
-2. Run `yarn deploy <url> <api-key> <version> network1 network2 network3...`
-    - `url`: The upload url for your indexing service
-    - `api-key`: Api key for upload to your indexing service
-    - `version`: Version tag used for all subgraphs being uploaded
-    - `networks`: The names of any number of supported networks you wish you deploy
+2. Run `yarn deploy <node-url> <ipfs-url> <api-key> <version> network1 network2 network3...`
+    - `node-url`: URL of your subgraph node.
+    - `ipfs-url`: URL of IPFS gateway used to store subgraph.
+    - `api-key`: Api key for IPFS url.
+    - `version`: Version tag (used for all subgraphs being deployed).
+    - `networks`: The names of any number of supported networks you wish you deploy, separated by spaces.

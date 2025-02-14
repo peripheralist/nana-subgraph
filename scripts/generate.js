@@ -253,9 +253,7 @@ async function runCodegen() {
   stdout.write("Running codegen...");
 
   try {
-    await runYarnScript("codegen");
-
-    stdout.write(chalk.green("All done!\n\n"));
+    await runYarnScript("codegen", [], true);
   } catch (e) {
     stdout.write(chalk.red(`Error running codegen: ${e}\n`));
   }

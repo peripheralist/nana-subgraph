@@ -1,18 +1,23 @@
 import { Address, Bytes, log } from "@graphprotocol/graph-ts";
 import {
   DecorateBanny,
+  SetProductName,
   SetSvgBaseUri,
   SetSvgContent,
-  SetProductName,
 } from "../../generated/Banny721TokenUriResolver/Banny721TokenUriResolver";
 import { JB721TiersHook } from "../../generated/JB721TiersHookDeployer/JB721TiersHook";
-import { DecorateBannyEvent, NFT, NFTTier } from "../../generated/schema";
+import { JB721TiersHookStore } from "../../generated/JB721TiersHookDeployer/JB721TiersHookStore";
+import {
+  DecorateBannyEvent,
+  NFT,
+  NFTCollection,
+  NFTTier,
+} from "../../generated/schema";
 import { bannyNftHookAddress } from "../constants";
+import { address_jb721TiersHookStore } from "../contractAddresses";
 import { getSvgOf } from "../utils/banny721Resolver";
 import { idForDecorateBannyEvent, idForNFT, idForNFTTier } from "../utils/ids";
 import { getAllTiers } from "../utils/jb721TiersHookStore";
-import { address_jb721TiersHookStore } from "../contractAddresses";
-import { JB721TiersHookStore } from "../../generated/JB721TiersHookDeployer/JB721TiersHookStore";
 
 export function handleSetProductName(event: SetProductName): void {
   const address = bannyNftHookAddress;
@@ -94,9 +99,53 @@ export function handleSetSvgContent(event: SetSvgContent): void {
 
   const tier = NFTTier.load(idOfTier);
 
-  if (tier) {
-    tier.svg = getSvgOf(tierId);
-    tier.save();
+  if (!tier) {
+    log.error(
+      "[banny721TokenUriResolver:handleSetSvgContent] Missing tier with ID: {}",
+      [idOfTier]
+    );
+    return;
+  }
+
+  tier.svg = getSvgOf(tierId);
+  tier.save();
+
+  // Now we need to update NFTs who are wearing the Tier, so that their tokenURI will reflect the new SVG contents.
+  const collection = NFTCollection.load(tier.collection);
+  if (!collection) {
+    log.error(
+      "[banny721TokenUriResolver:handleSetSvgContent] Failed to load collection with ID: {}",
+      [tier.collection]
+    );
+    return;
+  }
+
+  const nfts = collection.nfts.load();
+
+  if (!nfts || !nfts.length) return;
+
+  const jb721TiersHookContract = JB721TiersHook.bind(
+    Address.fromBytes(collection.address)
+  );
+
+  for (let i = 0; i < nfts.length; i++) {
+    const nft = nfts[i];
+    const _tier = NFTTier.load(nft.tier);
+
+    // We don't have a good way to figure out which NFTs may be wearing the tier, so we update all Naked NFTs, and all NFTs of the same tierId.
+    if (nft.category === 0 || (_tier && _tier.tierId === tier.tierId)) {
+      const tokenUriCall = jb721TiersHookContract.try_tokenURI(nft.tokenId);
+      if (tokenUriCall.reverted) {
+        log.error(
+          "[banny721TokenUriResolver:handleSetSvgContent] tokenURI() reverted for token:{}",
+          [nft.tokenId.toString()]
+        );
+        return;
+      }
+
+      nft.tokenUri = tokenUriCall.value;
+      nft.save();
+    }
   }
 }
 
