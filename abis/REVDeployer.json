@@ -2331,12 +2331,6 @@
         "type": "uint256"
       },
       {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "salt",
-        "type": "bytes32"
-      },
-      {
         "indexed": false,
         "internalType": "bytes32",
         "name": "encodedConfigurationHash",
@@ -2603,6 +2597,11 @@
   },
   {
     "inputs": [],
+    "name": "REVDeployer_NothingToAutoIssue",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "REVDeployer_RulesetDoesNotAllowDeployingSuckers",
     "type": "error"
   },
@@ -2610,12 +2609,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "stageStartTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "blockTimestamp",
+        "name": "stageId",
         "type": "uint256"
       }
     ],

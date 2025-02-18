@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "nakedBanny",
+        "name": "bannyBody",
         "type": "string"
       },
       {
@@ -39,6 +39,19 @@
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "BANNY_BODY",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -93,19 +106,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "NAKED_BANNY",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -114,7 +114,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "nakedBannyId",
+        "name": "bannyBodyId",
         "type": "uint256"
       }
     ],
@@ -122,7 +122,7 @@
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "worldId",
+        "name": "backgroundId",
         "type": "uint256"
       },
       {
@@ -143,12 +143,12 @@
       },
       {
         "internalType": "uint256",
-        "name": "nakedBannyId",
+        "name": "bannyBodyId",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "worldId",
+        "name": "backgroundId",
         "type": "uint256"
       },
       {
@@ -190,7 +190,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "nakedBannyId",
+        "name": "bannyBodyId",
         "type": "uint256"
       }
     ],
@@ -424,12 +424,12 @@
       },
       {
         "internalType": "bool",
-        "name": "shouldDressNakedBanny",
+        "name": "shouldDressBannyBody",
         "type": "bool"
       },
       {
         "internalType": "bool",
-        "name": "shouldIncludeWorldOnNakedBanny",
+        "name": "shouldIncludeBackgroundOnBannyBody",
         "type": "bool"
       }
     ],
@@ -503,7 +503,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "worldId",
+        "name": "backgroundId",
         "type": "uint256"
       }
     ],
@@ -554,13 +554,13 @@
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "nakedBannyId",
+        "name": "bannyBodyId",
         "type": "uint256"
       },
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "worldId",
+        "name": "backgroundId",
         "type": "uint256"
       },
       {
@@ -724,11 +724,6 @@
   },
   {
     "inputs": [],
-    "name": "Banny721TokenUriResolver_LockedNakedBanny",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "Banny721TokenUriResolver_OutfitChangesLocked",
     "type": "error"
   },
@@ -739,7 +734,12 @@
   },
   {
     "inputs": [],
-    "name": "Banny721TokenUriResolver_UnauthorizedNakedBanny",
+    "name": "Banny721TokenUriResolver_UnauthorizedBackground",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Banny721TokenUriResolver_UnauthorizedBannyBody",
     "type": "error"
   },
   {
@@ -754,12 +754,12 @@
   },
   {
     "inputs": [],
-    "name": "Banny721TokenUriResolver_UnauthorizedWorld",
+    "name": "Banny721TokenUriResolver_UnorderedCategories",
     "type": "error"
   },
   {
     "inputs": [],
-    "name": "Banny721TokenUriResolver_UnorderedCategories",
+    "name": "Banny721TokenUriResolver_UnrecognizedBackground",
     "type": "error"
   },
   {
@@ -770,11 +770,6 @@
   {
     "inputs": [],
     "name": "Banny721TokenUriResolver_UnrecognizedProduct",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "Banny721TokenUriResolver_UnrecognizedWorld",
     "type": "error"
   },
   {

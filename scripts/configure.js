@@ -1,6 +1,7 @@
 const { default: axios } = require("axios");
 const chalk = require("chalk");
 const fs = require("fs");
+const { formatAlchemyNetwork } = require("./util");
 
 const { stdout, exit } = process;
 
@@ -18,34 +19,23 @@ async function main() {
     )}\n`
   );
 
-  const testnetSuffix = () => {
-    return [
-      "sepolia",
-      "arbitrum-sepolia",
-      "base-sepolia",
-      "optimism-sepolia",
-    ].includes(network)
-      ? "-testnet"
-      : "";
-  };
-
   const urlNetwork = network.replace("-", "_");
 
   const baseUrl = "https://raw.githubusercontent.com";
   const nanaCoreGithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core${testnetSuffix()}/${urlNetwork}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-core/main/deployments/nana-core/${urlNetwork}/${name}.json`;
   const nana721GithubUrl = (name) =>
-    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook${testnetSuffix()}/${urlNetwork}/${name}.json`;
-  const bannyverseGithubUrl = (name) =>
-    `${baseUrl}/mejango/banny-looks/main/deployments/bannyverse-core${testnetSuffix()}/${urlNetwork}/${name}.json`;
+    `${baseUrl}/Bananapus/nana-721-hook/main/deployments/nana-721-hook/${urlNetwork}/${name}.json`;
+  const bannyRetailGithubUrl = (name) =>
+    `${baseUrl}/mejango/banny-retail/main/deployments/banny-core/${urlNetwork}/${name}.json`;
   const revGithubUrl = (name) =>
-    `${baseUrl}/rev-net/revnet-core/main/deployments/revnet-core${testnetSuffix()}/${urlNetwork}/${name}.json`;
+    `${baseUrl}/rev-net/revnet-core/main/deployments/revnet-core/${urlNetwork}/${name}.json`;
 
   const configTemplate = JSON.parse(fs.readFileSync("config/template.json"));
 
   // init updated config object
   const config = {
-    network,
+    network: formatAlchemyNetwork(network),
   };
 
   // Sequential promises to maintain sort
@@ -54,7 +44,7 @@ async function main() {
 
     // determine which url to use. crude but effective :cry:
     if (name.includes("banny")) {
-      url = bannyverseGithubUrl(name.replace("b", "B"));
+      url = bannyRetailGithubUrl(name.replace("b", "B"));
     } else if (name.includes("721")) {
       url = nana721GithubUrl(name.replace("jb", "JB"));
     } else if (name.includes("rev")) {
@@ -70,7 +60,6 @@ async function main() {
       })
       .then((res) => {
         const { address, abi, contractName } = res.data;
-        // const { blockNumber: startBlock } = receipt; // TODO receipt gone from data
 
         stdout.write(
           `✅ ${chalk.bold(
@@ -84,11 +73,22 @@ async function main() {
           JSON.stringify(abi, null, 2)
         );
 
+        let startBlock = res.data.receipt?.blockNumber || 0;
+
+        if (typeof startBlock === "string") {
+          // may be hex encoded
+          startBlock = parseInt(startBlock, 16);
+        }
+
+        if (!startBlock) {
+          stdout.write(`❌ Missing startBlock for ${contractName}\n`);
+        }
+
         // update config using deployment file
         config[name] = {
           name: contractName,
           address,
-          startBlock: res.data.receipt?.blockNumber ?? 0,
+          startBlock,
         };
       })
       .catch((e) => {

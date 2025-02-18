@@ -1,63 +1,63 @@
 {
-  "network": "optimism-sepolia",
+  "network": "base",
   "banny721TokenUriResolver": {
     "name": "Banny721TokenUriResolver",
     "address": "0xff80c37a57016eff3d19fb286e9c740ec4537dd3",
-    "startBlock": 24022298
+    "startBlock": 26528858
   },
   "jb721TiersHookDeployer": {
     "name": "JB721TiersHookDeployer",
     "address": "0xdefb489d101bf74bbf8f60eec6ff2f078c9d5206",
-    "startBlock": 23983526
+    "startBlock": 26490148
   },
   "jb721TiersHookStore": {
     "name": "JB721TiersHookStore",
     "address": "0xdc162a8a6decc7f27fd4cff58d69b9cc0c7c2ea1",
-    "startBlock": 23106019
+    "startBlock": 26490137
   },
   "jbController": {
     "name": "JBController",
     "address": "0xb291844f213047eb9e1621ae555b1eae6700d553",
-    "startBlock": 23975952
+    "startBlock": 26485017
   },
   "jbDirectory": {
     "name": "JBDirectory",
     "address": "0x0bc9f153dee4d3d474ce0903775b9b2aaae9aa41",
-    "startBlock": 23975890
+    "startBlock": 26484962
   },
   "jbMultiTerminal": {
     "name": "JBMultiTerminal",
     "address": "0xdb9644369c79c3633cde70d2df50d827d7dc7dbc",
-    "startBlock": 23975987
+    "startBlock": 26485049
   },
   "jbPermissions": {
     "name": "JBPermissions",
     "address": "0xf5ca295dc286a176e35ebb7833031fd95550eb14",
-    "startBlock": 23975872
+    "startBlock": 26484945
   },
   "jbPrices": {
     "name": "JBPrices",
     "address": "0xe712d14b04f1a1fe464be930e3ea72b9b0a141d7",
-    "startBlock": 23975917
+    "startBlock": 26484985
   },
   "jbProjects": {
     "name": "JBProjects",
     "address": "0x0b538a02610d7d3cc91ce2870f423e0a34d646ad",
-    "startBlock": 23975881
+    "startBlock": 26484953
   },
   "jbTerminalStore": {
     "name": "JBTerminalStore",
     "address": "0x6f6740dda12033ca9fbaa56693194e38cfd36827",
-    "startBlock": 23975978
+    "startBlock": 26485041
   },
   "jbTokens": {
     "name": "JBTokens",
     "address": "0xa59e9f424901fb9dbd8913a9a32a081f9425bf36",
-    "startBlock": 23975934
+    "startBlock": 26485001
   },
   "revDeployer": {
     "name": "REVDeployer",
     "address": "0x027f1684c6d31066c3f2468117f2508e8134fdfc",
-    "startBlock": 24014488
+    "startBlock": 26521040
   }
 }

@@ -32,4 +32,16 @@ function runYarnScript(scriptName, args = [], verbose) {
   });
 }
 
-module.exports = { runYarnScript };
+// play nice with alchemy network names
+function formatAlchemyNetwork(networkName) {
+  switch (networkName) {
+    case "ethereum":
+      return "mainnet";
+    case "arbitrum":
+      return "arbitrum-one";
+  }
+
+  return networkName;
+}
+
+module.exports = { runYarnScript, formatAlchemyNetwork };

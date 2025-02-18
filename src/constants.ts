@@ -19,5 +19,5 @@ export const CURRENCY_USD = BigInt.fromI32(2);
 // latest hook address can be found in HookDeployed events emitted by jb721TiersHookDeployer
 // e.g. https://etherscan.io/address/<deployer-address>#events
 export const bannyNftHookAddress = Address.fromBytes(
-  Bytes.fromHexString("0x4a8ea2d10ddf056676948cd869e06b64c860b14c")
+  Bytes.fromHexString("0x2da41cdc79ae49f2725ab549717b2dbcfc42b958")
 );

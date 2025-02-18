@@ -413,7 +413,7 @@ type DecorateBannyEvent @entity {
   txHash: Bytes!
   caller: Bytes!
 
-  nakedBannyId: BigInt!
+  bannyBodyId: BigInt!
   outfitIds: [BigInt!]!
-  worldId: BigInt!
+  backgroundId: BigInt!
 }

@@ -132,7 +132,7 @@ export function handleSetSvgContent(event: SetSvgContent): void {
     const nft = nfts[i];
     const _tier = NFTTier.load(nft.tier);
 
-    // We don't have a good way to figure out which NFTs may be wearing the tier, so we update all Naked NFTs, and all NFTs of the same tierId.
+    // We don't have a good way to figure out which NFTs may be wearing the tier, so we update all body NFTs, and all NFTs of the same tierId.
     if (nft.category === 0 || (_tier && _tier.tierId === tier.tierId)) {
       const tokenUriCall = jb721TiersHookContract.try_tokenURI(nft.tokenId);
       if (tokenUriCall.reverted) {
@@ -150,7 +150,7 @@ export function handleSetSvgContent(event: SetSvgContent): void {
 }
 
 export function handleDecorateBanny(event: DecorateBanny): void {
-  const tokenId = event.params.nakedBannyId;
+  const tokenId = event.params.bannyBodyId;
 
   const bannyToken = NFT.load(idForNFT(bannyNftHookAddress, tokenId));
 
@@ -185,8 +185,8 @@ export function handleDecorateBanny(event: DecorateBanny): void {
   decorateEvent.timestamp = event.block.timestamp.toI32();
   decorateEvent.txHash = event.transaction.hash;
   decorateEvent.caller = event.params.caller;
-  decorateEvent.nakedBannyId = event.params.nakedBannyId;
+  decorateEvent.bannyBodyId = event.params.bannyBodyId;
   decorateEvent.outfitIds = event.params.outfitIds;
-  decorateEvent.worldId = event.params.worldId;
+  decorateEvent.backgroundId = event.params.backgroundId;
   decorateEvent.save();
 }
