@@ -188,5 +188,6 @@ export function handleDecorateBanny(event: DecorateBanny): void {
   decorateEvent.bannyBodyId = event.params.bannyBodyId;
   decorateEvent.outfitIds = event.params.outfitIds;
   decorateEvent.backgroundId = event.params.backgroundId;
+  decorateEvent.tokenUri = bannyToken.tokenUri;
   decorateEvent.save();
 }

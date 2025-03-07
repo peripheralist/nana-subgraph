@@ -44,6 +44,7 @@ export function handleTransfer(event: Transfer): void {
     nft.projectId = projectId.toI32();
     nft.project = projectId.toString();
     nft.collection = address.toHexString();
+    nft.createdAt = event.block.timestamp.toI32();
 
     // Tier data
     if (!address_jb721TiersHookStore) {

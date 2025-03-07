@@ -241,6 +241,7 @@ type NFT @entity {
   project: Project!
   projectId: Int!
   category: Int!
+  createdAt: Int!
 
   # dynamic fields
   owner: Participant!
@@ -416,4 +417,5 @@ type DecorateBannyEvent @entity {
   bannyBodyId: BigInt!
   outfitIds: [BigInt!]!
   backgroundId: BigInt!
+  tokenUri: String!
 }
