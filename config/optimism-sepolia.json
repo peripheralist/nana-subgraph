@@ -2,8 +2,8 @@
   "network": "optimism-sepolia",
   "banny721TokenUriResolver": {
     "name": "Banny721TokenUriResolver",
-    "address": "0xff80c37a57016eff3d19fb286e9c740ec4537dd3",
-    "startBlock": 24022298
+    "address": "0xa5f8911d4cfd60a6697479f078409434424fe666",
+    "startBlock": 25038630
   },
   "jb721TiersHookDeployer": {
     "name": "JB721TiersHookDeployer",
